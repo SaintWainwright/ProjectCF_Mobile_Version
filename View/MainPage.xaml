@@ -2,11 +2,21 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProjectCF_Mobile_Version.View.MainPage"
-             Title="MainPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Title="MainPage"
+             xmlns:viewmodel="clr-namespace:ProjectCF_Mobile_Version.ViewModel"
+             x:DataType="viewmodel:MainPage_VM"
+             BackgroundImageSource="project_cf_mobile_mainpage.png">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <ImageButton Source="projectcf_login_logo.png" Aspect="Center" Grid.Row="0" VerticalOptions="Start" HorizontalOptions="End" Margin="30" Scale="2" Command="{Binding GoToLoginPageCommand}"/>
+        <Image Source="projectcf_logo.png" Aspect="Center" HeightRequest="250" WidthRequest="250"  Grid.Row="1"/>
+        <FlexLayout JustifyContent="Center" Grid.Row="2">
+            <Label HorizontalTextAlignment="Center" Text="Welcome to our Human Resources website, where we connect talented individuals with their dream careers and assist companies in finding the perfect fit for their teams. Discover a seamless hiring experience and a plethora of resources to foster a thriving work environment." TextColor="Black" BackgroundColor="Transparent" Grid.Row="2" VerticalOptions="End" HorizontalOptions="Center" HeightRequest="250" WidthRequest="250" FontAttributes="Bold" FontAutoScalingEnabled="True"/>
+        </FlexLayout>
+    </Grid>
 </ContentPage>

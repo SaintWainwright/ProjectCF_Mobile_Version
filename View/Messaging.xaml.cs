@@ -2,11 +2,11 @@ using ProjectCF_Mobile_Version.ViewModel;
 
 namespace ProjectCF_Mobile_Version.View;
 
-public partial class MainPage : ContentPage
+public partial class Messaging : ContentPage
 {
-	public MainPage()
+	public Messaging()
 	{
 		InitializeComponent();
-		BindingContext = new MainPage_VM();
+		BindingContext = new Messaging_VM();
 	}
 }

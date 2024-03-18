@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjectCF_Mobile_Version.View.LandingPage"
+             Title="LandingPage"
+             xmlns:viewmodel="clr-namespace:ProjectCF_Mobile_Version.ViewModel"
+             x:DataType="viewmodel:LandingPage_VM"
+             xmlns:converter="clr-namespace:ProjectCF_Mobile_Version.Converter">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:ByteToImageConverter x:Key="ByteToImageConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions="400,*,*" ColumnDefinitions="*,*">
+        <AbsoluteLayout BackgroundColor="#222222" HorizontalOptions="FillAndExpand" WidthRequest="600">
+            <Image Source="{Binding CurrentEmployee.Image, Converter={StaticResource ByteToImageConverter}}" />
+        </AbsoluteLayout>
+        <Button TextColor="Black" BackgroundColor="#D9D9D9" Grid.Row="1" Grid.Column="0" Text="ViewProfile" Command="{Binding GoToViewProfileCommand}"/>
+        <Button TextColor="Black" BackgroundColor="#D9D9D9" Grid.Row="1" Grid.Column="1" Text="ViewWorktime" Command="{Binding GoToWorktimeCommand}"/>
+        <Button TextColor="Black" BackgroundColor="#D9D9D9" Grid.Row="2" Grid.Column="0" Text="ViewSalary" Command="{Binding GoToViewSalaryCommand}"/>
+        <Button TextColor="Black" BackgroundColor="#D9D9D9" Grid.Row="2" Grid.Column="1" Text="ViewMessaging" Command="{Binding GoToMessagingCommand}"/>
+    </Grid>
+</ContentPage>

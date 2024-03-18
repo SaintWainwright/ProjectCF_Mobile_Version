@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjectCF_Mobile_Version.View.ViewProfile"
+             Title="ViewProfile"
+             xmlns:viewmodel="clr-namespace:ProjectCF_Mobile_Version.ViewModel"
+             x:DataType="viewmodel:ViewProfile_VM">
+    <ScrollView>
+        <VerticalStackLayout BackgroundColor="#222222">
+            <Border Stroke="White" WidthRequest="350" HeightRequest="350" Margin="10">
+
+            </Border>
+            <Frame BackgroundColor="White" WidthRequest="350" HeightRequest="1200" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" Margin="5">
+                <StackLayout>
+                    <Label Text="Full Name" FontAttributes="Bold"  FontSize="21" Margin="5"/>
+                    <Label Text="Hwang Yeji" FontAttributes="Bold"  FontSize="18" Margin="5,0,0,30"/>
+                    <Label Text="Email" FontAttributes="Bold" FontSize="21" Margin="5"/>
+                    <Label Text="yeji@gmail.com" FontAttributes="Bold" FontSize="18" Margin="5,0,0,30"/>
+                    <Label Text="Job Position" FontAttributes="Bold" FontSize="21" Margin="5"/>
+                    <Label Text="Employee" FontAttributes="Bold" FontSize="18" Margin="5,0,0,30"/>
+                    <Label Text="Contact Number" FontAttributes="Bold" FontSize="21" Margin="5"/>
+                    <Label Text="09284552133" FontAttributes="Bold" FontSize="18" Margin="5,0,0,30"/>
+                    <Label Text="Total Hours Worked" FontAttributes="Bold" FontSize="21" Margin="5"/>
+                    <Label Text="10" FontAttributes="Bold" FontSize="18" Margin="5,0,0,30"/>
+                    <Label Text="Gender" FontAttributes="Bold" FontSize="21" Margin="5"/>
+                    <Label Text="Female" FontAttributes="Bold" FontSize="18" Margin="5,0,0,30"/>
+                    <Label Text="Date Joined" FontAttributes="Bold" FontSize="21" Margin="5"/>
+                    <Label Text="07/01/2023" FontAttributes="Bold" FontSize="18" Margin="5,0,0,30"/>
+                    <Label Text="Birthdate" FontAttributes="Bold" FontSize="21" Margin="5"/>
+                    <Label Text="04/15/2000" FontAttributes="Bold" FontSize="18" Margin="5,0,0,30"/>
+                    <Label Text="Country" FontAttributes="Bold" FontSize="21" Margin="5"/>
+                    <Label Text="South Korea" FontAttributes="Bold" FontSize="18" Margin="5,0,0,30"/>
+                    <Label Text="Home Address" FontAttributes="Bold" FontSize="21" Margin="5"/>
+                    <Label Text="Real Island" FontAttributes="Bold" FontSize="18" Margin="5,0,0,30"/>
+                    <Label Text="Provincial Address" FontAttributes="Bold" FontSize="21" Margin="5"/>
+                    <Label Text="Real Province" FontAttributes="Bold" FontSize="18" Margin="5,0,0,30"/>
+                </StackLayout>
+            </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
