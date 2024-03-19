@@ -11,6 +11,23 @@ namespace ProjectCF_Mobile_Version.Services
 {
     class Employee_Services
     {
+#if ANDROID
+        public ObservableCollection<Employee> GetEmployees()
+        {
+            var docsDirectory = Android.App.Application.Context.GetExternalFilesDir(Android.OS.Environment.DirectoryDcim);
+
+            if (!File.Exists($"{docsDirectory.AbsoluteFile.Path}/Employee.txt"))
+            {
+                return new ObservableCollection<Employee>();
+            }
+
+            string FileUsers = File.ReadAllText($"{docsDirectory.AbsoluteFile.Path}/Employee.txt");
+            var EmployeeList = JsonSerializer.Deserialize<ObservableCollection<Employee>>(FileUsers);
+
+            return EmployeeList;
+        }
+#endif
+#if WINDOWS
         string filePath = Path.Combine(FileSystem.Current.AppDataDirectory, "Employee.txt");
         public ObservableCollection<Employee> GetEmployees()
         {
@@ -24,5 +41,6 @@ namespace ProjectCF_Mobile_Version.Services
 
             return EmployeeList;
         }
+#endif
     }
 }

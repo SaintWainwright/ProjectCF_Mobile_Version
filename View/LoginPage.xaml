@@ -14,14 +14,14 @@
             <Border.StrokeShape>
                 <RoundRectangle CornerRadius="8"/>
             </Border.StrokeShape>
-            <Entry Placeholder="Input Account ID" TextColor="Black" PlaceholderColor="Black"/>
+            <Entry Text="{Binding EmployeeIDEntry}" Placeholder="Input Account ID" TextColor="Black" PlaceholderColor="Black"/>
         </Border>
         <Label Text="Password:" Grid.Row="4" FontAttributes="Bold"/>
         <Border Grid.Row="5" Stroke="Black" BackgroundColor="#D9D9D9">
             <Border.StrokeShape>
                 <RoundRectangle CornerRadius="8"/>
             </Border.StrokeShape>
-            <Entry Placeholder="Input Password" TextColor="Black" PlaceholderColor="black" IsPassword="True"/>
+            <Entry Text="{Binding EmployeePassword}" Placeholder="Input Password" TextColor="Black" PlaceholderColor="black" IsPassword="True"/>
         </Border>
         <Label Text="Forget Password?" Grid.Row="6" FontAttributes="Italic" FontSize="Small">
             <Label.GestureRecognizers>

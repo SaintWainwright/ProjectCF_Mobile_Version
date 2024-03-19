@@ -48,7 +48,6 @@ namespace ProjectCF_Mobile_Version.ViewModel
         private bool IDExisting()
         {
             bool existing = false;
-            employee_Services.GetEmployees();
             foreach (var employee in employee_Services.GetEmployees())
             {
                 if (EmployeeIDEntry == employee.EmployeeID && EmployeePassword == employee.Password)
