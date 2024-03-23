@@ -16,6 +16,7 @@ namespace ProjectCF_Mobile_Version.ViewModel
         public LandingPage_VM()
         {
             employee_Services = new Employee_Services();
+            
         }
         private readonly Employee_Services employee_Services;
         private string _EmployeeID;
@@ -24,7 +25,7 @@ namespace ProjectCF_Mobile_Version.ViewModel
             get { return _EmployeeID; }
             set
             {
-                _EmployeeID = value; OnPropertyChanged(); OnPropertyChanged(nameof(_EmployeeID));
+                _EmployeeID = value; OnPropertyChanged(); OnPropertyChanged(nameof(_EmployeeID)); InitializeCurrentEmployee();
             }
         }
         private Employee _CurrentEmployee;
