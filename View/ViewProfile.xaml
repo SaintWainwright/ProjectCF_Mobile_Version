@@ -8,7 +8,7 @@
     <ScrollView>
         <VerticalStackLayout BackgroundColor="#222222">
             <Border Stroke="White" WidthRequest="350" HeightRequest="350" Margin="10">
-
+            
             </Border>
             <Frame BackgroundColor="White" WidthRequest="350" HeightRequest="1200" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" Margin="5">
                 <StackLayout>

@@ -12,10 +12,28 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <Grid RowDefinitions="400,*,*" ColumnDefinitions="*,*">
-        <AbsoluteLayout BackgroundColor="#222222" HorizontalOptions="FillAndExpand" WidthRequest="600">
-            <Image Source="{Binding CurrentEmployee.Image, Converter={StaticResource ByteToImageConverter}}" />
-        </AbsoluteLayout>
+    <Grid RowDefinitions="Auto,*,*" ColumnDefinitions="*,*">
+        <VerticalStackLayout Grid.Row="0" Grid.ColumnSpan="2" BackgroundColor="#222222">
+            <Frame HeightRequest="140"
+                   WidthRequest="140"
+                   CornerRadius="70"
+                   HorizontalOptions="Center"
+                   IsClippedToBounds="True"
+                   Padding="0"
+                   BorderColor="Gray"
+                   Margin="0,0,0,0">
+
+                <Image
+                    Aspect="AspectFit"
+                    Source="{Binding CurrentEmployee.Image, Converter={StaticResource ByteToImageConverter}}"
+                    HeightRequest="140"
+                    WidthRequest="140"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center" />
+            </Frame>
+            <Label Text="{Binding CurrentEmployee.FullName}" TextColor="White" HorizontalOptions="Center"/>
+            <Label Text="{Binding CurrentEmployee.JobPosition}" TextColor="White" HorizontalOptions="Center"/>
+        </VerticalStackLayout>
         <Button TextColor="Black" BackgroundColor="#D9D9D9" Grid.Row="1" Grid.Column="0" Text="ViewProfile" Command="{Binding GoToViewProfileCommand}"/>
         <Button TextColor="Black" BackgroundColor="#D9D9D9" Grid.Row="1" Grid.Column="1" Text="ViewWorktime" Command="{Binding GoToWorktimeCommand}"/>
         <Button TextColor="Black" BackgroundColor="#D9D9D9" Grid.Row="2" Grid.Column="0" Text="ViewSalary" Command="{Binding GoToViewSalaryCommand}"/>
