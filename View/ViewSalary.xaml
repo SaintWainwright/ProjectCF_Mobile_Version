@@ -4,7 +4,8 @@
              x:Class="ProjectCF_Mobile_Version.View.ViewSalary"
              Title="ViewSalary"
              xmlns:viewmodel="clr-namespace:ProjectCF_Mobile_Version.ViewModel"
-             x:DataType="viewmodel:ViewSalary_VM">
+             x:DataType="viewmodel:ViewSalary_VM"
+             BackgroundColor="#222222">
     <ScrollView>
             <VerticalStackLayout>
                 <Label Text="Salary" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" Margin="10"/>
