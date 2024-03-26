@@ -8,5 +8,6 @@ namespace ProjectCF_Mobile_Version.ViewModel
 {
     public partial class Messaging_VM : MainViewModel
     {
+
     }
 }

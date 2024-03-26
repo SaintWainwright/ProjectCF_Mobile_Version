@@ -11,36 +11,30 @@ namespace ProjectCF_Mobile_Version.Services
 {
     class Employee_Services
     {
-#if ANDROID
         public ObservableCollection<Employee> GetEmployees()
         {
-            var docsDirectory = Android.App.Application.Context.GetExternalFilesDir(Android.OS.Environment.DirectoryDcim);
-
-            if (!File.Exists($"{docsDirectory.AbsoluteFile.Path}/Employee.txt"))
+#if ANDROID
+            var docsDirectory = Android.App.Application.Context.GetExternalFilesDir(Android.OS.Environment.DirectoryDocuments);
+            File.WriteAllText($"{docsDirectory.AbsoluteFile.Path}/Initialization.json", "Initialize File path");
+            if (!File.Exists($"{docsDirectory.AbsoluteFile.Path}/Employee.json"))
             {
                 return new ObservableCollection<Employee>();
             }
 
-            string FileUsers = File.ReadAllText($"{docsDirectory.AbsoluteFile.Path}/Employee.txt");
+            string FileUsers = File.ReadAllText($"{docsDirectory.AbsoluteFile.Path}/Employee.json");
             var EmployeeList = JsonSerializer.Deserialize<ObservableCollection<Employee>>(FileUsers);
-
             return EmployeeList;
-        }
 #endif
 #if WINDOWS
-        string filePath = Path.Combine(FileSystem.Current.AppDataDirectory, "Employee.txt");
-        public ObservableCollection<Employee> GetEmployees()
-        {
+            string filePath = Path.Combine(FileSystem.Current.AppDataDirectory, "Employee.json");
             if (!File.Exists(filePath))
             {
                 return new ObservableCollection<Employee>();
             }
-
             string FileUsers = File.ReadAllText(filePath);
             var EmployeeList = JsonSerializer.Deserialize<ObservableCollection<Employee>>(FileUsers);
-
             return EmployeeList;
-        }
 #endif
+        }
     }
 }
