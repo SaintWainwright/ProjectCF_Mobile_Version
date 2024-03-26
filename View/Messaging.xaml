@@ -4,11 +4,32 @@
              x:Class="ProjectCF_Mobile_Version.View.Messaging"
              Title="Messaging"
              xmlns:viewmodel="clr-namespace:ProjectCF_Mobile_Version.ViewModel"
-             x:DataType="viewmodel:Messaging_VM">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             x:DataType="viewmodel:Messaging_VM" 
+             xmlns:model="clr-namespace:ProjectCF_Mobile_Version.Model"
+             BackgroundColor="Black">
+    <FlexLayout Direction="Column" AlignItems="Center">
+        <Label Margin="10" FontAttributes="Bold" FontSize="Large" FlexLayout.Order="0" Text="MESSAGES" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center"/>
+        <AbsoluteLayout FlexLayout.Order="1">
+            <Frame CornerRadius="10" WidthRequest="350" HeightRequest="650" Margin="18">
+                <ScrollView BackgroundColor="White">
+                    <CollectionView ItemsSource="{Binding MessageList}">
+                        <CollectionView.EmptyView>
+                            <ContentView>
+                                <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                                    <Label Text="NO MESSAGES..." FontAttributes="Bold" TextColor="Black" FontSize="Large"/>
+                                    <Image Source="no_messages.png" Margin="15"/>
+                                </StackLayout>
+                            </ContentView>
+                        </CollectionView.EmptyView>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="model:Message">
+                                
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </ScrollView>
+            </Frame>
+            <ImageButton Source="write_message.png" AbsoluteLayout.LayoutBounds="300,600"/>
+        </AbsoluteLayout>
+    </FlexLayout>
 </ContentPage>

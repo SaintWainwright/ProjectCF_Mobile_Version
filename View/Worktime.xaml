@@ -26,7 +26,7 @@
                         <Label Text="Time Out" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Center"/>
                     </Border>
                     <ScrollView Grid.Row="1" Grid.ColumnSpan="5">
-                        <CollectionView>
+                        <CollectionView ItemsSource="{Binding CurrentEmployee.Worktimes}">
                             <CollectionView.EmptyView>
                                 <ContentView>
                                    <Label Text="Employee has no Worktimes yet..." HorizontalTextAlignment="Center" Margin="0,175" FontSize="Header"/>
@@ -46,8 +46,10 @@
                 </Grid>
             </Border>
         <HorizontalStackLayout FlexLayout.Order="2">
-            <Button x:Name="wrktimeBtn" HorizontalOptions="Start" Margin="10"   WidthRequest="100" BackgroundColor="LightGrey" Text="Time In" TextColor="Black" FontAttributes="Bold"/>
-            <Button HorizontalOptions="End" Margin="10" WidthRequest="100" BackgroundColor="LightGrey" Text="Time Out" TextColor="Black" FontAttributes="Bold"/>
+            <DatePicker Date="{Binding DateSimulation}"/>
+            <Button Text="Simulate" Command="{Binding SimulateCommand}" BackgroundColor="LightGrey" TextColor="Black" BorderColor="Black"/>
+            <TimePicker  HorizontalOptions="Start" Margin="10"   WidthRequest="100" BackgroundColor="LightGrey" Time="{Binding TimeInSimulation}"/>
+            <TimePicker HorizontalOptions="End" Margin="10" WidthRequest="100" BackgroundColor="LightGrey" Time="{Binding TimeOutSimulation}"/>
         </HorizontalStackLayout>
     </FlexLayout>
 </ContentPage>
