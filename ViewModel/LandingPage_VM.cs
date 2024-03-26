@@ -46,22 +46,22 @@ namespace ProjectCF_Mobile_Version.ViewModel
         }
         private void GoToViewSalary()
         {
-            Shell.Current.GoToAsync(nameof(ViewSalary));
+            Shell.Current.GoToAsync($"{nameof(ViewSalary)}?id={EmployeeID}");
         }
         public ICommand GoToViewSalaryCommand => new Command(GoToViewSalary);
         private void GoToViewProfile()
         {
-            Shell.Current.GoToAsync(nameof(ViewProfile));
+            Shell.Current.GoToAsync($"{nameof(ViewProfile)}?id={EmployeeID}");
         }
         public ICommand GoToViewProfileCommand => new Command(GoToViewProfile);
         private void GoToWorktime()
         {
-            Shell.Current.GoToAsync(nameof(Worktime));
+            Shell.Current.GoToAsync($"{nameof(Worktime)}?id={EmployeeID}");
         }
         public ICommand GoToWorktimeCommand => new Command(GoToWorktime);
         private void GoToMessaging()
         {
-            Shell.Current.GoToAsync(nameof(Messaging));
+            Shell.Current.GoToAsync($"{nameof(Messaging)}?id={EmployeeID}");
         }
         public ICommand GoToMessagingCommand => new Command(GoToMessaging);
     }

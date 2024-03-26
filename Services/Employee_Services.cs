@@ -36,5 +36,36 @@ namespace ProjectCF_Mobile_Version.Services
             return EmployeeList;
 #endif
         }
+        public void UpdateEmployeeCollection(Employee employee)
+        {
+#if ANDROID
+            var docsDirectory = Android.App.Application.Context.GetExternalFilesDir(Android.OS.Environment.DirectoryDocuments);
+            ObservableCollection<Employee> EmployeeCollection = GetEmployees();
+            for (int loop = 0; loop < EmployeeCollection.Count; loop++)
+            {
+                if (employee.EmployeeID == EmployeeCollection[loop].EmployeeID)
+                {
+                    EmployeeCollection[loop] = employee;
+                    var EmployeeList = JsonSerializer.Serialize<ObservableCollection<Employee>>(EmployeeCollection);
+                    File.WriteAllText($"{docsDirectory.AbsoluteFile.Path}/Employee.json", EmployeeList);
+                    return;
+                }
+            }
+#endif
+#if WINDOWS
+            string filePath = Path.Combine(FileSystem.Current.AppDataDirectory, "Employee.json");
+            ObservableCollection<Employee> EmployeeCollection = GetEmployees();
+            for (int loop = 0; loop < EmployeeCollection.Count; loop++)
+            {
+                if (employee.EmployeeID == EmployeeCollection[loop].EmployeeID)
+                {
+                    EmployeeCollection[loop] = employee;
+                    var EmployeeList = JsonSerializer.Serialize<ObservableCollection<Employee>>(EmployeeCollection);
+                    File.WriteAllText(filePath, EmployeeList);
+                    return;
+                }
+            }
+#endif
+        }
     }
 }
