@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProjectCF_Mobile_Version.ViewModel
 {
-    public partial class Worktime_VM : MainViewModel
+    public partial class WorkTimeOut_VM : MainViewModel
     {
     }
 }
