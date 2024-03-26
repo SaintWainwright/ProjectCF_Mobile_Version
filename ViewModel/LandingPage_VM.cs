@@ -56,7 +56,7 @@ namespace ProjectCF_Mobile_Version.ViewModel
         public ICommand GoToViewProfileCommand => new Command(GoToViewProfile);
         private void GoToWorktime()
         {
-            Shell.Current.GoToAsync(nameof(WorkTimeIn));
+            Shell.Current.GoToAsync(nameof(Worktime));
         }
         public ICommand GoToWorktimeCommand => new Command(GoToWorktime);
         private void GoToMessaging()
@@ -64,9 +64,5 @@ namespace ProjectCF_Mobile_Version.ViewModel
             Shell.Current.GoToAsync(nameof(Messaging));
         }
         public ICommand GoToMessagingCommand => new Command(GoToMessaging);
-        private void GoToWorkTimeOut()
-        {
-            Shell.Current.GoToAsync(nameof(WorkTimeOut));
-        }
     }
 }
