@@ -5,17 +5,49 @@
              Title="Worktime"
              xmlns:viewmodel="clr-namespace:ProjectCF_Mobile_Version.ViewModel"
              x:DataType="viewmodel:Worktime_VM"
+             xmlns:model="clr-namespace:ProjectCF_Mobile_Version.Model"
              BackgroundColor="#222222">
     <FlexLayout Direction="Column" AlignItems="Center">
             <Label Text="Worktime" TextColor="White"  FontAttributes="Bold" Margin="10" FlexLayout.Order="0"/>
             <Border BackgroundColor="White" WidthRequest="350" HeightRequest="600" FlexLayout.Order="1">
-                <CollectionView>
-                
-                </CollectionView>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border Grid.Column="0" Grid.Row="0">
+                        <Label Text="Time In" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Center"/>
+                    </Border>
+                    <Border Grid.Column="1" Grid.Row="0">
+                        <Label Text="Time Out" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Center"/>
+                    </Border>
+                    <ScrollView Grid.Row="1" Grid.ColumnSpan="5">
+                        <CollectionView>
+                            <CollectionView.EmptyView>
+                                <ContentView>
+                                   <Label Text="Employee has no Worktimes yet..." HorizontalTextAlignment="Center" Margin="0,175" FontSize="Header"/>
+                                </ContentView>
+                            </CollectionView.EmptyView>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="model:Employee_Worktimes">
+                                    <Grid ColumnDefinitions="*,*">
+                                        <Label Grid.Column="0" Text="{Binding TimeIn}" HorizontalTextAlignment="Center"/>
+                                        <Label Grid.Column="1" Text="{Binding TimeOut}" HorizontalTextAlignment="Center"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </ScrollView>
+                    
+                </Grid>
             </Border>
-            <HorizontalStackLayout FlexLayout.Order="2">
-                <Button HorizontalOptions="Start" Margin="10"   WidthRequest="100" BackgroundColor="LightGrey" Text="Time In" TextColor="Black" FontAttributes="Bold"/>
-                <Button HorizontalOptions="End" Margin="10" WidthRequest="150" BackgroundColor="LightGrey" Text="View Time Out" TextColor="Black" FontAttributes="Bold"/>
-            </HorizontalStackLayout>
+        <HorizontalStackLayout FlexLayout.Order="2">
+            <Button x:Name="wrktimeBtn" HorizontalOptions="Start" Margin="10"   WidthRequest="100" BackgroundColor="LightGrey" Text="Time In" TextColor="Black" FontAttributes="Bold"/>
+            <Button HorizontalOptions="End" Margin="10" WidthRequest="100" BackgroundColor="LightGrey" Text="Time Out" TextColor="Black" FontAttributes="Bold"/>
+        </HorizontalStackLayout>
     </FlexLayout>
 </ContentPage>
