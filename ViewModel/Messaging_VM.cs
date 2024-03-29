@@ -48,7 +48,6 @@ namespace ProjectCF_Mobile_Version.ViewModel
                 }
             }
         }
-        public ICommand InitializeMessageListCommand => new Command(InitializeMessageList);
         private void GoToWriteMessage()
         {
             Shell.Current.GoToAsync($"{nameof(WriteMessage)}?id={EmployeeID}");

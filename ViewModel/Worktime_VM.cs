@@ -25,9 +25,9 @@ namespace ProjectCF_Mobile_Version.ViewModel
             optimalTimeIn = DateTime.Today.AddHours(7);
             optimalTimeOut = DateTime.Today.AddHours(21);
         }
-        private DateTime optimalTimeIn;
-        private DateTime optimalTimeOut;
-        private TimeOnly timeCompare;
+        private readonly DateTime optimalTimeIn;
+        private readonly DateTime optimalTimeOut;
+        private readonly TimeOnly timeCompare;
         private DateTime dateException;
         private readonly Employee_Services employee_Services;
 

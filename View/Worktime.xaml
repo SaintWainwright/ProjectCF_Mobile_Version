@@ -7,6 +7,7 @@
              x:DataType="viewmodel:Worktime_VM"
              xmlns:model="clr-namespace:ProjectCF_Mobile_Version.Model"
              BackgroundColor="#222222">
+    
     <FlexLayout Direction="Column" AlignItems="Center">
             <Label Text="Worktime" TextColor="White"  FontAttributes="Bold" Margin="10" FlexLayout.Order="0"/>
             <Border BackgroundColor="White" WidthRequest="350" HeightRequest="600" FlexLayout.Order="1">
