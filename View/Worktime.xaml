@@ -46,10 +46,12 @@
                 </Grid>
             </Border>
         <HorizontalStackLayout FlexLayout.Order="2">
-            <DatePicker Date="{Binding DateSimulation}"/>
-            <Button Text="Simulate" Command="{Binding SimulateCommand}" BackgroundColor="LightGrey" TextColor="Black" BorderColor="Black"/>
+            <DatePicker Date="{Binding DateSimulation}" BackgroundColor="LightGrey" WidthRequest="100" HeightRequest="43" Margin="10"/>
             <TimePicker  HorizontalOptions="Start" Margin="10"   WidthRequest="100" BackgroundColor="LightGrey" Time="{Binding TimeInSimulation}"/>
             <TimePicker HorizontalOptions="End" Margin="10" WidthRequest="100" BackgroundColor="LightGrey" Time="{Binding TimeOutSimulation}"/>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout FlexLayout.Order="3">
+            <Button Text="Simulate" Command="{Binding SimulateCommand}" BackgroundColor="LightGrey" TextColor="Black" BorderColor="Black"/>
         </HorizontalStackLayout>
     </FlexLayout>
 </ContentPage>

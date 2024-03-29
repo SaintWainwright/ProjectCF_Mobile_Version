@@ -11,6 +11,9 @@ namespace ProjectCF_Mobile_Version.Model
     {
         private DateTime _TimeIn;
         private DateTime _TimeOut;
+        private DateTime overtimes;
+        private DateTime lates;
+        private DateTime hoursWorked;
 
         public DateTime TimeIn
         {
@@ -21,6 +24,21 @@ namespace ProjectCF_Mobile_Version.Model
         {
             get { return _TimeOut; }
             set { _TimeOut = value; OnPropertyChanged(); OnPropertyChanged(nameof(_TimeOut)); }
+        }
+        public DateTime Overtimes
+        {
+            get { return overtimes; }
+            set { overtimes = value; OnPropertyChanged(); OnPropertyChanged(nameof(overtimes)); }
+        }
+        public DateTime Lates
+        {
+            get { return lates; }
+            set { lates = value; OnPropertyChanged(); OnPropertyChanged(nameof(lates)); }
+        }
+        public DateTime HoursWorked
+        {
+            get { return hoursWorked; }
+            set { hoursWorked = value; OnPropertyChanged(); OnPropertyChanged(nameof(hoursWorked)); }
         }
     }
 }
