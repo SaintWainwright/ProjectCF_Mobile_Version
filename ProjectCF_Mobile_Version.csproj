@@ -54,6 +54,7 @@
 	  <None Remove="Resources\Images\projectcf_login_logo.svg" />
 	  <None Remove="Resources\Images\projectcf_logo.png" />
 	  <None Remove="Resources\Images\project_cf_mobile_mainpage.png" />
+	  <None Remove="Resources\Images\send_message.png" />
 	  <None Remove="Resources\Images\write_message.png" />
 	</ItemGroup>
 
@@ -87,6 +88,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="View\WorkTimeIn.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="View\WriteMessage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

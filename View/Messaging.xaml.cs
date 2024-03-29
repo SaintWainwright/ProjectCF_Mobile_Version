@@ -6,7 +6,7 @@ public partial class Messaging : ContentPage
 {
 	public Messaging()
 	{
-		InitializeComponent();
-		BindingContext = new Messaging_VM();
+        BindingContext = new Messaging_VM();
+        InitializeComponent();
 	}
 }

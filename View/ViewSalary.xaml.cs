@@ -6,7 +6,7 @@ public partial class ViewSalary : ContentPage
 {
 	public ViewSalary()
 	{
-		InitializeComponent();
-		BindingContext = new ViewSalary_VM();
+        BindingContext = new ViewSalary_VM();
+        InitializeComponent();
 	}
 }
