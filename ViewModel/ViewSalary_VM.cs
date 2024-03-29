@@ -21,7 +21,7 @@ namespace ProjectCF_Mobile_Version.ViewModel
             totalOvertime = TimeSpan.Zero;
             totalLate = TimeSpan.Zero;
             totalHoursWorked = TimeSpan.Zero;
-            MonthPckr = new ObservableCollection<string>
+            MonthPicker = new ObservableCollection<string>
             {
                 "January",
                 "February",
@@ -36,7 +36,6 @@ namespace ProjectCF_Mobile_Version.ViewModel
                 "November",
                 "December"
             };
-            currentMonth = DateOnly.FromDateTime(DateTime.MinValue);
         }
 
         private readonly Employee_Services employee_Services;
@@ -58,19 +57,18 @@ namespace ProjectCF_Mobile_Version.ViewModel
         private double sss;
         private string _EmployeeID;
         private DateTime chosenMonth;
-        private DateOnly currentMonth;
-        private ObservableCollection<string> monthPckr;
-        public ObservableCollection<string> MonthPckr
+        private ObservableCollection<string> monthPicker;
+        public ObservableCollection<string> MonthPicker
         {
-            get { return monthPckr; }
-            set { monthPckr = value; OnPropertyChanged(); OnPropertyChanged(nameof(monthPckr)); }
+            get { return monthPicker; }
+            set { monthPicker = value; OnPropertyChanged(); OnPropertyChanged(nameof(monthPicker)); }
         }
         public string EmployeeID
         {
             get { return _EmployeeID; }
             set
             {
-                _EmployeeID = value; OnPropertyChanged(); OnPropertyChanged(nameof(_EmployeeID)); InitializeCurrentEmployee(); Total(); Calculate(); SetDisplayValues();
+                _EmployeeID = value; OnPropertyChanged(); OnPropertyChanged(nameof(_EmployeeID)); InitializeCurrentEmployee();
             }
         }
         public string DisplayTotalOvertime
@@ -163,11 +161,11 @@ namespace ProjectCF_Mobile_Version.ViewModel
                 currentEmployee = value; OnPropertyChanged(); OnPropertyChanged(nameof(currentEmployee));
             }
         }
-        public void Total()
+        private void Total()
         {
             foreach (Employee_Worktimes worktimes in CurrentEmployee.Worktimes)
             {
-                if(worktimes.Month.Month == 3 && worktimes.Year.Year == 2024)
+                if(worktimes.Month.Month == chosenMonth.Month && worktimes.Year.Year == chosenMonth.Year)
                 {
                     TotalOvertime += worktimes.Overtimes.TimeOfDay;
                     TotalLate += worktimes.Lates.TimeOfDay;
@@ -175,8 +173,7 @@ namespace ProjectCF_Mobile_Version.ViewModel
                 }
             }
         }
-        public ICommand TotalCommand => new Command(Total);
-        public void Calculate()
+        private void Calculate()
         {
             TotalHoursWorked -= totalOvertime;
             TemporarySalary = CurrentEmployee.SalaryGrade * totalHoursWorked.TotalHours;
@@ -190,15 +187,13 @@ namespace ProjectCF_Mobile_Version.ViewModel
             TotalDeductions = lateDeductions + taxes + pagibig + philHealth + sss;
             FinalSalary = TotalEarnings - TotalDeductions;
         }
-        public ICommand CalculateCommand => new Command(Calculate);
-        public void SetDisplayValues()
+        private void SetDisplayValues()
         {
             DisplayTotalOvertime = TotalOvertime.TotalHours.ToString();
             DisplayTotalLate = TotalLate.TotalHours.ToString();
             DisplayTotalHoursWorked = TotalHoursWorked.TotalHours.ToString();
         }
-        public ICommand SetDisplayValuesCommand => new Command(SetDisplayValues);
-        public void InitializeCurrentEmployee()
+        private void InitializeCurrentEmployee()
         {
             foreach (var employee in employee_Services.GetEmployees())
             {
@@ -208,123 +203,28 @@ namespace ProjectCF_Mobile_Version.ViewModel
                 }
             }
         }
-        public void ResetValues()
+        private void ResetValues()
         {
             TemporarySalary = 0;
-            TotalOvertime = TimeSpan.MinValue;
-            TotalLate = TimeSpan.MinValue;
+            TotalOvertime = TimeSpan.Zero;
+            TotalLate = TimeSpan.Zero;
             TotalEarnings = 0;
             TotalDeductions = 0;
             FinalSalary = 0;
         }
+        private int selectedMonth = 0;
+        public int SelectedMonth
+        {
+            get { return selectedMonth; }
+            set { selectedMonth = value; OnPropertyChanged(); OnPropertyChanged(nameof(selectedMonth)); PickerMonth_SelectedIndexChanged(); }
+        }
         private void PickerMonth_SelectedIndexChanged()
         {
-            var picker = (Picker)sender;
-            int selectedIndex = picker.SelectedIndex;
-            MonthPckr.Clear();
-            int years = DateTime.Now.Year;
-
-            if (selectedIndex == 1)
-            {
-                ResetValues();
-                chosenMonth = DateTime.MinValue;
-                chosenMonth.AddYears(years);
-                InitializeCurrentEmployee(); Total(); Calculate(); SetDisplayValues();
-            }
-            else if (selectedIndex == 2)
-            {
-                ResetValues();
-                chosenMonth = DateTime.MinValue;
-                chosenMonth.AddYears(years);
-                chosenMonth.AddMonths(1);
-                InitializeCurrentEmployee(); Total(); Calculate(); SetDisplayValues();
-            }
-            else if (selectedIndex == 3)
-            {
-                ResetValues();
-                chosenMonth = DateTime.MinValue;
-                chosenMonth.AddYears(years);
-                chosenMonth.AddMonths(2);
-                InitializeCurrentEmployee(); Total(); Calculate(); SetDisplayValues();
-            }
-            else if (selectedIndex == 4)
-            {
-                ResetValues();
-                chosenMonth = DateTime.MinValue;
-                chosenMonth.AddYears(years);
-                chosenMonth.AddMonths(3);
-                InitializeCurrentEmployee(); Total(); Calculate(); SetDisplayValues();
-            }
-            else if (selectedIndex == 5)
-            {
-                ResetValues();
-                chosenMonth = DateTime.MinValue;
-                chosenMonth.AddYears(years);
-                chosenMonth.AddMonths(4);
-                InitializeCurrentEmployee(); Total(); Calculate(); SetDisplayValues();
-            }
-            else if (selectedIndex == 6)
-            {
-                ResetValues();
-                chosenMonth = DateTime.MinValue;
-                chosenMonth.AddYears(years);
-                chosenMonth.AddMonths(5);
-                InitializeCurrentEmployee(); Total(); Calculate(); SetDisplayValues();
-            }
-            else if (selectedIndex == 7)
-            {
-                ResetValues();
-                chosenMonth = DateTime.MinValue;
-                chosenMonth.AddYears(years);
-                chosenMonth.AddMonths(6);
-                InitializeCurrentEmployee(); Total(); Calculate(); SetDisplayValues();
-            }
-            else if(selectedIndex == 8)
-            {
-                ResetValues();
-                chosenMonth = DateTime.MinValue;
-                chosenMonth.AddYears(years);
-                chosenMonth.AddMonths(7);
-                InitializeCurrentEmployee(); Total(); Calculate(); SetDisplayValues();
-            }
-            else if(selectedIndex == 9)
-            {
-                ResetValues();
-                chosenMonth = DateTime.MinValue;
-                chosenMonth.AddYears(years);
-                chosenMonth.AddMonths(8);
-                InitializeCurrentEmployee(); Total(); Calculate(); SetDisplayValues();
-            }
-            else if(selectedIndex == 10)
-            {
-                ResetValues();
-                chosenMonth = DateTime.MinValue;
-                chosenMonth.AddYears(years);
-                chosenMonth.AddMonths(9);
-                InitializeCurrentEmployee(); Total(); Calculate(); SetDisplayValues();
-            }
-            else if(selectedIndex == 11)
-            {
-                ResetValues();
-                chosenMonth = DateTime.MinValue;
-                chosenMonth.AddYears(years);
-                chosenMonth.AddMonths(10);
-                InitializeCurrentEmployee(); Total(); Calculate(); SetDisplayValues();
-            }
-            else if(selectedIndex == 12)
-            {
-                ResetValues();
-                chosenMonth = DateTime.MinValue;
-                chosenMonth.AddYears(years);
-                chosenMonth.AddMonths(11);
-                InitializeCurrentEmployee(); Total(); Calculate(); SetDisplayValues();
-            }
-            else
-            {
-                return;
-            }
-
+            chosenMonth = new DateTime(DateTime.Now.Year, SelectedMonth+1, DateTime.DaysInMonth(DateTime.Now.Year, selectedMonth+1));
+            ResetValues();
+            Total(); 
+            Calculate(); 
+            SetDisplayValues();
         }
-        public ICommand PickMonthCommand => new Command(PickerMonth_SelectedIndexChanged);
     }
 }
