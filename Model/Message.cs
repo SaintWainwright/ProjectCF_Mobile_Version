@@ -13,7 +13,7 @@ namespace ProjectCF_Mobile_Version.Model
         private Employee receiver = new();
         private string subject;
         private string messageText;
-        private string tag;
+        private int tag;
         private DateTime timeSent;
 
         public Employee Sender 
@@ -36,7 +36,7 @@ namespace ProjectCF_Mobile_Version.Model
             get { return messageText; }
             set {  messageText = value; OnPropertyChanged(); OnPropertyChanged(nameof(messageText));  }
         }
-        public string Tag
+        public int Tag
         {
             get { return tag; }
             set { tag = value; OnPropertyChanged(); OnPropertyChanged(nameof(tag)); }
