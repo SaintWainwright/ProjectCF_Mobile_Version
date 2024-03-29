@@ -1,12 +1,13 @@
 using ProjectCF_Mobile_Version.ViewModel;
+using System.ComponentModel;
 
 namespace ProjectCF_Mobile_Version.View;
 
-public partial class ViewSalary : ContentPage
+public partial class ViewSalary : ContentPage, INotifyPropertyChanged
 {
 	public ViewSalary()
 	{
-		InitializeComponent();
-		BindingContext = new ViewSalary_VM();
+        BindingContext = new ViewSalary_VM();
+        InitializeComponent();
 	}
 }

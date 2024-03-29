@@ -14,7 +14,8 @@ namespace ProjectCF_Mobile_Version.Model
         private DateTime overtimes;
         private DateTime lates;
         private DateTime hoursWorked;
-
+        private DateTime month;
+        private DateTime year;
         public DateTime TimeIn
         {
             get { return _TimeIn; }
@@ -39,6 +40,16 @@ namespace ProjectCF_Mobile_Version.Model
         {
             get { return hoursWorked; }
             set { hoursWorked = value; OnPropertyChanged(); OnPropertyChanged(nameof(hoursWorked)); }
+        }
+        public DateTime Month
+        {
+            get { return month; }
+            set { month = value; OnPropertyChanged(); OnPropertyChanged(nameof(month)); }
+        }
+        public DateTime Year
+        {
+            get { return year;}
+            set { year = value; OnPropertyChanged(); OnPropertyChanged(nameof(year)); }
         }
     }
 }

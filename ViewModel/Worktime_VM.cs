@@ -2,6 +2,7 @@
 using ProjectCF_Mobile_Version.Services;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,7 +10,8 @@ using System.Windows.Input;
 
 namespace ProjectCF_Mobile_Version.ViewModel
 {
-    public partial class Worktime_VM : LandingPage_VM
+    [QueryProperty(nameof(EmployeeID), "id")]
+    public partial class Worktime_VM : MainViewModel
     {
         public Worktime_VM()
         {
@@ -71,6 +73,25 @@ namespace ProjectCF_Mobile_Version.ViewModel
             get { return _TimeOut; }
             set { _TimeOut = value; OnPropertyChanged(); OnPropertyChanged(nameof(_TimeOut)); }
         }
+        private string _EmployeeID;
+        public string EmployeeID
+        {
+            get { return _EmployeeID; }
+            set
+            {
+                _EmployeeID = value; OnPropertyChanged(); OnPropertyChanged(nameof(_EmployeeID)); InitializeCurrentEmployee();
+            }
+        }
+
+        private Employee currentEmployee;
+        public Employee CurrentEmployee
+        {
+            get { return currentEmployee; }
+            set
+            {
+                currentEmployee = value; OnPropertyChanged(); OnPropertyChanged(nameof(currentEmployee));
+            }
+        }
 
         private Employee_Worktimes SimulationWorkTimes = new();
 
@@ -106,6 +127,8 @@ namespace ProjectCF_Mobile_Version.ViewModel
                 theduration = dateException - optimalTimeOut;
                 SimulationWorkTimes.Overtimes = SimulationWorkTimes.Overtimes.Add(theduration);
             }
+            SimulationWorkTimes.Month = TimeInSimulated;
+            SimulationWorkTimes.Year = TimeInSimulated;
             SimulationWorkTimes.HoursWorked = SimulationWorkTimes.HoursWorked.Add(theduration);
             SimulationWorkTimes.TimeIn = TimeInSimulated;
             SimulationWorkTimes.TimeOut = TimeOutSimulated;
@@ -121,6 +144,16 @@ namespace ProjectCF_Mobile_Version.ViewModel
             TimeInSimulated += TimeInSimulation;
             TimeOutSimulated = DateSimulation;
             TimeOutSimulated += TimeOutSimulation;
+        }
+        public void InitializeCurrentEmployee()
+        {
+            foreach (var employee in employee_Services.GetEmployees())
+            {
+                if (EmployeeID == employee.EmployeeID)
+                {
+                    CurrentEmployee = employee;
+                }
+            }
         }
     }
 }

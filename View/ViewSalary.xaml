@@ -54,12 +54,7 @@
                         </Grid.RowDefinitions>
 
                         <Border Grid.Row="0" Margin="20,10,10,10" Stroke="Black" WidthRequest="100" HorizontalOptions="Start" BackgroundColor="LightGray">
-                            <DatePicker
-                            x:Name="salaryDate"
-                            DateSelected="OnDateSelected"
-                            MaximumDate="{Binding MaxDate}"
-                            MinimumDate="{Binding MinDate}"
-                            WidthRequest="300"/>
+                            <Picker Title="Month" SelectedIndexChanged="{Binding PickMonthCommand}" ItemsSource="{Binding MonthPckr}"/>
                         </Border>
                         <!--Grid for Earnings-->
                         <Border Grid.Row="1" Grid.Column="0" Stroke="Black" WidthRequest="150" HorizontalOptions="Start" Margin="20,10,0,0" BackgroundColor="LightGray">

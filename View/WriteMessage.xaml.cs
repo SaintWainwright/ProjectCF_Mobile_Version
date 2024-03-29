@@ -2,11 +2,11 @@ using ProjectCF_Mobile_Version.ViewModel;
 
 namespace ProjectCF_Mobile_Version.View;
 
-public partial class ViewProfile : ContentPage
+public partial class WriteMessage : ContentPage
 {
-	public ViewProfile()
+	public WriteMessage()
 	{
-        BindingContext = new ViewProfile_VM();
+        BindingContext = new WriteMessage_VM();
         InitializeComponent();
 	}
 }

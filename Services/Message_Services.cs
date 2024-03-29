@@ -11,7 +11,7 @@ namespace ProjectCF_Mobile_Version.Services
 {
     class Message_Services
     {
-        public void AddMessage(Message message)
+        public void SendMessage(Message message)
         {
 #if ANDROID
             var docsDirectory = Android.App.Application.Context.GetExternalFilesDir(Android.OS.Environment.DirectoryDocuments);

@@ -6,7 +6,7 @@ public partial class Worktime : ContentPage
 {
 	public Worktime()
 	{
-		InitializeComponent();
-		BindingContext = new Worktime_VM();
+        BindingContext = new Worktime_VM();
+        InitializeComponent();
 	}
 }

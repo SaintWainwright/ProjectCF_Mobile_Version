@@ -34,7 +34,7 @@ namespace ProjectCF_Mobile_Version.ViewModel
             get { return _CurrentEmployee; }
             set { _CurrentEmployee = value; OnPropertyChanged(); OnPropertyChanged(nameof(_CurrentEmployee)); }
         }
-        private void InitializeCurrentEmployee()
+        public void InitializeCurrentEmployee()
         {
             foreach (var employee in employee_Services.GetEmployees())
             {
