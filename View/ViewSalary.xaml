@@ -38,7 +38,7 @@
                             <Label Text="{Binding CurrentEmployee.JobPosition}" FontSize="14" Margin="5,0,0,0"/>
                         </Border>
                         <Border Grid.Row="3" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="LightGray" Stroke="Black" WidthRequest="160" HeightRequest="25" Margin="0,0,10,0">
-                            <Label Text="{Binding CurrentEmployee.SalaryGrade}" FontSize="14" Margin="5,0,0,0"/>
+                            <Label Text="{Binding CurrentEmployee.SalaryGrade, StringFormat='Salary Grade: {0}'}" FontSize="14" Margin="5,0,0,0"/>
                         </Border>
                     </Grid>
 
@@ -56,7 +56,6 @@
                         <Border Grid.Row="0" Margin="20,10,10,10" Stroke="Black" WidthRequest="100" HorizontalOptions="Start" BackgroundColor="LightGray">
                             <Picker Title="Month" SelectedIndex="{Binding SelectedMonth}" ItemsSource="{Binding MonthPicker}"/>
                         </Border>
-                        <Label Text="{Binding SelectedMonth}"/>
                         <!--Grid for Earnings-->
                         <Border Grid.Row="1" Grid.Column="0" Stroke="Black" WidthRequest="150" HorizontalOptions="Start" Margin="20,10,0,0" BackgroundColor="LightGray">
                             <Label Text="EARNINGS" FontAttributes="Bold" FontSize="25" Margin="5" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
@@ -73,11 +72,11 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <Label Text="Salary Grade" Grid.Row="0" Grid.Column="0" Margin="10"/>
-                                <Label Text="{Binding TemporarySalary}" Grid.Row="0" Grid.Column="1" Margin="10" HorizontalTextAlignment="End"/>
+                                <Label Text="{Binding TemporarySalary, StringFormat='{0:0.00}'}" Grid.Row="0" Grid.Column="1" Margin="10" HorizontalTextAlignment="End"/>
                                 <Label Text="Overtime Bonus" Grid.Row="1" Grid.Column="0" Margin="10"/>
-                                <Label Text="{Binding OvertimeBonus}" Grid.Row="1" Grid.Column="1" Margin="10" HorizontalTextAlignment="End"/>
+                                <Label Text="{Binding OvertimeBonus, StringFormat='{0:0.00}'}" Grid.Row="1" Grid.Column="1" Margin="10" HorizontalTextAlignment="End"/>
                                 <Label Text="Total Earnings:" Grid.Row="2" Grid.Column="0" Margin="10" VerticalOptions="End"/>
-                                <Label Text="{Binding TotalEarnings}" Grid.Row="2" Grid.Column="1" Margin="10" VerticalOptions="End" HorizontalTextAlignment="End"/>
+                                <Label Text="{Binding TotalEarnings, StringFormat='{0:0.00}'}" Grid.Row="2" Grid.Column="1" Margin="10" VerticalOptions="End" HorizontalTextAlignment="End"/>
                             </Grid>
                         </Border>
 
@@ -100,17 +99,17 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <Label Text="Taxes" Grid.Row="0" Grid.Column="0" Margin="10"/>
-                                <Label Text="{Binding Taxes}" Grid.Row="0" Grid.Column="1" Margin="10" HorizontalTextAlignment="End"/>
+                                <Label Text="{Binding Taxes, StringFormat='{0:0.00}'}" Grid.Row="0" Grid.Column="1" Margin="10" HorizontalTextAlignment="End"/>
                                 <Label Text="Pag-Ibig" Grid.Row="1" Grid.Column="0" Margin="10"/>
-                                <Label Text="{Binding PagIbig}" Grid.Row="1" Grid.Column="1" Margin="10" HorizontalTextAlignment="End"/>
+                                <Label Text="{Binding PagIbig, StringFormat='{0:0.00}'}" Grid.Row="1" Grid.Column="1" Margin="10" HorizontalTextAlignment="End"/>
                                 <Label Text="PhilHealth" Grid.Row="2" Grid.Column="0" Margin="10"/>
-                                <Label Text="{Binding PhilHealth}" Grid.Row="2" Grid.Column="1" Margin="10" HorizontalTextAlignment="End"/>
+                                <Label Text="{Binding PhilHealth, StringFormat='{0:0.00}'}" Grid.Row="2" Grid.Column="1" Margin="10" HorizontalTextAlignment="End"/>
                                 <Label Text="SSS" Grid.Row="3" Grid.Column="0" Margin="10"/>
-                                <Label Text="{Binding SSS}" Grid.Row="3" Grid.Column="1" Margin="10" HorizontalTextAlignment="End"/>
+                                <Label Text="{Binding SSS, StringFormat='{0:0.00}'}" Grid.Row="3" Grid.Column="1" Margin="10" HorizontalTextAlignment="End"/>
                                 <Label Text="Lates" Grid.Row="4" Grid.Column="0" Margin="10"/>
-                                <Label Text="{Binding LateDeductions}" Grid.Row="4" Grid.Column="1" Margin="10" HorizontalTextAlignment="End"/>
+                                <Label Text="{Binding LateDeductions, StringFormat='{0:0.00}'}" Grid.Row="4" Grid.Column="1" Margin="10" HorizontalTextAlignment="End"/>
                                 <Label Text="Total Deductions:" Grid.Row="5" Grid.Column="0" Margin="10" VerticalOptions="End"/>
-                                <Label Text="{Binding TotalDeductions}" Grid.Row="5" Grid.Column="1" Margin="10" VerticalOptions="End" HorizontalTextAlignment="End"/>
+                                <Label Text="{Binding TotalDeductions, StringFormat='{0:0.00}'}" Grid.Row="5" Grid.Column="1" Margin="10" VerticalOptions="End" HorizontalTextAlignment="End"/>
                             </Grid>
                         </Border>
                         <Border BackgroundColor="LightGray" Grid.Row="5" Margin="10" WidthRequest="250" Stroke="Black">
@@ -120,7 +119,7 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <Label Text="Netpay:" Grid.Column="0" FontAttributes="Bold" FontSize="16" Margin="5" VerticalTextAlignment="Center" HorizontalTextAlignment="Start"/>
-                                <Label Text="{Binding FinalSalary}" Grid.Column="1" FontAttributes="Bold" FontSize="16" Margin="5" VerticalTextAlignment="Center" HorizontalTextAlignment="End"/>
+                                <Label Text="{Binding FinalSalary, StringFormat='{0:0.00}'}" Grid.Column="1" FontAttributes="Bold" FontSize="16" Margin="5" VerticalTextAlignment="Center" HorizontalTextAlignment="End"/>
                             </Grid>
                         </Border>
                     </Grid>
