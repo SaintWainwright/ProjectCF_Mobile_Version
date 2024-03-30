@@ -1,8 +1,9 @@
 using ProjectCF_Mobile_Version.ViewModel;
+using System.ComponentModel;
 
 namespace ProjectCF_Mobile_Version.View;
 
-public partial class ViewSalary : ContentPage
+public partial class ViewSalary : ContentPage, INotifyPropertyChanged
 {
 	public ViewSalary()
 	{
