@@ -70,10 +70,6 @@ namespace ProjectCF_Mobile_Version.ViewModel
             }
             return true;
         }
-        private void GoToMessaging()
-        {
-            Shell.Current.GoToAsync($"{nameof(Messaging)}?id={EmployeeID}");
-        }
 
         private void SendMessage()
         {
@@ -82,7 +78,7 @@ namespace ProjectCF_Mobile_Version.ViewModel
                 InitializeMessage();
                 message_Services.SendMessage(NewMessage);
                 Shell.Current.DisplayAlert("Email sent", "The email has been successfully sent to receiver", "Okay");
-                GoToMessaging();
+                Shell.Current.GoToAsync("..");
             }
             else
             {
