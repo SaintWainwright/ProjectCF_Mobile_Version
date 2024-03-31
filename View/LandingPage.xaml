@@ -46,16 +46,16 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <FlexLayout Grid.Row="0" Grid.Column="0" Margin="10">
-                    <ImageButton Source="project_cf_mobile_viewprofile_picture.png" Command="{Binding GoToViewProfileCommand}" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="180" HeightRequest="200"/>
+                    <ImageButton Source="project_cf_mobile_viewprofile_picture.png" Command="{Binding GoToViewProfileCommand}" Aspect="Center" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="180" HeightRequest="200"/>
                 </FlexLayout>
                 <FlexLayout Grid.Row="0" Grid.Column="1" Margin="10">
-                    <ImageButton Source="project_cf_mobile_viewworktime_picture.png" Command="{Binding GoToViewProfileCommand}" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="180" HeightRequest="200"/>
+                    <ImageButton Source="project_cf_mobile_viewworktime_picture.png" Command="{Binding GoToWorktimeCommand}" Aspect="Center" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="180" HeightRequest="200"/>
                 </FlexLayout>
                 <FlexLayout Grid.Row="1" Grid.Column="0" Margin="10">
-                    <ImageButton Source="project_cf_mobile_viewsalary_picture.png" Command="{Binding GoToViewProfileCommand}" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="180" HeightRequest="200"/>
+                    <ImageButton Source="project_cf_mobile_viewsalary_picture.png" Command="{Binding GoToViewSalaryCommand}" Aspect="Center" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="180" HeightRequest="200"/>
                 </FlexLayout>
                 <FlexLayout Grid.Row="1" Grid.Column="1" Margin="10">
-                    <ImageButton Source="project_cf_mobile_sendmessage_picture.png" Command="{Binding GoToViewProfileCommand}" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="180" HeightRequest="200"/>
+                    <ImageButton Source="project_cf_mobile_sendmessage_picture.png" Command="{Binding GoToMessagingCommand}" Aspect="Center" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="180" HeightRequest="200"/>
                 </FlexLayout>
             </Grid>
         </Frame>
