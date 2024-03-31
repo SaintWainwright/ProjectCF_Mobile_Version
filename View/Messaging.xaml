@@ -19,7 +19,7 @@
         <AbsoluteLayout FlexLayout.Order="1">
             <Frame CornerRadius="10" WidthRequest="350" HeightRequest="675" Margin="18,0,18,18">
                 <ScrollView BackgroundColor="White">
-                    <CollectionView ItemsSource="{Binding MessageList}">
+                    <CollectionView ItemsSource="{Binding MessageList}" SelectionMode="Single" SelectedItem="{Binding SelectedMessage}">
                         <CollectionView.EmptyView>
                             <ContentView>
                                 <StackLayout VerticalOptions="Center" HorizontalOptions="Center">

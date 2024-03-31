@@ -85,6 +85,9 @@
 	  <MauiXaml Update="View\Messaging.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="View\ViewMessage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="View\ViewProfile.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

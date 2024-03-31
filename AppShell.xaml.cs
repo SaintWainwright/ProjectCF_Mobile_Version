@@ -15,6 +15,7 @@ namespace ProjectCF_Mobile_Version
             Routing.RegisterRoute(nameof(ViewSalary), typeof(ViewSalary));
             Routing.RegisterRoute(nameof(Messaging), typeof(Messaging));
             Routing.RegisterRoute(nameof(WriteMessage), typeof(WriteMessage));
+            Routing.RegisterRoute(nameof(ViewMessage), typeof(ViewMessage));
         }
     }
 }
