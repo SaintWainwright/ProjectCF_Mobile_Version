@@ -28,6 +28,23 @@ namespace ProjectCF_Mobile_Version.ViewModel
             get { return messageList; }
             set { messageList = value; OnPropertyChanged(); OnPropertyChanged(nameof(messageList)); }
         }
+        private Message selectedMessage;
+        public Message SelectedMessage
+        {
+            get { return selectedMessage; }
+            set
+            {
+                selectedMessage = value; OnPropertyChanged(); OnPropertyChanged(nameof(selectedMessage)); GoToViewMessage();
+            }
+        }
+        private void GoToViewMessage()
+        {
+            var navigationParameter = new Dictionary<string, object>
+            {
+                { "selectedmessage", SelectedMessage }
+            };
+            Shell.Current.GoToAsync($"{nameof(ViewMessage)}", navigationParameter);
+        }
         private string _EmployeeID;
         public string EmployeeID
         {
@@ -37,7 +54,7 @@ namespace ProjectCF_Mobile_Version.ViewModel
                 _EmployeeID = value; OnPropertyChanged(); OnPropertyChanged(nameof(_EmployeeID)); InitializeMessageList();
             }
         }
-        public void InitializeMessageList()
+        private void InitializeMessageList()
         {
             MessageList = new ObservableCollection<Message>();
             foreach (var message in message_Services.GetMessages().Reverse()) 

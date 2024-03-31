@@ -30,13 +30,13 @@
                         <Label Text="Contact Number" FontAttributes="Bold" FontSize="21" Margin="5"/>
                         <Entry Text="{Binding CurrentEmployee.ContactNumber}" FontAttributes="Bold" FontSize="18" Margin="5,0,0,30" IsReadOnly="True"/>
                         <Label Text="Total Hours Worked" FontAttributes="Bold" FontSize="21" Margin="5"/>
-                        <Entry Text="{Binding CurrentEmployee.HoursWorked}" FontAttributes="Bold" FontSize="18" Margin="5,0,0,30" IsReadOnly="True"/>
+                        <Entry Text="{Binding CurrentEmployee.HoursWorked, StringFormat='{0:hh:mm:ss}'}" FontAttributes="Bold" FontSize="18" Margin="5,0,0,30" IsReadOnly="True"/>
                         <Label Text="Gender" FontAttributes="Bold" FontSize="21" Margin="5"/>
                         <Entry Text="{Binding CurrentEmployee.Gender}" FontAttributes="Bold" FontSize="18" Margin="5,0,0,30" IsReadOnly="True"/>
                         <Label Text="Date Joined" FontAttributes="Bold" FontSize="21" Margin="5"/>
-                        <Entry Text="{Binding CurrentEmployee.DateJoined}" FontAttributes="Bold" FontSize="18" Margin="5,0,0,30" IsReadOnly="True"/>
+                        <Entry Text="{Binding CurrentEmployee.DateJoined, StringFormat='{0:MM/dd/yyyy}'}" FontAttributes="Bold" FontSize="18" Margin="5,0,0,30" IsReadOnly="True"/>
                         <Label Text="Birthdate" FontAttributes="Bold" FontSize="21" Margin="5"/>
-                        <Entry Text="{Binding CurrentEmployee.BirthDate}" FontAttributes="Bold" FontSize="18" Margin="5,0,0,30" IsReadOnly="True"/>
+                        <Entry Text="{Binding CurrentEmployee.BirthDate, StringFormat='{0:MM/dd/yyyy}'}" FontAttributes="Bold" FontSize="18" Margin="5,0,0,30" IsReadOnly="True"/>
                         <Label Text="Country" FontAttributes="Bold" FontSize="21" Margin="5"/>
                         <Entry Text="{Binding CurrentEmployee.Country}" FontAttributes="Bold" FontSize="18" Margin="5,0,0,30" IsReadOnly="True"/>
                         <Label Text="Home Address" FontAttributes="Bold" FontSize="21" Margin="5"/>
