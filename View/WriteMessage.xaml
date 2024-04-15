@@ -21,7 +21,7 @@
         <Frame FlexLayout.Order="2" CornerRadius="10" WidthRequest="350" HeightRequest="75" Margin="18,1">
             <HorizontalStackLayout BackgroundColor="White" VerticalOptions="Center">
                 <Label Text="TO: " FontAttributes="Bold" FontSize="20" VerticalOptions="Center"/>
-                <Picker Title="Contacts" SelectedItem="{Binding NewMessage.Receiver}" ItemsSource="{Binding ContactList}" ItemDisplayBinding="{Binding FullName}" HeightRequest="75" FontSize="20" FontAttributes="Bold" WidthRequest="300" Margin="0,2,0,0"/>
+                <Picker Title="Human Resources" SelectedItem="{Binding NewMessage.Receiver}" ItemsSource="{Binding ContactList}" ItemDisplayBinding="{Binding FullName}" HeightRequest="75" FontSize="20" FontAttributes="Bold" WidthRequest="300" Margin="0,2,0,0"/>
             </HorizontalStackLayout>
         </Frame>
         <Frame FlexLayout.Order="3" CornerRadius="10" WidthRequest="350" HeightRequest="75" Margin="18,1">

@@ -14,6 +14,7 @@ namespace ProjectCF_Mobile_Version.ViewModel
         public ViewProfile_VM()
         {
             employee_Services = new Employee_Services();
+            InitializeCurrentEmployee();
         }
         private readonly Employee_Services employee_Services;
         private string currentEmployeeBirthday;

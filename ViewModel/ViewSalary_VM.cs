@@ -11,13 +11,12 @@ using System.Windows.Input;
 
 namespace ProjectCF_Mobile_Version.ViewModel
 {
-    [QueryProperty(nameof(EmployeeID), "id")]
-    public partial class ViewSalary_VM : MainViewModel
+    public partial class ViewSalary_VM : LandingPage_VM
     {
-
         public ViewSalary_VM()
         {
             employee_Services = new Employee_Services();
+            InitializeCurrentEmployee();
             totalOvertime = TimeSpan.Zero;
             totalLate = TimeSpan.Zero;
             totalHoursWorked = TimeSpan.Zero;
@@ -62,14 +61,6 @@ namespace ProjectCF_Mobile_Version.ViewModel
         {
             get { return monthPicker; }
             set { monthPicker = value; OnPropertyChanged(); OnPropertyChanged(nameof(monthPicker)); }
-        }
-        public string EmployeeID
-        {
-            get { return _EmployeeID; }
-            set
-            {
-                _EmployeeID = value; OnPropertyChanged(); OnPropertyChanged(nameof(_EmployeeID)); InitializeCurrentEmployee();
-            }
         }
         public string DisplayTotalOvertime
         {
@@ -152,15 +143,6 @@ namespace ProjectCF_Mobile_Version.ViewModel
             get { return sss; }
             set { sss = value; OnPropertyChanged(); OnPropertyChanged(nameof(sss)); }
         }
-        private Employee currentEmployee;
-        public Employee CurrentEmployee
-        {
-            get { return currentEmployee; }
-            set
-            {
-                currentEmployee = value; OnPropertyChanged(); OnPropertyChanged(nameof(currentEmployee));
-            }
-        }
         private void Total()
         {
             foreach (Employee_Worktimes worktimes in CurrentEmployee.Worktimes)
@@ -192,16 +174,6 @@ namespace ProjectCF_Mobile_Version.ViewModel
             DisplayTotalOvertime = TotalOvertime.TotalHours.ToString();
             DisplayTotalLate = TotalLate.TotalHours.ToString();
             DisplayTotalHoursWorked = TotalHoursWorked.TotalHours.ToString();
-        }
-        private void InitializeCurrentEmployee()
-        {
-            foreach (var employee in employee_Services.GetEmployees())
-            {
-                if (EmployeeID == employee.EmployeeID)
-                {
-                    CurrentEmployee = employee;
-                }
-            }
         }
         private void ResetValues()
         {

@@ -67,5 +67,17 @@ namespace ProjectCF_Mobile_Version.Services
             }
 #endif
         }
+        public ObservableCollection<Employee> GetHumanResources()
+        {
+            ObservableCollection<Employee> EmployeeCollection = new();
+            foreach (var employee in GetEmployees())
+            {
+                if (employee.JobPosition == "Human Resource")
+                {
+                    EmployeeCollection.Add(employee);
+                }
+            }
+            return EmployeeCollection;
+        }
     }
 }
