@@ -15,7 +15,7 @@ namespace ProjectCF_Mobile_Version.ViewModel
         public Worktime_VM()
         {
             employee_Services = new Employee_Services();
-            InitializeCurrentEmployee();
+            CurrentEmployee = employee_Services.InitializeCurrentEmployee();
             DateToday = DateOnly.FromDateTime(DateTime.Today);
             TimeNow = TimeOnly.FromDateTime(DateTime.Now);
             DateSimulation = DateToday.ToDateTime(TimeOnly.MinValue);

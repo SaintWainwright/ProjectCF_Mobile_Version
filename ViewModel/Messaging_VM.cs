@@ -18,8 +18,8 @@ namespace ProjectCF_Mobile_Version.ViewModel
             message_Services = new Message_Services();
             employee_Services = new Employee_Services();
             MessageList = new ObservableCollection<Message>();
-            InitializeCurrentEmployee();
-            InitializeMessageList();
+            CurrentEmployee = employee_Services.InitializeCurrentEmployee();
+            MessageList = message_Services.EmployeeMessageList(CurrentEmployee);
         }
         private readonly Message_Services message_Services;
         private readonly Employee_Services employee_Services;
@@ -45,17 +45,6 @@ namespace ProjectCF_Mobile_Version.ViewModel
                 { "selectedmessage", SelectedMessage }
             };
             Shell.Current.GoToAsync($"{nameof(ViewMessage)}", navigationParameter);
-        }
-        private void InitializeMessageList()
-        {
-            MessageList = new ObservableCollection<Message>();
-            foreach (var message in message_Services.GetMessages().Reverse()) 
-            {
-                if(message.Sender.EmployeeID ==  CurrentEmployee.EmployeeID || message.Receiver.EmployeeID == CurrentEmployee.EmployeeID) 
-                {
-                    MessageList.Add(message);
-                }
-            }
         }
         private void GoToWriteMessage()
         {

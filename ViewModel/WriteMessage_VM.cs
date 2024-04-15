@@ -17,16 +17,12 @@ namespace ProjectCF_Mobile_Version.ViewModel
         {
             employee_Services = new Employee_Services();
             message_Services = new Message_Services();
-            InitializeCurrentEmployee();
-            InitializeContactList();
+            CurrentEmployee = employee_Services.InitializeCurrentEmployee();
+            ContactList = employee_Services.GetHumanResources();
             NewMessage = new Message();
         }
         private readonly Employee_Services employee_Services;
         private readonly Message_Services message_Services;
-        private void InitializeContactList()
-        {
-            ContactList = employee_Services.GetHumanResources();
-        }
         private ObservableCollection<Employee> contactList;
         public ObservableCollection<Employee> ContactList
         {

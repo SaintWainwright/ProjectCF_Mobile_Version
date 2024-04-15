@@ -16,7 +16,7 @@ namespace ProjectCF_Mobile_Version.ViewModel
         public ViewSalary_VM()
         {
             employee_Services = new Employee_Services();
-            InitializeCurrentEmployee();
+            CurrentEmployee = employee_Services.InitializeCurrentEmployee();
             totalOvertime = TimeSpan.Zero;
             totalLate = TimeSpan.Zero;
             totalHoursWorked = TimeSpan.Zero;
@@ -54,7 +54,6 @@ namespace ProjectCF_Mobile_Version.ViewModel
         private double pagibig;
         private double philHealth;
         private double sss;
-        private string _EmployeeID;
         private DateTime chosenMonth;
         private ObservableCollection<string> monthPicker;
         public ObservableCollection<string> MonthPicker

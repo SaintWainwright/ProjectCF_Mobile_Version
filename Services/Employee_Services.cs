@@ -79,5 +79,18 @@ namespace ProjectCF_Mobile_Version.Services
             }
             return EmployeeCollection;
         }
+        public Employee InitializeCurrentEmployee()
+        {
+            Employee CurrentEmployee = new();
+            string employeeID = Preferences.Get("employeeID", "Unknown");
+            foreach (var employee in GetEmployees())
+            {
+                if (employeeID == employee.EmployeeID)
+                {
+                    CurrentEmployee = employee;
+                }
+            }
+            return CurrentEmployee;
+        }
     }
 }
