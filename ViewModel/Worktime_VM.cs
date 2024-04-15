@@ -10,12 +10,12 @@ using System.Windows.Input;
 
 namespace ProjectCF_Mobile_Version.ViewModel
 {
-    [QueryProperty(nameof(EmployeeID), "id")]
-    public partial class Worktime_VM : MainViewModel
+    public partial class Worktime_VM : LandingPage_VM
     {
         public Worktime_VM()
         {
             employee_Services = new Employee_Services();
+            InitializeCurrentEmployee();
             DateToday = DateOnly.FromDateTime(DateTime.Today);
             TimeNow = TimeOnly.FromDateTime(DateTime.Now);
             DateSimulation = DateToday.ToDateTime(TimeOnly.MinValue);
@@ -73,26 +73,6 @@ namespace ProjectCF_Mobile_Version.ViewModel
             get { return _TimeOut; }
             set { _TimeOut = value; OnPropertyChanged(); OnPropertyChanged(nameof(_TimeOut)); }
         }
-        private string _EmployeeID;
-        public string EmployeeID
-        {
-            get { return _EmployeeID; }
-            set
-            {
-                _EmployeeID = value; OnPropertyChanged(); OnPropertyChanged(nameof(_EmployeeID)); InitializeCurrentEmployee();
-            }
-        }
-
-        private Employee currentEmployee;
-        public Employee CurrentEmployee
-        {
-            get { return currentEmployee; }
-            set
-            {
-                currentEmployee = value; OnPropertyChanged(); OnPropertyChanged(nameof(currentEmployee));
-            }
-        }
-
         private Employee_Worktimes SimulationWorkTimes = new();
 
         private void Simulate()
@@ -144,16 +124,6 @@ namespace ProjectCF_Mobile_Version.ViewModel
             TimeInSimulated += TimeInSimulation;
             TimeOutSimulated = DateSimulation;
             TimeOutSimulated += TimeOutSimulation;
-        }
-        public void InitializeCurrentEmployee()
-        {
-            foreach (var employee in employee_Services.GetEmployees())
-            {
-                if (EmployeeID == employee.EmployeeID)
-                {
-                    CurrentEmployee = employee;
-                }
-            }
         }
     }
 }

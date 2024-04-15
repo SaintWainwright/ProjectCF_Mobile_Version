@@ -11,14 +11,15 @@ using System.Windows.Input;
 
 namespace ProjectCF_Mobile_Version.ViewModel
 {
-    [QueryProperty(nameof(EmployeeID), "id")]
-    public partial class Messaging_VM : MainViewModel
+    public partial class Messaging_VM : LandingPage_VM
     {
         public Messaging_VM() 
         {
             message_Services = new Message_Services();
             employee_Services = new Employee_Services();
             MessageList = new ObservableCollection<Message>();
+            InitializeCurrentEmployee();
+            InitializeMessageList();
         }
         private readonly Message_Services message_Services;
         private readonly Employee_Services employee_Services;
@@ -45,21 +46,12 @@ namespace ProjectCF_Mobile_Version.ViewModel
             };
             Shell.Current.GoToAsync($"{nameof(ViewMessage)}", navigationParameter);
         }
-        private string _EmployeeID;
-        public string EmployeeID
-        {
-            get { return _EmployeeID; }
-            set
-            {
-                _EmployeeID = value; OnPropertyChanged(); OnPropertyChanged(nameof(_EmployeeID)); InitializeMessageList();
-            }
-        }
         private void InitializeMessageList()
         {
             MessageList = new ObservableCollection<Message>();
             foreach (var message in message_Services.GetMessages().Reverse()) 
             {
-                if(message.Sender.EmployeeID ==  EmployeeID || message.Receiver.EmployeeID == EmployeeID) 
+                if(message.Sender.EmployeeID ==  CurrentEmployee.EmployeeID || message.Receiver.EmployeeID == CurrentEmployee.EmployeeID) 
                 {
                     MessageList.Add(message);
                 }
@@ -67,7 +59,7 @@ namespace ProjectCF_Mobile_Version.ViewModel
         }
         private void GoToWriteMessage()
         {
-            Shell.Current.GoToAsync($"{nameof(WriteMessage)}?id={EmployeeID}");
+            Shell.Current.GoToAsync(nameof(WriteMessage), false);
         }
         public ICommand GoToWriteMessageCommand => new Command(GoToWriteMessage);
     }

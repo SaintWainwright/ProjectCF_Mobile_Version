@@ -14,6 +14,7 @@ namespace ProjectCF_Mobile_Version.ViewModel
         public LoginPage_VM()
         {
             employee_Services = new Employee_Services();
+            Preferences.Default.Remove("employeeID");
         }
         private readonly Employee_Services employee_Services;
         private void GoToLandingPage()
@@ -59,12 +60,11 @@ namespace ProjectCF_Mobile_Version.ViewModel
         }
         private void SignIn()
         {
-            string EmployeeID = string.Empty;
             if (IDExisting())
             {
                 Shell.Current.DisplayAlert("Login Sucess", "Logging into your account...", "Okay");
-                EmployeeID = EmployeeIDEntry;
-                Shell.Current.GoToAsync($"{nameof(LandingPage)}?id={EmployeeID}");
+                Preferences.Default.Set("employeeID", EmployeeIDEntry);
+                Shell.Current.GoToAsync($"{nameof(LandingPage)}");
             }
             else
             {

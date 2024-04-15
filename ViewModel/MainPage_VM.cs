@@ -11,6 +11,10 @@ namespace ProjectCF_Mobile_Version.ViewModel
 {
     public partial class MainPage_VM : MainViewModel
     {
+        public MainPage_VM() 
+        {
+            Preferences.Default.Remove("employeeID");
+        }
         private void GoToLoginPage()
         {
             Shell.Current.GoToAsync(nameof(LoginPage), false);
