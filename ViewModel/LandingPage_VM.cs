@@ -15,7 +15,7 @@ namespace ProjectCF_Mobile_Version.ViewModel
         public LandingPage_VM()
         {
             employee_Services = new Employee_Services();
-            InitializeCurrentEmployee();
+            CurrentEmployee = employee_Services.InitializeCurrentEmployee();
         }
         private readonly Employee_Services employee_Services;
         private Employee _CurrentEmployee;
@@ -24,17 +24,7 @@ namespace ProjectCF_Mobile_Version.ViewModel
             get { return _CurrentEmployee; }
             set { _CurrentEmployee = value; OnPropertyChanged(); OnPropertyChanged(nameof(_CurrentEmployee)); }
         }
-        public void InitializeCurrentEmployee()
-        {
-            string employeeID = Preferences.Get("employeeID", "Unknown");
-            foreach (var employee in employee_Services.GetEmployees())
-            {
-                if (employeeID == employee.EmployeeID)
-                {
-                    CurrentEmployee = employee;
-                }
-            }
-        }
+        
         private void GoToViewSalary()
         {
             Shell.Current.GoToAsync(nameof(ViewSalary), false);

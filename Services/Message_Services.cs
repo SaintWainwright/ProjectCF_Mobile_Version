@@ -58,5 +58,17 @@ namespace ProjectCF_Mobile_Version.Services
             return MessageList;
 #endif
         }
+        public ObservableCollection<Message> EmployeeMessageList(Employee employee) 
+        {
+            ObservableCollection<Message> MessageList = new();
+            foreach (var message in GetMessages().Reverse())
+            {
+                if (message.Sender.EmployeeID ==  employee.EmployeeID || message.Receiver.EmployeeID == employee.EmployeeID)
+                {
+                    MessageList.Add(message);
+                }
+            }
+            return MessageList;
+        }
     }
 }

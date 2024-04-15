@@ -14,21 +14,8 @@ namespace ProjectCF_Mobile_Version.ViewModel
         public ViewProfile_VM()
         {
             employee_Services = new Employee_Services();
-            InitializeCurrentEmployee();
+            CurrentEmployee = employee_Services.InitializeCurrentEmployee();
         }
         private readonly Employee_Services employee_Services;
-        private string currentEmployeeBirthday;
-        public string CurrentEmployeeBirthday
-        {
-            get { return currentEmployeeBirthday; }
-            set { currentEmployeeBirthday = value; OnPropertyChanged(); OnPropertyChanged(nameof(currentEmployeeBirthday)); }
-        }
-        private string currentEmployeeDateJoined;
-        public string CurrentEmployeeDateJoined
-        {
-            get { return currentEmployeeDateJoined; }
-            set { currentEmployeeDateJoined = value; OnPropertyChanged(); OnPropertyChanged(nameof(currentEmployeeDateJoined)); }
-        }
-
     }
 }
