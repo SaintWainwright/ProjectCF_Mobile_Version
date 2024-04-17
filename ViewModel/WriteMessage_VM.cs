@@ -13,14 +13,6 @@ namespace ProjectCF_Mobile_Version.ViewModel
 {
     public partial class WriteMessage_VM : LandingPage_VM
     {
-        public WriteMessage_VM() 
-        {
-            employee_Services = new Employee_Services();
-            message_Services = new Message_Services();
-            CurrentEmployee = employee_Services.InitializeCurrentEmployee();
-            ContactList = employee_Services.GetHumanResources();
-            NewMessage = new Message();
-        }
         private readonly Employee_Services employee_Services;
         private readonly Message_Services message_Services;
         private ObservableCollection<Employee> contactList;
@@ -34,6 +26,14 @@ namespace ProjectCF_Mobile_Version.ViewModel
         {
             get { return newMessage; }
             set { newMessage = value; OnPropertyChanged(); OnPropertyChanged(nameof(newMessage)); }
+        }
+        public WriteMessage_VM()
+        {
+            employee_Services = new Employee_Services();
+            message_Services = new Message_Services();
+            CurrentEmployee = employee_Services.InitializeCurrentEmployee();
+            ContactList = employee_Services.GetHumanResources();
+            newMessage = new Message();
         }
         private void InitializeMessage()
         {
