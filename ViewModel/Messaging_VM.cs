@@ -1,25 +1,20 @@
 ﻿using ProjectCF_Mobile_Version.Model;
 using ProjectCF_Mobile_Version.Services;
 using ProjectCF_Mobile_Version.View;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace ProjectCF_Mobile_Version.ViewModel
 {
     public partial class Messaging_VM : LandingPage_VM
     {
-        public Messaging_VM() 
+        public Messaging_VM()
         {
             message_Services = new Message_Services();
             employee_Services = new Employee_Services();
             MessageList = new ObservableCollection<Message>();
             CurrentEmployee = employee_Services.InitializeCurrentEmployee();
-            MessageList = message_Services.EmployeeMessageList(CurrentEmployee);
+
         }
         private readonly Message_Services message_Services;
         private readonly Employee_Services employee_Services;
@@ -27,7 +22,7 @@ namespace ProjectCF_Mobile_Version.ViewModel
         public ObservableCollection<Message> MessageList
         {
             get { return messageList; }
-            set { messageList = value; OnPropertyChanged(); OnPropertyChanged(nameof(messageList)); }
+            set { messageList = value; OnPropertyChanged(); OnPropertyChanged(nameof(messageList)); messageList = message_Services.EmployeeMessageList(CurrentEmployee); }
         }
         private Message selectedMessage;
         public Message SelectedMessage
@@ -44,6 +39,8 @@ namespace ProjectCF_Mobile_Version.ViewModel
             {
                 { "selectedmessage", SelectedMessage }
             };
+            SelectedMessage.Tag = 1; //Changes tag to READ
+            message_Services.UpdateMessageCollection(SelectedMessage);
             Shell.Current.GoToAsync($"{nameof(ViewMessage)}", navigationParameter);
         }
         private void GoToWriteMessage()
