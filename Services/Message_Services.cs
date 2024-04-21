@@ -58,6 +58,38 @@ namespace ProjectCF_Mobile_Version.Services
             return MessageList;
 #endif
         }
+        public void UpdateMessageCollection(Message message)
+        {
+#if ANDROID
+            var docsDirectory = Android.App.Application.Context.GetExternalFilesDir(Android.OS.Environment.DirectoryDocuments);
+            ObservableCollection<Message> MessageCollection = GetMessages();
+            for (int loop = 0; loop < MessageCollection.Count; loop++)
+            {
+                if (message.MessageText == MessageCollection[loop].MessageText && message.Sender == MessageCollection[loop].Sender && message.Receiver == MessageCollection[loop].Receiver)
+                {
+                    MessageCollection[loop] = message;
+                    var MessageList = JsonSerializer.Serialize<ObservableCollection<Message>>(MessageCollection);
+                    File.WriteAllText($"{docsDirectory.AbsoluteFile.Path}/Message.json", MessageList);
+                    return;
+                }
+            }
+#endif
+#if WINDOWS
+            string filePath = Path.Combine(FileSystem.Current.AppDataDirectory, "Message.json");
+            ObservableCollection<Message> MessageCollection = GetMessages();
+            for (int loop = 0; loop < MessageCollection.Count; loop++)
+            {
+                if (message.MessageText == MessageCollection[loop].MessageText && message.Sender == MessageCollection[loop].Sender && message.Receiver == MessageCollection[loop].Receiver)
+                {
+                    MessageCollection[loop] = message;
+                    var MessageList = JsonSerializer.Serialize<ObservableCollection<Message>>(MessageCollection);
+                    File.WriteAllText(filePath, MessageList);
+                    return;
+                }
+            }
+#endif
+        }
+
         public ObservableCollection<Message> EmployeeMessageList(Employee employee) 
         {
             ObservableCollection<Message> MessageList = new();

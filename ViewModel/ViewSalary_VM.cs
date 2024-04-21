@@ -20,8 +20,8 @@ namespace ProjectCF_Mobile_Version.ViewModel
             totalOvertime = TimeSpan.Zero;
             totalLate = TimeSpan.Zero;
             totalHoursWorked = TimeSpan.Zero;
-            MonthPicker = new ObservableCollection<string>
-            {
+            MonthPicker =
+            [
                 "January",
                 "February",
                 "March",
@@ -34,7 +34,7 @@ namespace ProjectCF_Mobile_Version.ViewModel
                 "October",
                 "November",
                 "December"
-            };
+            ];
         }
 
         private readonly Employee_Services employee_Services;
@@ -183,7 +183,7 @@ namespace ProjectCF_Mobile_Version.ViewModel
             TotalDeductions = 0;
             FinalSalary = 0;
         }
-        private int selectedMonth = 0;
+        private int selectedMonth = DateTime.Now.Month - 1;
         public int SelectedMonth
         {
             get { return selectedMonth; }
@@ -191,7 +191,7 @@ namespace ProjectCF_Mobile_Version.ViewModel
         }
         private void PickerMonth_SelectedIndexChanged()
         {
-            chosenMonth = new DateTime(DateTime.Now.Year, SelectedMonth+1, DateTime.DaysInMonth(DateTime.Now.Year, selectedMonth+1));
+            chosenMonth = new DateTime(DateTime.Now.Year, SelectedMonth + 1, DateTime.DaysInMonth(DateTime.Now.Year, selectedMonth + 1));
             ResetValues();
             Total(); 
             Calculate(); 

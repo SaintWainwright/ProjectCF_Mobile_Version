@@ -54,7 +54,7 @@
                         </Grid.RowDefinitions>
 
                         <Border Grid.Row="0" Margin="20,10,10,10" Stroke="Black" WidthRequest="100" HorizontalOptions="Start" BackgroundColor="LightGray">
-                            <Picker Title="Month" SelectedIndex="{Binding SelectedMonth}" ItemsSource="{Binding MonthPicker}"/>
+                            <Picker Title="Month" ItemsSource="{Binding MonthPicker}" SelectedIndex="{Binding SelectedMonth}"/>
                         </Border>
                         <!--Grid for Earnings-->
                         <Border Grid.Row="1" Grid.Column="0" Stroke="Black" WidthRequest="150" HorizontalOptions="Start" Margin="20,10,0,0" BackgroundColor="LightGray">

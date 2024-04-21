@@ -39,6 +39,8 @@ namespace ProjectCF_Mobile_Version.ViewModel
             {
                 { "selectedmessage", SelectedMessage }
             };
+            SelectedMessage.Tag = 1; //Changes tag to READ
+            message_Services.UpdateMessageCollection(SelectedMessage);
             Shell.Current.GoToAsync($"{nameof(ViewMessage)}", navigationParameter);
         }
         private void GoToWriteMessage()
