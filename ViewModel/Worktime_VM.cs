@@ -100,7 +100,12 @@ namespace ProjectCF_Mobile_Version.ViewModel
                 theduration = TimeOutSimulated - optimalTimeOut;
                 SimulationWorkTimes.Overtimes = SimulationWorkTimes.Overtimes.Add(theduration);
             }
-            else if (TimeOutSimulated.Hour == timeCompare.Hour)
+            else if(optimalTimeOut > TimeOutSimulated && TimeOutSimulated.Hour != timeCompare.Hour)
+            {
+                theduration = optimalTimeOut - TimeOutSimulated;
+                SimulationWorkTimes.Undertimes = SimulationWorkTimes.Undertimes.Add(theduration);
+            }
+            if (TimeOutSimulated.Hour == timeCompare.Hour)
             {
                 dateException = TimeOutSimulated;
                 dateException = dateException.AddDays(1);
@@ -109,7 +114,6 @@ namespace ProjectCF_Mobile_Version.ViewModel
             }
             SimulationWorkTimes.Month = TimeInSimulated;
             SimulationWorkTimes.Year = TimeInSimulated;
-            SimulationWorkTimes.HoursWorked = SimulationWorkTimes.HoursWorked.Add(theduration);
             SimulationWorkTimes.TimeIn = TimeInSimulated;
             SimulationWorkTimes.TimeOut = TimeOutSimulated;
             CurrentEmployee.Worktimes.Add(SimulationWorkTimes);

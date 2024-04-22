@@ -41,11 +41,13 @@ namespace ProjectCF_Mobile_Version.ViewModel
         private TimeSpan totalOvertime;
         private TimeSpan totalLate;
         private TimeSpan totalHoursWorked;
+        private TimeSpan totalUndertime;
         private String displayTotalOvertime;
         private String displayTotalLate;
         private String displayTotalHoursWorked;
         private double overtimeBonus;
         private double lateDeductions;
+        private double underTimes;
         private double temporarySalary;
         private double finalSalary;
         private double totalEarnings;
@@ -86,6 +88,11 @@ namespace ProjectCF_Mobile_Version.ViewModel
             get { return lateDeductions; }
             set { lateDeductions = value; OnPropertyChanged(); OnPropertyChanged(nameof(lateDeductions)); }
         }
+        public double Undertimes
+        {
+            get { return underTimes; }
+            set { underTimes = value; OnPropertyChanged(); OnPropertyChanged(nameof(underTimes)); }
+        }
         public double TemporarySalary
         {
             get { return temporarySalary; }
@@ -111,6 +118,11 @@ namespace ProjectCF_Mobile_Version.ViewModel
         {
             get { return totalHoursWorked; }
             set { totalHoursWorked = value; OnPropertyChanged(); OnPropertyChanged(nameof(totalHoursWorked)); }
+        }
+        public TimeSpan TotalUndertime
+        {
+            get { return totalUndertime; }
+            set { totalUndertime = value; OnPropertyChanged(); OnPropertyChanged(nameof(totalUndertime)); }
         }
         public double TotalEarnings
         {
@@ -151,6 +163,7 @@ namespace ProjectCF_Mobile_Version.ViewModel
                     TotalOvertime += worktimes.Overtimes.TimeOfDay;
                     TotalLate += worktimes.Lates.TimeOfDay;
                     TotalHoursWorked += worktimes.HoursWorked.TimeOfDay;
+                    TotalUndertime += worktimes.Undertimes.TimeOfDay;
                 }
             }
         }
@@ -160,12 +173,13 @@ namespace ProjectCF_Mobile_Version.ViewModel
             TemporarySalary = CurrentEmployee.SalaryGrade * totalHoursWorked.TotalHours;
             OvertimeBonus = (CurrentEmployee.SalaryGrade + 2.0) * totalOvertime.TotalHours;
             LateDeductions = (CurrentEmployee.SalaryGrade + 5.0) * totalLate.TotalHours;
+            Undertimes = (CurrentEmployee.SalaryGrade + 5.0) * totalUndertime.TotalHours;
             Taxes = temporarySalary * 0.0116;
             PagIbig = temporarySalary * 0.03;
             PhilHealth = temporarySalary * 0.04;
             SSS = temporarySalary * 0.045;
-            TotalEarnings = temporarySalary + overtimeBonus;
-            TotalDeductions = lateDeductions + taxes + pagibig + philHealth + sss;
+            TotalEarnings = ((temporarySalary + overtimeBonus) - underTimes) - lateDeductions;
+            TotalDeductions = taxes + pagibig + philHealth + sss;
             FinalSalary = TotalEarnings - TotalDeductions;
         }
         private void SetDisplayValues()
