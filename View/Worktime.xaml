@@ -19,13 +19,17 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Border Grid.Column="0" Grid.Row="0">
-                        <Label Text="Time In" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Center"/>
-                    </Border>
-                    <Border Grid.Column="1" Grid.Row="0">
-                        <Label Text="Time Out" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Center"/>
-                    </Border>
+                        <Border Grid.Column="0" Grid.Row="0">
+                            <Label Text="Date" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Center"/>
+                        </Border>
+                        <Border Grid.Column="1" Grid.Row="0">
+                                <Label Text="Time In" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Center"/>
+                        </Border> 
+                        <Border Grid.Column="2" Grid.Row="0">
+                            <Label Text="Time Out" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Center"/>
+                        </Border>
                     <ScrollView Grid.Row="1" Grid.ColumnSpan="5">
                         <CollectionView ItemsSource="{Binding CurrentEmployee.Worktimes}">
                             <CollectionView.EmptyView>
@@ -35,9 +39,10 @@
                             </CollectionView.EmptyView>
                             <CollectionView.ItemTemplate>
                                 <DataTemplate x:DataType="model:Employee_Worktimes">
-                                    <Grid ColumnDefinitions="*,*">
-                                        <Label Grid.Column="0" Text="{Binding TimeIn}" HorizontalTextAlignment="Center"/>
-                                        <Label Grid.Column="1" Text="{Binding TimeOut}" HorizontalTextAlignment="Center"/>
+                                    <Grid ColumnDefinitions="*,*,*">
+                                        <Label Grid.Column="0" Text="{Binding TimeIn, StringFormat='{0:MM/dd/yy}'}" HorizontalTextAlignment="Center"/>
+                                        <Label Grid.Column="1" Text="{Binding TimeIn, StringFormat='{0:hh:mm:ss}'}" HorizontalTextAlignment="Center"/>
+                                        <Label Grid.Column="2" Text="{Binding TimeOut, StringFormat='{0:hh:mm:ss}'}" HorizontalTextAlignment="Center"/>
                                     </Grid>
                                 </DataTemplate>
                             </CollectionView.ItemTemplate>

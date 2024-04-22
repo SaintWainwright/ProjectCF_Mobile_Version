@@ -12,6 +12,7 @@ namespace ProjectCF_Mobile_Version.Model
         private DateTime _TimeIn;
         private DateTime _TimeOut;
         private DateTime overtimes;
+        private DateTime undertimes;
         private DateTime lates;
         private DateTime hoursWorked;
         private DateTime month;
@@ -30,6 +31,11 @@ namespace ProjectCF_Mobile_Version.Model
         {
             get { return overtimes; }
             set { overtimes = value; OnPropertyChanged(); OnPropertyChanged(nameof(overtimes)); }
+        }
+        public DateTime Undertimes
+        {
+            get { return undertimes; }
+            set { undertimes = value; OnPropertyChanged(); OnPropertyChanged(nameof(undertimes)); }
         }
         public DateTime Lates
         {
