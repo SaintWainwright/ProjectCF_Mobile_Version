@@ -87,22 +87,22 @@ namespace ProjectCF_Mobile_Version.ViewModel
             }
             else
             {
-                theduration = TimeOutSimulated - TimeInSimulated;
+                theduration = TimeOutSimulated.TimeOfDay - TimeInSimulated.TimeOfDay;
             }
             SimulationWorkTimes.HoursWorked = SimulationWorkTimes.HoursWorked.Add(theduration);
-            if (optimalTimeIn < TimeInSimulated)
+            if (optimalTimeIn.TimeOfDay < TimeInSimulated.TimeOfDay)
             {
-                theduration = TimeInSimulated - optimalTimeIn;
+                theduration = TimeInSimulated.TimeOfDay - optimalTimeIn.TimeOfDay;
                 SimulationWorkTimes.Lates = SimulationWorkTimes.Lates.Add(theduration);
             }
-            if (optimalTimeOut < TimeOutSimulated && TimeOutSimulated.Hour != timeCompare.Hour)
+            if (optimalTimeOut.TimeOfDay < TimeOutSimulated.TimeOfDay && TimeOutSimulated.Hour != timeCompare.Hour)
             {
-                theduration = TimeOutSimulated - optimalTimeOut;
+                theduration = TimeOutSimulated.TimeOfDay - optimalTimeOut.TimeOfDay;
                 SimulationWorkTimes.Overtimes = SimulationWorkTimes.Overtimes.Add(theduration);
             }
-            else if(optimalTimeOut > TimeOutSimulated && TimeOutSimulated.Hour != timeCompare.Hour)
+            else if(optimalTimeOut.TimeOfDay > TimeOutSimulated.TimeOfDay && TimeOutSimulated.Hour != timeCompare.Hour)
             {
-                theduration = optimalTimeOut - TimeOutSimulated;
+                theduration = optimalTimeOut.TimeOfDay - TimeOutSimulated.TimeOfDay;
                 SimulationWorkTimes.Undertimes = SimulationWorkTimes.Undertimes.Add(theduration);
             }
             if (TimeOutSimulated.Hour == timeCompare.Hour)

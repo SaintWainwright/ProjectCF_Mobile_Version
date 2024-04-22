@@ -191,8 +191,17 @@ namespace ProjectCF_Mobile_Version.ViewModel
         private void ResetValues()
         {
             TemporarySalary = 0;
+            OvertimeBonus = 0;
+            LateDeductions = 0;
+            Undertimes = 0;
             TotalOvertime = TimeSpan.Zero;
             TotalLate = TimeSpan.Zero;
+            TotalUndertime = TimeSpan.Zero;
+            Taxes = 0;
+            PagIbig = 0;
+            PhilHealth = 0;
+            SSS = 0;
+            TotalHoursWorked = TimeSpan.Zero;
             TotalEarnings = 0;
             TotalDeductions = 0;
             FinalSalary = 0;
