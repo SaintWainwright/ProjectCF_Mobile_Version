@@ -41,8 +41,8 @@
                                 <DataTemplate x:DataType="model:Employee_Worktimes">
                                     <Grid ColumnDefinitions="*,*,*">
                                         <Label Grid.Column="0" Text="{Binding TimeIn, StringFormat='{0:MM/dd/yy}'}" HorizontalTextAlignment="Center"/>
-                                        <Label Grid.Column="1" Text="{Binding TimeIn, StringFormat='{0:hh:mm:ss}'}" HorizontalTextAlignment="Center"/>
-                                        <Label Grid.Column="2" Text="{Binding TimeOut, StringFormat='{0:hh:mm:ss}'}" HorizontalTextAlignment="Center"/>
+                                        <Label Grid.Column="1" Text="{Binding TimeIn, StringFormat='{0:hh:mm:ss tt}'}" HorizontalTextAlignment="Center"/>
+                                        <Label Grid.Column="2" Text="{Binding TimeOut, StringFormat='{0:hh:mm:ss tt}'}" HorizontalTextAlignment="Center"/>
                                     </Grid>
                                 </DataTemplate>
                             </CollectionView.ItemTemplate>

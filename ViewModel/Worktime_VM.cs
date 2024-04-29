@@ -75,15 +75,32 @@ namespace ProjectCF_Mobile_Version.ViewModel
         }
         private Employee_Worktimes SimulationWorkTimes = new();
 
-        private void Simulate()
+        private async void Simulate()
         {
             SetDates();
-            TimeSpan theduration;
+            TimeSpan theduration = TimeSpan.Zero;
+            TimeSpan second = new TimeSpan(0, 0, 1, 0);
             if (TimeOutSimulated.Hour == timeCompare.Hour)
             {
-                dateException = TimeOutSimulated;
-                dateException = dateException.AddDays(1);
-                theduration = dateException - TimeInSimulated;
+                bool answer = await Shell.Current.DisplayAlert("Employee Forgot to Time Out", "Is this an overtime?", "Yes", "No");
+                if (answer == false)
+                {
+                    dateException = TimeOutSimulated;
+                    dateException = dateException.AddHours(12);
+                    theduration = dateException.TimeOfDay - TimeInSimulated.TimeOfDay;
+                    await Shell.Current.DisplayAlert("Employee forgot to Time-Out", "Time-Out automatically set to 12:00 PM", "Okay");
+                }
+                else
+                {
+                    dateException = TimeOutSimulated;
+                    dateException = dateException.AddDays(1).AddSeconds(-1);
+                    theduration = dateException.TimeOfDay - optimalTimeOut.TimeOfDay;
+                    theduration = theduration.Add(second);
+                    SimulationWorkTimes.Overtimes = SimulationWorkTimes.Overtimes.Add(theduration);
+                    dateException = TimeOutSimulated;
+                    dateException = dateException.AddDays(1);
+                    theduration = dateException - TimeInSimulated;
+                }
             }
             else
             {
@@ -100,24 +117,27 @@ namespace ProjectCF_Mobile_Version.ViewModel
                 theduration = TimeOutSimulated.TimeOfDay - optimalTimeOut.TimeOfDay;
                 SimulationWorkTimes.Overtimes = SimulationWorkTimes.Overtimes.Add(theduration);
             }
-            else if(optimalTimeOut.TimeOfDay > TimeOutSimulated.TimeOfDay && TimeOutSimulated.Hour != timeCompare.Hour)
+            else if (optimalTimeOut.TimeOfDay < dateException.TimeOfDay && TimeOutSimulated.Hour == timeCompare.Hour)
+            {
+                theduration = optimalTimeOut.TimeOfDay - dateException.TimeOfDay;
+                SimulationWorkTimes.Undertimes = SimulationWorkTimes.Undertimes.Add(theduration);
+            }
+            else if (optimalTimeOut.TimeOfDay > dateException.TimeOfDay && TimeOutSimulated.Hour == timeCompare.Hour)
+            {
+                theduration = optimalTimeOut.TimeOfDay - dateException.TimeOfDay;
+                SimulationWorkTimes.Undertimes = SimulationWorkTimes.Undertimes.Add(theduration);
+            }
+            else if (optimalTimeOut.TimeOfDay > TimeOutSimulated.TimeOfDay && TimeOutSimulated.Hour != timeCompare.Hour)
             {
                 theduration = optimalTimeOut.TimeOfDay - TimeOutSimulated.TimeOfDay;
                 SimulationWorkTimes.Undertimes = SimulationWorkTimes.Undertimes.Add(theduration);
-            }
-            if (TimeOutSimulated.Hour == timeCompare.Hour)
-            {
-                dateException = TimeOutSimulated;
-                dateException = dateException.AddDays(1);
-                theduration = dateException - optimalTimeOut;
-                SimulationWorkTimes.Overtimes = SimulationWorkTimes.Overtimes.Add(theduration);
             }
             SimulationWorkTimes.Month = TimeInSimulated;
             SimulationWorkTimes.Year = TimeInSimulated;
             SimulationWorkTimes.TimeIn = TimeInSimulated;
             SimulationWorkTimes.TimeOut = TimeOutSimulated;
             CurrentEmployee.Worktimes.Add(SimulationWorkTimes);
-            Shell.Current.DisplayAlert("Simulate Worktime", "Worktime Simulation Successful", "Okay");
+            await Shell.Current.DisplayAlert("Simulate Worktime", "Worktime Simulation Successful", "Okay");
             employee_Services.UpdateEmployeeCollection(CurrentEmployee);
             SimulationWorkTimes = new Employee_Worktimes();
         }
