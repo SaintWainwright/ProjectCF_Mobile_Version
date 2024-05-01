@@ -7,6 +7,7 @@ public partial class ViewSalary : ContentPage, INotifyPropertyChanged
 {
 	public ViewSalary(ViewSalary_VM vm)
 	{
+        Application.Current.UserAppTheme = AppTheme.Light;
         InitializeComponent();
         BindingContext = vm;
     }

@@ -6,6 +6,7 @@ public partial class ViewProfile : ContentPage
 {
 	public ViewProfile(ViewProfile_VM vm)
 	{
+        Application.Current.UserAppTheme = AppTheme.Light;
         InitializeComponent();
         BindingContext = vm;
     }

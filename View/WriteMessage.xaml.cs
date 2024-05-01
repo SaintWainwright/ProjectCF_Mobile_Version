@@ -6,6 +6,7 @@ public partial class WriteMessage : ContentPage
 {
 	public WriteMessage(WriteMessage_VM vm)
 	{
+        Application.Current.UserAppTheme = AppTheme.Light;
         InitializeComponent();
         BindingContext = vm;
     }

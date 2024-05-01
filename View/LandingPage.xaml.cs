@@ -6,6 +6,7 @@ public partial class LandingPage : ContentPage
 {
 	public LandingPage(LandingPage_VM vm)
 	{
+        Application.Current.UserAppTheme = AppTheme.Light;
         InitializeComponent();
         BindingContext = vm;
     }
