@@ -1,11 +1,6 @@
 ﻿using ProjectCF_Mobile_Version.Model;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace ProjectCF_Mobile_Version.Services
 {
@@ -18,18 +13,17 @@ namespace ProjectCF_Mobile_Version.Services
             File.WriteAllText($"{docsDirectory.AbsoluteFile.Path}/Initialization.json", "Initialize File path");
             if (!File.Exists($"{docsDirectory.AbsoluteFile.Path}/Employee.json"))
             {
-                return new ObservableCollection<Employee>();
+                return [];
             }
 
             string FileUsers = File.ReadAllText($"{docsDirectory.AbsoluteFile.Path}/Employee.json");
             var EmployeeList = JsonSerializer.Deserialize<ObservableCollection<Employee>>(FileUsers);
             return EmployeeList;
-#endif
-#if WINDOWS
+#else
             string filePath = Path.Combine(FileSystem.Current.AppDataDirectory, "Employee.json");
             if (!File.Exists(filePath))
             {
-                return new ObservableCollection<Employee>();
+                return [];
             }
             string FileUsers = File.ReadAllText(filePath);
             var EmployeeList = JsonSerializer.Deserialize<ObservableCollection<Employee>>(FileUsers);
@@ -51,8 +45,7 @@ namespace ProjectCF_Mobile_Version.Services
                     return;
                 }
             }
-#endif
-#if WINDOWS
+#else
             string filePath = Path.Combine(FileSystem.Current.AppDataDirectory, "Employee.json");
             ObservableCollection<Employee> EmployeeCollection = GetEmployees();
             for (int loop = 0; loop < EmployeeCollection.Count; loop++)
@@ -69,7 +62,7 @@ namespace ProjectCF_Mobile_Version.Services
         }
         public ObservableCollection<Employee> GetHumanResources()
         {
-            ObservableCollection<Employee> EmployeeCollection = new();
+            ObservableCollection<Employee> EmployeeCollection = [];
             foreach (var employee in GetEmployees())
             {
                 if (employee.JobPosition == "Human Resource")

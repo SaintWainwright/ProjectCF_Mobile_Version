@@ -4,10 +4,9 @@ namespace ProjectCF_Mobile_Version.View;
 
 public partial class Messaging : ContentPage
 {
-	public Messaging()
-	{
+	public Messaging(Messaging_VM vm)
         Application.Current.UserAppTheme = AppTheme.Light;
-        BindingContext = new Messaging_VM();
         InitializeComponent();
-	}
+        BindingContext = vm;
+    }
 }

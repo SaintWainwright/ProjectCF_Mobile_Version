@@ -12,7 +12,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        
+
         <ImageButton Source="projectcf_login_logo.png" Aspect="Center" Grid.Row="0" VerticalOptions="Start" HorizontalOptions="End" Margin="30" Scale="2" Command="{Binding GoToLoginPageCommand}"/>
         <Image Source="projectcf_logo.png" Aspect="Center" HeightRequest="250" WidthRequest="250"  Grid.Row="1"/>
         <FlexLayout JustifyContent="Center" Grid.Row="2">

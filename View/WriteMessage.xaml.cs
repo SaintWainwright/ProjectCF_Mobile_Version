@@ -4,10 +4,10 @@ namespace ProjectCF_Mobile_Version.View;
 
 public partial class WriteMessage : ContentPage
 {
-	public WriteMessage()
+	public WriteMessage(WriteMessage_VM vm)
 	{
         Application.Current.UserAppTheme = AppTheme.Light;
-        BindingContext = new WriteMessage_VM();
         InitializeComponent();
-	}
+        BindingContext = vm;
+    }
 }

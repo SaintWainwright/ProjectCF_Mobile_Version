@@ -4,10 +4,10 @@ namespace ProjectCF_Mobile_Version.View;
 
 public partial class ViewMessage : ContentPage
 {
-	public ViewMessage()
+	public ViewMessage(ViewMessage_VM vm)
 	{
         Application.Current.UserAppTheme = AppTheme.Light;
-        BindingContext = new ViewMessage_VM();
-		InitializeComponent();
-	}
+		    InitializeComponent();
+        BindingContext = vm;
+    }
 }

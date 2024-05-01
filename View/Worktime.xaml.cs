@@ -4,10 +4,10 @@ namespace ProjectCF_Mobile_Version.View;
 
 public partial class Worktime : ContentPage
 {
-	public Worktime()
+	public Worktime(Worktime_VM vm)
 	{
         Application.Current.UserAppTheme = AppTheme.Light;
-        BindingContext = new Worktime_VM();
         InitializeComponent();
-	}
+        BindingContext = vm;
+    }
 }

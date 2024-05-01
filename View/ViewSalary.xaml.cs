@@ -5,10 +5,10 @@ namespace ProjectCF_Mobile_Version.View;
 
 public partial class ViewSalary : ContentPage, INotifyPropertyChanged
 {
-	public ViewSalary()
+	public ViewSalary(ViewSalary_VM vm)
 	{
         Application.Current.UserAppTheme = AppTheme.Light;
-        BindingContext = new ViewSalary_VM();
         InitializeComponent();
-	}
+        BindingContext = vm;
+    }
 }

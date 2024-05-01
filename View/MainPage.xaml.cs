@@ -4,10 +4,10 @@ namespace ProjectCF_Mobile_Version.View;
 
 public partial class MainPage : ContentPage
 {
-	public MainPage()
+	public MainPage(MainPage_VM vm)
 	{
         Application.Current.UserAppTheme = AppTheme.Light;
-        BindingContext = new MainPage_VM();
         InitializeComponent();
-	}
+        BindingContext = vm;
+    }
 }

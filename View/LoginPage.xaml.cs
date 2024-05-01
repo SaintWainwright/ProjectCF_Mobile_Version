@@ -4,10 +4,10 @@ namespace ProjectCF_Mobile_Version.View;
 
 public partial class LoginPage : ContentPage
 {
-	public LoginPage()
-	{
+	public LoginPage(LoginPage_VM vm)
+	{ 
         Application.Current.UserAppTheme = AppTheme.Light;
-        BindingContext = new LoginPage_VM();
         InitializeComponent();
-	}
+        BindingContext = vm;
+    }
 }
