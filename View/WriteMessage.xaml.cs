@@ -6,7 +6,7 @@ public partial class WriteMessage : ContentPage
 {
 	public WriteMessage(WriteMessage_VM vm)
 	{
-        BindingContext = vm;
         InitializeComponent();
-	}
+        BindingContext = vm;
+    }
 }

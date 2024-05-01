@@ -6,7 +6,7 @@ public partial class LandingPage : ContentPage
 {
 	public LandingPage(LandingPage_VM vm)
 	{
-        BindingContext = vm;
         InitializeComponent();
-	}
+        BindingContext = vm;
+    }
 }

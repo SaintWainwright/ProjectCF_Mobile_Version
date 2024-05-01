@@ -6,7 +6,7 @@ public partial class ViewProfile : ContentPage
 {
 	public ViewProfile(ViewProfile_VM vm)
 	{
-        BindingContext = vm;
         InitializeComponent();
-	}
+        BindingContext = vm;
+    }
 }

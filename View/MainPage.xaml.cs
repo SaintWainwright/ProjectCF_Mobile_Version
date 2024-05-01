@@ -6,7 +6,7 @@ public partial class MainPage : ContentPage
 {
 	public MainPage(MainPage_VM vm)
 	{
-        BindingContext = vm;
         InitializeComponent();
-	}
+        BindingContext = vm;
+    }
 }

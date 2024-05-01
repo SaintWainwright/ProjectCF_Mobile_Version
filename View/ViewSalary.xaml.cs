@@ -7,7 +7,7 @@ public partial class ViewSalary : ContentPage, INotifyPropertyChanged
 {
 	public ViewSalary(ViewSalary_VM vm)
 	{
-        BindingContext = vm;
         InitializeComponent();
-	}
+        BindingContext = vm;
+    }
 }

@@ -6,7 +6,7 @@ public partial class ViewMessage : ContentPage
 {
 	public ViewMessage(ViewMessage_VM vm)
 	{
-		BindingContext = vm;
 		InitializeComponent();
-	}
+        BindingContext = vm;
+    }
 }
