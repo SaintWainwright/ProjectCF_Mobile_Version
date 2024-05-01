@@ -4,9 +4,9 @@ namespace ProjectCF_Mobile_Version.View;
 
 public partial class LoginPage : ContentPage
 {
-	public LoginPage()
+	public LoginPage(LoginPage_VM vm)
 	{
-        BindingContext = new LoginPage_VM();
+        BindingContext = vm;
         InitializeComponent();
 	}
 }

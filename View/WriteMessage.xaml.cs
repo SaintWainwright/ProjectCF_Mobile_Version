@@ -4,9 +4,9 @@ namespace ProjectCF_Mobile_Version.View;
 
 public partial class WriteMessage : ContentPage
 {
-	public WriteMessage()
+	public WriteMessage(WriteMessage_VM vm)
 	{
-        BindingContext = new WriteMessage_VM();
+        BindingContext = vm;
         InitializeComponent();
 	}
 }
