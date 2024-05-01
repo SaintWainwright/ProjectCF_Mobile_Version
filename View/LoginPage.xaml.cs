@@ -6,6 +6,7 @@ public partial class LoginPage : ContentPage
 {
 	public LoginPage()
 	{
+        Application.Current.UserAppTheme = AppTheme.Light;
         BindingContext = new LoginPage_VM();
         InitializeComponent();
 	}

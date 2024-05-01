@@ -16,10 +16,10 @@
         <Label Text="Profile" TextColor="White" FontSize="18" Margin="10"/>
         <ScrollView>
             <StackLayout>
-                <Border Stroke="White" WidthRequest="350" HeightRequest="350" Margin="10">
-                    <Image Source="{Binding CurrentEmployee.Image, Converter={StaticResource ByteToImageConverter}}" Margin="10,0"/>
+                <Border Stroke="Transparent" WidthRequest="375" HeightRequest="350" Margin="10" VerticalOptions="Center" HorizontalOptions="Center">
+                    <Image Source="{Binding CurrentEmployee.Image, Converter={StaticResource ByteToImageConverter}}" Margin="10,0" Aspect="AspectFill"/>
                 </Border>
-                <Frame BackgroundColor="White" WidthRequest="350" HeightRequest="1300" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" Margin="5">
+                <Frame BackgroundColor="White" WidthRequest="350" HeightRequest="1300" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" Margin="10">
                     <StackLayout>
                         <Label Text="Full Name" FontAttributes="Bold"  FontSize="21" Margin="5"/>
                         <Entry Text="{Binding CurrentEmployee.FullName}" FontAttributes="Bold"  FontSize="18" Margin="5,0,0,30" IsReadOnly="True"/>

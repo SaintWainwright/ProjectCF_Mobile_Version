@@ -6,6 +6,7 @@ public partial class MainPage : ContentPage
 {
 	public MainPage()
 	{
+        Application.Current.UserAppTheme = AppTheme.Light;
         BindingContext = new MainPage_VM();
         InitializeComponent();
 	}

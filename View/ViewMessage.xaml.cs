@@ -6,7 +6,8 @@ public partial class ViewMessage : ContentPage
 {
 	public ViewMessage()
 	{
-		BindingContext = new ViewMessage_VM();
+        Application.Current.UserAppTheme = AppTheme.Light;
+        BindingContext = new ViewMessage_VM();
 		InitializeComponent();
 	}
 }

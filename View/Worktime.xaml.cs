@@ -6,6 +6,7 @@ public partial class Worktime : ContentPage
 {
 	public Worktime()
 	{
+        Application.Current.UserAppTheme = AppTheme.Light;
         BindingContext = new Worktime_VM();
         InitializeComponent();
 	}
