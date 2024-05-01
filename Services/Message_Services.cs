@@ -1,11 +1,6 @@
 ﻿using ProjectCF_Mobile_Version.Model;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace ProjectCF_Mobile_Version.Services
 {
@@ -22,8 +17,7 @@ namespace ProjectCF_Mobile_Version.Services
                 var MessageList = JsonSerializer.Serialize<ObservableCollection<Message>>(MessageCollection);
                 File.WriteAllText($"{docsDirectory.AbsoluteFile.Path}/Message.json", MessageList);
             }
-#endif
-#if WINDOWS
+#else
             string filePath = Path.Combine(FileSystem.Current.AppDataDirectory, "Message.txt");
             ObservableCollection<Message> MessageCollection = GetMessages();
             if (message != null)
@@ -41,17 +35,16 @@ namespace ProjectCF_Mobile_Version.Services
             File.WriteAllText($"{docsDirectory.AbsoluteFile.Path}/Initialization.json", "Initialize File path");
             if (!File.Exists($"{docsDirectory.AbsoluteFile.Path}/Message.json"))
             {
-                return new ObservableCollection<Message>();
+                return [];
             }
             string FileUsers = File.ReadAllText($"{docsDirectory.AbsoluteFile.Path}/Message.json");
             var MessageList = JsonSerializer.Deserialize<ObservableCollection<Message>>(FileUsers);
             return MessageList;
-#endif
-#if WINDOWS
-            string filePath = Path.Combine(FileSystem.Current.AppDataDirectory, "Message.json");
+#else
+string filePath = Path.Combine(FileSystem.Current.AppDataDirectory, "Message.json");
             if (!File.Exists(filePath))
             {
-                return new ObservableCollection<Message>();
+                return [];
             }
             string FileUsers = File.ReadAllText(filePath);
             var MessageList = JsonSerializer.Deserialize<ObservableCollection<Message>>(FileUsers);
@@ -73,8 +66,7 @@ namespace ProjectCF_Mobile_Version.Services
                     return;
                 }
             }
-#endif
-#if WINDOWS
+#else
             string filePath = Path.Combine(FileSystem.Current.AppDataDirectory, "Message.json");
             ObservableCollection<Message> MessageCollection = GetMessages();
             for (int loop = 0; loop < MessageCollection.Count; loop++)
@@ -92,7 +84,7 @@ namespace ProjectCF_Mobile_Version.Services
 
         public ObservableCollection<Message> EmployeeMessageList(Employee employee) 
         {
-            ObservableCollection<Message> MessageList = new();
+            ObservableCollection<Message> MessageList = [];
             foreach (var message in GetMessages().Reverse())
             {
                 if (message.Sender.EmployeeID ==  employee.EmployeeID || message.Receiver.EmployeeID == employee.EmployeeID)

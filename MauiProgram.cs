@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
+using ProjectCF_Mobile_Version.View;
+using ProjectCF_Mobile_Version.ViewModel;
 
 namespace ProjectCF_Mobile_Version
 {
@@ -14,7 +16,8 @@ namespace ProjectCF_Mobile_Version
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
-
+            builder.Services.AddSingleton<Messaging>();
+            builder.Services.AddSingleton<Messaging_VM>();
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
