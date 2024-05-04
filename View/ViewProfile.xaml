@@ -13,14 +13,10 @@
         </ResourceDictionary>
     </ContentPage.Resources>
   <ScrollView>
-        <Grid RowDefinitions="Auto, Auto" HorizontalOptions="Center">
-            <Label Text="Profile" TextColor="White" FontAttributes="Bold" Margin="10" Grid.Row="0" HorizontalTextAlignment="Center"/>
-            <Grid Grid.Row="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Border Stroke="Transparent" WidthRequest="400" HeightRequest="400" Grid.Row="0">
+        <Grid RowDefinitions="*, auto" HorizontalOptions="Center">
+            <Label Text="PROFILE" Margin="10" FontAttributes="Bold" FontSize="Large" TextColor="White" Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Center"/>
+            <Grid Grid.Row="1" RowDefinitions="*,*">
+                <Border Stroke="Transparent" WidthRequest="400" HeightRequest="400" Grid.Row="0" StrokeShape="RoundRectangle 50,50">
                     <Image Source="{Binding CurrentEmployee.Image, Converter={StaticResource ByteToImageConverter}}" Margin="10" Aspect="AspectFill"/>
                 </Border>
                 <Border BackgroundColor="White" WidthRequest="350" HeightRequest="1250" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" Margin="10" Grid.Row="1">

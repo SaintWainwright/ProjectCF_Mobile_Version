@@ -1,7 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ProjectCF_Mobile_Version.View;
-using System.Windows.Input;
 
 namespace ProjectCF_Mobile_Version.ViewModel
 {

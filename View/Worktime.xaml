@@ -7,7 +7,7 @@
              x:DataType="viewmodel:Worktime_VM"
              xmlns:model="clr-namespace:ProjectCF_Mobile_Version.Model"
              xmlns:converter="clr-namespace:ProjectCF_Mobile_Version.Converter"
-             BackgroundColor="#222222">
+             BackgroundColor="Black">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -19,7 +19,7 @@
     </ContentPage.Resources>
 
     <Grid RowDefinitions="Auto, Auto, Auto, Auto" HorizontalOptions="Center">
-            <Label Text="Worktime" TextColor="White"  FontAttributes="Bold" Margin="10" Grid.Row="0" HorizontalTextAlignment="Center"/>
+            <Label Text="WORKTIME" FontSize="Large" TextColor="White"  FontAttributes="Bold" Margin="10" Grid.Row="0" HorizontalTextAlignment="Center"/>
             <Border BackgroundColor="White" WidthRequest="350" HeightRequest="600" Grid.Row="1">
                 <Grid>
                     <Grid.RowDefinitions>

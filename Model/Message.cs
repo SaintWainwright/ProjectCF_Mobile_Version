@@ -13,7 +13,7 @@ namespace ProjectCF_Mobile_Version.Model
         [ObservableProperty]
         private string messageText;
         [ObservableProperty]
-        private int tag;
+        private int tag; //0 = unread | 1 = read | 2 = pending | 3 = approved | 4 = denied
         [ObservableProperty]
         private DateTime timeSent;
     }

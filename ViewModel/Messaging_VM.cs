@@ -24,10 +24,10 @@ namespace ProjectCF_Mobile_Version.ViewModel
         {
             var navigationParameter = new Dictionary<string, object>
             {
-                { "selectedmessage", value }
+                { "selectedmessage", SelectedMessage }
             };
-            value.Tag = 1; //Changes tag to READ
-            Message_Services.UpdateMessageCollection(value);
+            SelectedMessage.Tag = 1; //Changes tag to READ
+            Message_Services.UpdateMessageCollection(SelectedMessage);
             Shell.Current.GoToAsync($"{nameof(ViewMessage)}", navigationParameter);
         }
         [RelayCommand]

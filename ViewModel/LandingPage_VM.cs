@@ -14,26 +14,13 @@ namespace ProjectCF_Mobile_Version.ViewModel
         }
         [ObservableProperty]
         private Employee currentEmployee;
-
         [RelayCommand]
-        private void GoToViewSalary()
-        {
-            Shell.Current.GoToAsync(nameof(ViewSalary), false);
-        }
+        private void GoToViewSalary() => Shell.Current.GoToAsync(nameof(ViewSalary), false);
         [RelayCommand]
-        private void GoToViewProfile()
-        {
-            Shell.Current.GoToAsync(nameof(ViewProfile), false);
-        }
+        private void GoToViewProfile() => Shell.Current.GoToAsync(nameof(ViewProfile), false);
         [RelayCommand]
-        private void GoToWorktime()
-        {
-            Shell.Current.GoToAsync(nameof(Worktime),false);
-        }
+        private void GoToWorktime() => Shell.Current.GoToAsync(nameof(Worktime), false);
         [RelayCommand]
-        private void GoToMessaging()
-        {
-            Shell.Current.GoToAsync(nameof(Messaging), false);
-        }
+        private void GoToMessaging() => Shell.Current.GoToAsync(nameof(Messaging), false);
     }
 }

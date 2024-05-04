@@ -7,7 +7,7 @@
              x:DataType="viewmodel:ViewSalary_VM"
              xmlns:model="clr-namespace:ProjectCF_Mobile_Version.Model"
              xmlns:converter="clr-namespace:ProjectCF_Mobile_Version.Converter"
-             BackgroundColor="#222222">
+             BackgroundColor="Black">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -16,12 +16,8 @@
     </ContentPage.Resources>
 
     <ScrollView>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Label Text="Salary" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" Margin="10" Grid.Row="0"/>
+        <Grid RowDefinitions="*,*">
+            <Label Text="SALARY" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Large" FontAttributes="Bold" Margin="10" Grid.Row="0"/>
             <Border BackgroundColor="White" WidthRequest="320" HeightRequest="945" Grid.Row="1">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -30,17 +26,7 @@
                     </Grid.RowDefinitions>
 
                     <!--Grid display for Employee Details on upper portion of salary page-->
-                    <Grid Grid.Row="0">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="50"/>
-                            <RowDefinition Height="40"/>
-                            <RowDefinition Height="40"/>
-                            <RowDefinition Height="40"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
+                    <Grid Grid.Row="0" RowDefinitions="50,40,40,40" ColumnDefinitions="*,*">
                         <Frame HeightRequest="140"
                                WidthRequest="140"
                                CornerRadius="70"
