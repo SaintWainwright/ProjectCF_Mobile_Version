@@ -1,21 +1,19 @@
-﻿using ProjectCF_Mobile_Version.Model;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using ProjectCF_Mobile_Version.Model;
 using ProjectCF_Mobile_Version.Services;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace ProjectCF_Mobile_Version.ViewModel
 {
-    public partial class Worktime_VM : LandingPage_VM
+    public partial class Worktime_VM : ObservableObject
     {
+        private readonly DateTime optimalTimeIn;
+        private readonly DateTime optimalTimeOut;
+        private readonly TimeOnly timeCompare;
+        private DateTime dateException;
         public Worktime_VM()
         {
-            employee_Services = new Employee_Services();
-            CurrentEmployee = employee_Services.InitializeCurrentEmployee();
+            CurrentEmployee = Employee_Services.InitializeCurrentEmployee();
             DateToday = DateOnly.FromDateTime(DateTime.Today);
             TimeNow = TimeOnly.FromDateTime(DateTime.Now);
             DateSimulation = DateToday.ToDateTime(TimeOnly.MinValue);
@@ -25,61 +23,30 @@ namespace ProjectCF_Mobile_Version.ViewModel
             optimalTimeIn = DateTime.Today.AddHours(7);
             optimalTimeOut = DateTime.Today.AddHours(21);
         }
-        private readonly DateTime optimalTimeIn;
-        private readonly DateTime optimalTimeOut;
-        private readonly TimeOnly timeCompare;
-        private DateTime dateException;
-        private readonly Employee_Services employee_Services;
-
+        [ObservableProperty]
+        private Employee currentEmployee;
+        [ObservableProperty]
         private DateOnly dateToday;
-        public DateOnly DateToday
-        {
-            get { return dateToday; }
-            set { dateToday = value; OnPropertyChanged(); OnPropertyChanged(nameof(dateToday)); }
-        }
+        [ObservableProperty]
         private TimeOnly timeNow;
-        public TimeOnly TimeNow
-        {
-            get { return timeNow; }
-            set { timeNow = value; OnPropertyChanged(); OnPropertyChanged(nameof(timeNow)); }
-        }
-        private DateTime _DateSimulation;
-        public DateTime DateSimulation
-        {
-            get { return _DateSimulation; }
-            set { _DateSimulation = value; OnPropertyChanged(); OnPropertyChanged(nameof(_DateSimulation)); }
-        }
-        private TimeSpan _TimeInSimulation;
-        public TimeSpan TimeInSimulation
-        {
-            get { return _TimeInSimulation; }
-            set { _TimeInSimulation = value; OnPropertyChanged(); OnPropertyChanged(nameof(_TimeInSimulation)); }
-        }
-        private TimeSpan _TimeOutSimulation;
-        public TimeSpan TimeOutSimulation
-        {
-            get { return _TimeOutSimulation; }
-            set { _TimeOutSimulation = value; OnPropertyChanged(); OnPropertyChanged(nameof(_TimeOutSimulation)); }
-        }
-        private DateTime _TimeIn;
-        public DateTime TimeInSimulated
-        {
-            get { return _TimeIn; }
-            set { _TimeIn = value; OnPropertyChanged(); OnPropertyChanged(nameof(_TimeIn)); }
-        }
-        private DateTime _TimeOut;
-        public DateTime TimeOutSimulated
-        {
-            get { return _TimeOut; }
-            set { _TimeOut = value; OnPropertyChanged(); OnPropertyChanged(nameof(_TimeOut)); }
-        }
-        private Employee_Worktimes SimulationWorkTimes = new();
+        [ObservableProperty]
+        private DateTime dateSimulation;
+        [ObservableProperty]
+        private TimeSpan timeInSimulation;
+        [ObservableProperty]
+        private TimeSpan timeOutSimulation;
+        [ObservableProperty]
+        private DateTime timeInSimulated;
+        [ObservableProperty]
+        private DateTime timeOutSimulated;
+        [ObservableProperty]
+        private Employee_Worktimes simulationWorkTimes = new();
 
         private async void Simulate()
         {
             SetDates();
-            TimeSpan theduration = TimeSpan.Zero;
-            TimeSpan second = new TimeSpan(0, 0, 1, 0);
+            TimeSpan second = new(0, 0, 1, 0);
+            TimeSpan theduration;
             if (TimeOutSimulated.Hour == timeCompare.Hour)
             {
                 bool answer = await Shell.Current.DisplayAlert("Employee Forgot to Time Out", "Is this an overtime?", "Yes", "No");
@@ -138,7 +105,7 @@ namespace ProjectCF_Mobile_Version.ViewModel
             SimulationWorkTimes.TimeOut = TimeOutSimulated;
             CurrentEmployee.Worktimes.Add(SimulationWorkTimes);
             await Shell.Current.DisplayAlert("Simulate Worktime", "Worktime Simulation Successful", "Okay");
-            employee_Services.UpdateEmployeeCollection(CurrentEmployee);
+            Employee_Services.UpdateEmployeeCollection(CurrentEmployee);
             SimulationWorkTimes = new Employee_Worktimes();
         }
         public ICommand SimulateCommand => new Command(Simulate);

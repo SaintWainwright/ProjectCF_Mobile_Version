@@ -1,52 +1,39 @@
-﻿using ProjectCF_Mobile_Version.Model;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using ProjectCF_Mobile_Version.Model;
 using ProjectCF_Mobile_Version.Services;
 using ProjectCF_Mobile_Version.View;
 using System.Collections.ObjectModel;
-using System.Windows.Input;
 
 namespace ProjectCF_Mobile_Version.ViewModel
 {
-    public partial class Messaging_VM : LandingPage_VM
+    public partial class Messaging_VM : ObservableObject
     {
         public Messaging_VM()
         {
-            message_Services = new Message_Services();
-            employee_Services = new Employee_Services();
-            MessageList = new ObservableCollection<Message>();
-            CurrentEmployee = employee_Services.InitializeCurrentEmployee();
-
+            CurrentEmployee = Employee_Services.InitializeCurrentEmployee();
+            MessageList = Message_Services.EmployeeMessageList(CurrentEmployee);
         }
-        private readonly Message_Services message_Services;
-        private readonly Employee_Services employee_Services;
+        [ObservableProperty]
+        private Employee currentEmployee;
+        [ObservableProperty]
         private ObservableCollection<Message> messageList;
-        public ObservableCollection<Message> MessageList
-        {
-            get { return messageList; }
-            set { messageList = value; OnPropertyChanged(); OnPropertyChanged(nameof(messageList)); messageList = message_Services.EmployeeMessageList(CurrentEmployee); }
-        }
+        [ObservableProperty]
         private Message selectedMessage;
-        public Message SelectedMessage
-        {
-            get { return selectedMessage; }
-            set
-            {
-                selectedMessage = value; OnPropertyChanged(); OnPropertyChanged(nameof(selectedMessage)); GoToViewMessage();
-            }
-        }
-        private void GoToViewMessage()
+        partial void OnSelectedMessageChanged(Message value)
         {
             var navigationParameter = new Dictionary<string, object>
             {
                 { "selectedmessage", SelectedMessage }
             };
             SelectedMessage.Tag = 1; //Changes tag to READ
-            message_Services.UpdateMessageCollection(SelectedMessage);
+            Message_Services.UpdateMessageCollection(SelectedMessage);
             Shell.Current.GoToAsync($"{nameof(ViewMessage)}", navigationParameter);
         }
+        [RelayCommand]
         private void GoToWriteMessage()
         {
             Shell.Current.GoToAsync(nameof(WriteMessage), false);
         }
-        public ICommand GoToWriteMessageCommand => new Command(GoToWriteMessage);
     }
 }

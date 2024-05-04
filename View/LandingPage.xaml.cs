@@ -4,9 +4,10 @@ namespace ProjectCF_Mobile_Version.View;
 
 public partial class LandingPage : ContentPage
 {
-	public LandingPage()
+	public LandingPage(LandingPage_VM vm)
 	{
-        BindingContext = new LandingPage_VM();
+        Application.Current.UserAppTheme = AppTheme.Light;
         InitializeComponent();
-	}
+        BindingContext = vm;
+    }
 }

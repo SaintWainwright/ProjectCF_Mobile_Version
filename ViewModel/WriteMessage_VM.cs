@@ -1,40 +1,26 @@
-﻿using ProjectCF_Mobile_Version.Model;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using ProjectCF_Mobile_Version.Model;
 using ProjectCF_Mobile_Version.Services;
-using ProjectCF_Mobile_Version.View;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace ProjectCF_Mobile_Version.ViewModel
 {
-    public partial class WriteMessage_VM : LandingPage_VM
+    public partial class WriteMessage_VM : ObservableObject
     {
-        private readonly Employee_Services employee_Services;
-        private readonly Message_Services message_Services;
+        [ObservableProperty]
         private ObservableCollection<Employee> contactList;
-        public ObservableCollection<Employee> ContactList
-        {
-            get { return contactList; }
-            set { contactList = value; OnPropertyChanged(); OnPropertyChanged(nameof(ContactList)); } 
-        }
+        [ObservableProperty]
         private Message newMessage;
-        public Message NewMessage
-        {
-            get { return newMessage; }
-            set { newMessage = value; OnPropertyChanged(); OnPropertyChanged(nameof(newMessage)); }
-        }
         public WriteMessage_VM()
         {
-            employee_Services = new Employee_Services();
-            message_Services = new Message_Services();
-            CurrentEmployee = employee_Services.InitializeCurrentEmployee();
-            ContactList = employee_Services.GetHumanResources();
+            CurrentEmployee = Employee_Services.InitializeCurrentEmployee();
+            ContactList = Employee_Services.GetHumanResources();
             newMessage = new Message();
         }
+        [ObservableProperty]
+        private Employee currentEmployee;
         private void InitializeMessage()
         {
             NewMessage.Sender = new Employee
@@ -67,13 +53,13 @@ namespace ProjectCF_Mobile_Version.ViewModel
             }
             return true;
         }
-
+        [RelayCommand]
         private void SendMessage()
         {
             if (ValidateEntries())
             {
                 InitializeMessage();
-                message_Services.SendMessage(NewMessage);
+                Message_Services.SendMessage(NewMessage);
                 Shell.Current.DisplayAlert("Email sent", "The email has been successfully sent to receiver", "Okay");
                 Shell.Current.GoToAsync("..");
             }
@@ -82,6 +68,5 @@ namespace ProjectCF_Mobile_Version.ViewModel
                 Shell.Current.DisplayAlert("Entries not filled", "Fill in all entries to send message", "Okay");
             }
         }
-        public ICommand SendMessageCommand => new Command(SendMessage);
     }
 }
