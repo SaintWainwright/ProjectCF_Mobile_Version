@@ -14,28 +14,28 @@
     </ContentPage.Resources>
 
     <Grid RowDefinitions="250,*" ColumnDefinitions="*,*">
-        <VerticalStackLayout Grid.Row="0" Grid.ColumnSpan="2" VerticalOptions="Center" HorizontalOptions="Center">
-            <Frame HeightRequest="140"
+        <Grid RowDefinitions="Auto, Auto, Auto" Grid.Row="0" Grid.ColumnSpan="2" VerticalOptions="Center" HorizontalOptions="Center">
+            <Border HeightRequest="140"
                    WidthRequest="140"
-                   CornerRadius="70"
                    VerticalOptions="Center"
-                   IsClippedToBounds="True"
                    Padding="0"
-                   BorderColor="Gray"
-                   Margin="0,0,0,0">
+                   Margin="0,0,0,0"
+                   Grid.Row="0" 
+                   Stroke="Transparent" 
+                   StrokeShape="Ellipse 40, 40">
 
                 <Image
-                    Aspect="AspectFit"
+                    Aspect="AspectFill"
                     Source="{Binding CurrentEmployee.Image, Converter={StaticResource ByteToImageConverter}}"
                     HeightRequest="140"
                     WidthRequest="140"
                     VerticalOptions="Center"
                     HorizontalOptions="Center"/>
-            </Frame>
-            <Label Text="{Binding CurrentEmployee.FullName}" TextColor="White" HorizontalOptions="Center"/>
-            <Label Text="{Binding CurrentEmployee.JobPosition}" TextColor="White" HorizontalOptions="Center"/>
-        </VerticalStackLayout>
-        <Frame BackgroundColor="White" Grid.Row="1" Grid.ColumnSpan="2">
+            </Border>
+            <Label Text="{Binding CurrentEmployee.FullName}" TextColor="White" HorizontalOptions="Center" Grid.Row="1"/>
+            <Label Text="{Binding CurrentEmployee.JobPosition}" TextColor="White" HorizontalOptions="Center" Grid.Row="2"/>
+        </Grid>
+        <Border BackgroundColor="White" Grid.Row="1" Grid.ColumnSpan="2">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
@@ -45,19 +45,19 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <FlexLayout Grid.Row="0" Grid.Column="0" Margin="10">
+                <Grid Grid.Row="0" Grid.Column="0" Margin="5">
                     <ImageButton Source="project_cf_mobile_viewprofile_picture.png" Command="{Binding GoToViewProfileCommand}" Aspect="Center" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="180" HeightRequest="200"/>
-                </FlexLayout>
-                <FlexLayout Grid.Row="0" Grid.Column="1" Margin="10">
+                </Grid>
+                <Grid Grid.Row="0" Grid.Column="1" Margin="5">
                     <ImageButton Source="project_cf_mobile_viewworktime_picture.png" Command="{Binding GoToWorktimeCommand}" Aspect="Center" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="180" HeightRequest="200"/>
-                </FlexLayout>
-                <FlexLayout Grid.Row="1" Grid.Column="0" Margin="10">
+                </Grid>
+                <Grid Grid.Row="1" Grid.Column="0" Margin="5">
                     <ImageButton Source="project_cf_mobile_viewsalary_picture.png" Command="{Binding GoToViewSalaryCommand}" Aspect="Center" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="180" HeightRequest="200"/>
-                </FlexLayout>
-                <FlexLayout Grid.Row="1" Grid.Column="1" Margin="10">
+                </Grid>
+                <Grid Grid.Row="1" Grid.Column="1" Margin="5">
                     <ImageButton Source="project_cf_mobile_sendmessage_picture.png" Command="{Binding GoToMessagingCommand}" Aspect="Center" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="180" HeightRequest="200"/>
-                </FlexLayout>
+                </Grid>
             </Grid>
-        </Frame>
+        </Border>
     </Grid>
 </ContentPage>

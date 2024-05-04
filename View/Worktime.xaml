@@ -6,11 +6,21 @@
              xmlns:viewmodel="clr-namespace:ProjectCF_Mobile_Version.ViewModel"
              x:DataType="viewmodel:Worktime_VM"
              xmlns:model="clr-namespace:ProjectCF_Mobile_Version.Model"
+             xmlns:converter="clr-namespace:ProjectCF_Mobile_Version.Converter"
              BackgroundColor="#222222">
-    
-    <FlexLayout Direction="Column" AlignItems="Center">
-            <Label Text="Worktime" TextColor="White"  FontAttributes="Bold" Margin="10" FlexLayout.Order="0"/>
-            <Border BackgroundColor="White" WidthRequest="350" HeightRequest="600" FlexLayout.Order="1">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:WorktimeTimeInColorConverter x:Key="TimeInColor" />
+        </ResourceDictionary>
+        <ResourceDictionary>
+            <converter:WorktimeTimeOutColorConverter x:Key="TimeOutColor" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions="Auto, Auto, Auto, Auto" HorizontalOptions="Center">
+            <Label Text="Worktime" TextColor="White"  FontAttributes="Bold" Margin="10" Grid.Row="0" HorizontalTextAlignment="Center"/>
+            <Border BackgroundColor="White" WidthRequest="350" HeightRequest="600" Grid.Row="1">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50"/>
@@ -41,8 +51,8 @@
                                 <DataTemplate x:DataType="model:Employee_Worktimes">
                                     <Grid ColumnDefinitions="*,*,*">
                                         <Label Grid.Column="0" Text="{Binding TimeIn, StringFormat='{0:MM/dd/yy}'}" HorizontalTextAlignment="Center"/>
-                                        <Label Grid.Column="1" Text="{Binding TimeIn, StringFormat='{0:hh:mm:ss tt}'}" HorizontalTextAlignment="Center"/>
-                                        <Label Grid.Column="2" Text="{Binding TimeOut, StringFormat='{0:hh:mm:ss tt}'}" HorizontalTextAlignment="Center"/>
+                                        <Label Grid.Column="1" Text="{Binding TimeIn, StringFormat='{0:hh:mm:ss tt}'}" HorizontalTextAlignment="Center" TextColor="{Binding TimeIn, Converter={StaticResource TimeInColor}}"/>
+                                        <Label Grid.Column="2" Text="{Binding TimeOut, StringFormat='{0:hh:mm:ss tt}'}" HorizontalTextAlignment="Center" TextColor="{Binding TimeOut, Converter={StaticResource TimeOutColor}}"/>
                                     </Grid>
                                 </DataTemplate>
                             </CollectionView.ItemTemplate>
@@ -51,13 +61,13 @@
                     
                 </Grid>
             </Border>
-        <HorizontalStackLayout FlexLayout.Order="2">
+        <Grid Grid.Row="2">
             <DatePicker Date="{Binding DateSimulation}" BackgroundColor="LightGrey" WidthRequest="100" HeightRequest="43" Margin="10"/>
             <TimePicker  HorizontalOptions="Start" Margin="10"   WidthRequest="100" BackgroundColor="LightGrey" Time="{Binding TimeInSimulation}"/>
             <TimePicker HorizontalOptions="End" Margin="10" WidthRequest="100" BackgroundColor="LightGrey" Time="{Binding TimeOutSimulation}"/>
-        </HorizontalStackLayout>
-        <HorizontalStackLayout FlexLayout.Order="3">
+        </Grid>
+        <Grid Grid.Row="3" WidthRequest="100">
             <Button Text="Simulate" Command="{Binding SimulateCommand}" BackgroundColor="LightGrey" TextColor="Black" BorderColor="Black"/>
-        </HorizontalStackLayout>
-    </FlexLayout>
+        </Grid>
+    </Grid>
 </ContentPage>
