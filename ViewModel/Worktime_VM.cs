@@ -5,17 +5,15 @@ using System.Windows.Input;
 
 namespace ProjectCF_Mobile_Version.ViewModel
 {
-    public partial class Worktime_VM : LandingPage_VM
+    public partial class Worktime_VM : ObservableObject
     {
-        private readonly Employee_Services employee_Services;
         private readonly DateTime optimalTimeIn;
         private readonly DateTime optimalTimeOut;
         private readonly TimeOnly timeCompare;
         private DateTime dateException;
         public Worktime_VM()
         {
-            employee_Services = new Employee_Services();
-            CurrentEmployee = employee_Services.InitializeCurrentEmployee();
+            CurrentEmployee = Employee_Services.InitializeCurrentEmployee();
             DateToday = DateOnly.FromDateTime(DateTime.Today);
             TimeNow = TimeOnly.FromDateTime(DateTime.Now);
             DateSimulation = DateToday.ToDateTime(TimeOnly.MinValue);
@@ -25,6 +23,8 @@ namespace ProjectCF_Mobile_Version.ViewModel
             optimalTimeIn = DateTime.Today.AddHours(7);
             optimalTimeOut = DateTime.Today.AddHours(21);
         }
+        [ObservableProperty]
+        private Employee currentEmployee;
         [ObservableProperty]
         private DateOnly dateToday;
         [ObservableProperty]
@@ -105,7 +105,7 @@ namespace ProjectCF_Mobile_Version.ViewModel
             SimulationWorkTimes.TimeOut = TimeOutSimulated;
             CurrentEmployee.Worktimes.Add(SimulationWorkTimes);
             await Shell.Current.DisplayAlert("Simulate Worktime", "Worktime Simulation Successful", "Okay");
-            employee_Services.UpdateEmployeeCollection(CurrentEmployee);
+            Employee_Services.UpdateEmployeeCollection(CurrentEmployee);
             SimulationWorkTimes = new Employee_Worktimes();
         }
         public ICommand SimulateCommand => new Command(Simulate);

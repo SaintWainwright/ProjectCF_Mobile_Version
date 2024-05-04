@@ -8,10 +8,8 @@ namespace ProjectCF_Mobile_Version.ViewModel
 {
     public partial class LoginPage_VM : ObservableObject
     {
-        private readonly Employee_Services employee_Services;
         public LoginPage_VM()
         {
-            employee_Services = new Employee_Services();
             Preferences.Default.Remove("employeeID");
         }
         [RelayCommand]
@@ -31,11 +29,11 @@ namespace ProjectCF_Mobile_Version.ViewModel
         private bool IDExisting()
         {
             bool existing = false;
-            foreach (var employee in employee_Services.GetEmployees())
+            foreach (var employee in Employee_Services.GetEmployees())
             {
                 if (EmployeeIDEntry == employee.EmployeeID && EmployeePassword == employee.Password)
                 {
-                    existing = true;
+                    return true;
                 }
             }
             return existing;

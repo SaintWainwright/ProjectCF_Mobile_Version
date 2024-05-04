@@ -6,7 +6,7 @@ namespace ProjectCF_Mobile_Version.Services
 {
     class Employee_Services
     {
-        public ObservableCollection<Employee> GetEmployees()
+        public static ObservableCollection<Employee> GetEmployees()
         {
 #if ANDROID
             var docsDirectory = Android.App.Application.Context.GetExternalFilesDir(Android.OS.Environment.DirectoryDocuments);
@@ -30,11 +30,11 @@ namespace ProjectCF_Mobile_Version.Services
             return EmployeeList;
 #endif
         }
-        public void UpdateEmployeeCollection(Employee employee)
+        public static void UpdateEmployeeCollection(Employee employee)
         {
 #if ANDROID
             var docsDirectory = Android.App.Application.Context.GetExternalFilesDir(Android.OS.Environment.DirectoryDocuments);
-            ObservableCollection<Employee> EmployeeCollection = GetEmployees();
+            ObservableCollection<Employee> EmployeeCollection = Employee_Services.GetEmployees();
             for (int loop = 0; loop < EmployeeCollection.Count; loop++)
             {
                 if (employee.EmployeeID == EmployeeCollection[loop].EmployeeID)
@@ -47,7 +47,7 @@ namespace ProjectCF_Mobile_Version.Services
             }
 #else
             string filePath = Path.Combine(FileSystem.Current.AppDataDirectory, "Employee.json");
-            ObservableCollection<Employee> EmployeeCollection = GetEmployees();
+            ObservableCollection<Employee> EmployeeCollection = Employee_Services.GetEmployees();
             for (int loop = 0; loop < EmployeeCollection.Count; loop++)
             {
                 if (employee.EmployeeID == EmployeeCollection[loop].EmployeeID)
@@ -60,10 +60,10 @@ namespace ProjectCF_Mobile_Version.Services
             }
 #endif
         }
-        public ObservableCollection<Employee> GetHumanResources()
+        public static ObservableCollection<Employee> GetHumanResources()
         {
             ObservableCollection<Employee> EmployeeCollection = [];
-            foreach (var employee in GetEmployees())
+            foreach (var employee in Employee_Services.GetEmployees())
             {
                 if (employee.JobPosition == "Human Resource")
                 {
@@ -72,18 +72,17 @@ namespace ProjectCF_Mobile_Version.Services
             }
             return EmployeeCollection;
         }
-        public Employee InitializeCurrentEmployee()
+        public static Employee InitializeCurrentEmployee()
         {
-            Employee CurrentEmployee = new();
             string employeeID = Preferences.Get("employeeID", "Unknown");
-            foreach (var employee in GetEmployees())
+            foreach (var employee in Employee_Services.GetEmployees())
             {
                 if (employeeID == employee.EmployeeID)
                 {
-                    CurrentEmployee = employee;
+                    return employee;
                 }
             }
-            return CurrentEmployee;
+            return new();
         }
     }
 }

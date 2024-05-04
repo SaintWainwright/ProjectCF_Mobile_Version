@@ -8,11 +8,9 @@ namespace ProjectCF_Mobile_Version.ViewModel
 {
     public partial class LandingPage_VM : ObservableObject
     {
-        private readonly Employee_Services employee_Services;
         public LandingPage_VM()
         {
-            employee_Services = new Employee_Services();
-            CurrentEmployee = employee_Services.InitializeCurrentEmployee();
+            CurrentEmployee = Employee_Services.InitializeCurrentEmployee();
         }
         [ObservableProperty]
         private Employee currentEmployee;

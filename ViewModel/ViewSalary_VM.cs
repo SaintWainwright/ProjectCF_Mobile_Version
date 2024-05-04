@@ -5,13 +5,11 @@ using System.Collections.ObjectModel;
 
 namespace ProjectCF_Mobile_Version.ViewModel
 {
-    public partial class ViewSalary_VM : LandingPage_VM
+    public partial class ViewSalary_VM : ObservableObject
     {
-        private readonly Employee_Services employee_Services;
         public ViewSalary_VM()
         {
-            employee_Services = new Employee_Services();
-            CurrentEmployee = employee_Services.InitializeCurrentEmployee();
+            CurrentEmployee = Employee_Services.InitializeCurrentEmployee();
             totalOvertime = TimeSpan.Zero;
             totalLate = TimeSpan.Zero;
             totalHoursWorked = TimeSpan.Zero;
@@ -31,6 +29,8 @@ namespace ProjectCF_Mobile_Version.ViewModel
                 "December"
             ];
         }
+        [ObservableProperty]
+        private Employee currentEmployee;
         [ObservableProperty]
         private TimeSpan totalOvertime;
         [ObservableProperty]

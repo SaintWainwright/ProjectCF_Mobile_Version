@@ -101,7 +101,7 @@
                                 <Label Text="Lates" Grid.Row="1" Grid.Column="0" Margin="10"/>
                                 <Label Text="{Binding LateDeductions, StringFormat='- {0:0.00}'}" Grid.Row="1" Grid.Column="1" Margin="10" HorizontalTextAlignment="End"/>
                                 <Label Text="Undertimes" Grid.Row="2" Grid.Column="0" Margin="10"/>
-                                <Label Text="{Binding Undertimes, StringFormat='- {0:0.00}'}" Grid.Row="2" Grid.Column="1" Margin="10" HorizontalTextAlignment="End"/>
+                                <Label Text="{Binding UnderTimes, StringFormat='- {0:0.00}'}" Grid.Row="2" Grid.Column="1" Margin="10" HorizontalTextAlignment="End"/>
                                 <Label Text="Overtime Bonus" Grid.Row="3" Grid.Column="0" Margin="10"/>
                                 <Label Text="{Binding OvertimeBonus, StringFormat='{0:0.00}'}" Grid.Row="3" Grid.Column="1" Margin="10" HorizontalTextAlignment="End"/>
                                 <Label Text="Total Earnings:" Grid.Row="4" Grid.Column="0" Margin="10"/>

@@ -13,33 +13,30 @@
             <converter:ByteToImageConverter x:Key="ByteToImageConverter"/>
         </ResourceDictionary>
     </ContentPage.Resources>
-    
-    <FlexLayout Direction="Column" AlignItems="Center">
-        <Label Margin="10" FontAttributes="Bold" FontSize="Large" FlexLayout.Order="0" Text="MESSAGES" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center"/>
-        <AbsoluteLayout FlexLayout.Order="1">
-            <Frame CornerRadius="10" WidthRequest="350" HeightRequest="675" Margin="18,0,18,18">
-                <ScrollView BackgroundColor="White">
-                    <CollectionView ItemsSource="{Binding MessageList}" SelectionMode="Single" SelectedItem="{Binding SelectedMessage}" EmptyView="No Messages Available">
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate x:DataType="model:Message">
-                                <Border Stroke="Black" Margin="2">
-                                    <HorizontalStackLayout HorizontalOptions="Start">
-                                        <Frame HeightRequest="60" WidthRequest="60" CornerRadius="70" HorizontalOptions="Center" IsClippedToBounds="True" Padding="0" BorderColor="Gray" Margin="5">
-                                            <Image Aspect="AspectFit" Source="{Binding Receiver.Image, Converter={StaticResource ByteToImageConverter}}" HeightRequest="60" WidthRequest="60" VerticalOptions="Center" HorizontalOptions="Center" />
-                                        </Frame>
-                                        <VerticalStackLayout>
-                                            <Label Text="{Binding Sender.FullName}" FontAttributes="Bold" FontSize="Large"/>
-                                            <Label Text="{Binding Subject}" FontSize="Body"/>
-                                            <Label Text="{Binding TimeSent}"/>
-                                        </VerticalStackLayout>
-                                    </HorizontalStackLayout>
-                                </Border>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
-                </ScrollView>
-            </Frame>
-            <ImageButton Command="{Binding GoToWriteMessageCommand}" Source="write_message.png" AbsoluteLayout.LayoutBounds="300,600"/>
-        </AbsoluteLayout>
-    </FlexLayout>
+
+    <Grid RowDefinitions="*,auto,auto">
+        <Label Grid.Row="0" Margin="10" FontAttributes="Bold" FontSize="Large" Text="MESSAGES" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center"/>
+        <Border Grid.Row="1" StrokeShape="RoundRectangle 10" BackgroundColor="White" WidthRequest="350" HeightRequest="595" Margin="18,0,18,18">
+            <CollectionView ItemsSource="{Binding MessageList}" SelectionMode="Single" EmptyView="No Messages Available" SelectedItem="{Binding SelectedMessage}" VerticalOptions="FillAndExpand">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Message">
+                        <StackLayout Padding="0">
+                            <Border Stroke="Black" BackgroundColor="Transparent" StrokeShape="RoundRectangle 5" Margin="5">
+                                <Grid ColumnDefinitions="*,auto,*" ColumnSpacing="5" RowDefinitions="auto,*,*" Margin="2" WidthRequest="350" HeightRequest="75">
+                                    <Border Grid.Column="0" Grid.RowSpan="3" HeightRequest="60" StrokeShape="RoundRectangle 80" WidthRequest="60" HorizontalOptions="Center" BackgroundColor="Transparent">
+                                        <Image Aspect="AspectFit" Source="{Binding Receiver.Image, Converter={StaticResource ByteToImageConverter}}" HeightRequest="60" WidthRequest="60" VerticalOptions="Center" HorizontalOptions="Center" />
+                                    </Border>
+                                    <Label Grid.Column="1" Grid.Row="0" Text="{Binding Receiver.FullName}" FontSize="Large" FontAttributes="Bold"/>
+                                    <Label Grid.Column="1" Grid.Row="1" Text="{Binding Subject}"/>
+                                    <Label Grid.Column="1" Grid.Row="2" Text="{Binding TimeSent}"/>
+                                    <Label Grid.Column="2" Grid.Row="2" Text="{Binding Tag}" HorizontalOptions="Center"/>
+                                </Grid>
+                            </Border>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Border>
+        <ImageButton Grid.Row="2" Aspect="Center" Command="{Binding GoToWriteMessageCommand}" Source="write_message.png" Margin="5"/>
+    </Grid>
 </ContentPage>

@@ -7,26 +7,17 @@ using System.Collections.ObjectModel;
 
 namespace ProjectCF_Mobile_Version.ViewModel
 {
-    public partial class Messaging_VM : LandingPage_VM
+    public partial class Messaging_VM : ObservableObject
     {
-        private readonly Message_Services message_Services;
-        private readonly Employee_Services employee_Services;
         public Messaging_VM()
         {
-            message_Services = new Message_Services();
-            employee_Services = new Employee_Services();
-            CurrentEmployee = employee_Services.InitializeCurrentEmployee();
-            MessageList = [];
+            CurrentEmployee = Employee_Services.InitializeCurrentEmployee();
+            MessageList = Message_Services.EmployeeMessageList(CurrentEmployee);
         }
         [ObservableProperty]
+        private Employee currentEmployee;
+        [ObservableProperty]
         private ObservableCollection<Message> messageList;
-        partial void OnMessageListChanged(ObservableCollection<Message> value)
-        {
-            if(!MessageList.Any())
-            {
-                MessageList = message_Services.EmployeeMessageList(CurrentEmployee);
-            }
-        }
         [ObservableProperty]
         private Message selectedMessage;
         partial void OnSelectedMessageChanged(Message value)
@@ -36,7 +27,7 @@ namespace ProjectCF_Mobile_Version.ViewModel
                 { "selectedmessage", value }
             };
             value.Tag = 1; //Changes tag to READ
-            message_Services.UpdateMessageCollection(value);
+            Message_Services.UpdateMessageCollection(value);
             Shell.Current.GoToAsync($"{nameof(ViewMessage)}", navigationParameter);
         }
         [RelayCommand]

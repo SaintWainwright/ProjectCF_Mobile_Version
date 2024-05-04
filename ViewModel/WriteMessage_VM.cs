@@ -7,22 +7,20 @@ using System.Windows.Input;
 
 namespace ProjectCF_Mobile_Version.ViewModel
 {
-    public partial class WriteMessage_VM : LandingPage_VM
+    public partial class WriteMessage_VM : ObservableObject
     {
-        private readonly Employee_Services employee_Services;
-        private readonly Message_Services message_Services;
         [ObservableProperty]
         private ObservableCollection<Employee> contactList;
         [ObservableProperty]
         private Message newMessage;
         public WriteMessage_VM()
         {
-            employee_Services = new Employee_Services();
-            message_Services = new Message_Services();
-            CurrentEmployee = employee_Services.InitializeCurrentEmployee();
-            ContactList = employee_Services.GetHumanResources();
+            CurrentEmployee = Employee_Services.InitializeCurrentEmployee();
+            ContactList = Employee_Services.GetHumanResources();
             newMessage = new Message();
         }
+        [ObservableProperty]
+        private Employee currentEmployee;
         private void InitializeMessage()
         {
             NewMessage.Sender = new Employee
@@ -61,7 +59,7 @@ namespace ProjectCF_Mobile_Version.ViewModel
             if (ValidateEntries())
             {
                 InitializeMessage();
-                message_Services.SendMessage(NewMessage);
+                Message_Services.SendMessage(NewMessage);
                 Shell.Current.DisplayAlert("Email sent", "The email has been successfully sent to receiver", "Okay");
                 Shell.Current.GoToAsync("..");
             }
