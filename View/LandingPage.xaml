@@ -19,11 +19,10 @@
                    WidthRequest="140"
                    VerticalOptions="Center"
                    Padding="0"
-                   Margin="0,0,0,0"
+                    Margin="0,0,0,0"
                    Grid.Row="0" 
                    Stroke="Transparent" 
                    StrokeShape="Ellipse 40, 40">
-
                 <Image
                     Aspect="AspectFill"
                     Source="{Binding CurrentEmployee.Image, Converter={StaticResource ByteToImageConverter}}"
@@ -31,7 +30,7 @@
                     WidthRequest="140"
                     VerticalOptions="Center"
                     HorizontalOptions="Center"/>
-            </Border>
+              </Border>
             <Label Text="{Binding CurrentEmployee.FullName}" TextColor="White" HorizontalOptions="Center" Grid.Row="1"/>
             <Label Text="{Binding CurrentEmployee.JobPosition}" TextColor="White" HorizontalOptions="Center" Grid.Row="2"/>
         </Grid>

@@ -12,7 +12,7 @@
             <converter:ByteToImageConverter x:Key="ByteToImageConverter"/>
         </ResourceDictionary>
     </ContentPage.Resources>
-    <ScrollView>
+  <ScrollView>
         <Grid RowDefinitions="Auto, Auto" HorizontalOptions="Center">
             <Label Text="Profile" TextColor="White" FontAttributes="Bold" Margin="10" Grid.Row="0" HorizontalTextAlignment="Center"/>
             <Grid Grid.Row="1">

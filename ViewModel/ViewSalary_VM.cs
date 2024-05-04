@@ -1,18 +1,13 @@
-﻿using ProjectCF_Mobile_Version.Model;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using ProjectCF_Mobile_Version.Model;
 using ProjectCF_Mobile_Version.Services;
-using ProjectCF_Mobile_Version.View;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
 
 namespace ProjectCF_Mobile_Version.ViewModel
 {
     public partial class ViewSalary_VM : LandingPage_VM
     {
+        private readonly Employee_Services employee_Services;
         public ViewSalary_VM()
         {
             employee_Services = new Employee_Services();
@@ -36,129 +31,51 @@ namespace ProjectCF_Mobile_Version.ViewModel
                 "December"
             ];
         }
-
-        private readonly Employee_Services employee_Services;
+        [ObservableProperty]
         private TimeSpan totalOvertime;
+        [ObservableProperty]
         private TimeSpan totalLate;
+        [ObservableProperty]
         private TimeSpan totalHoursWorked;
+        [ObservableProperty]
         private TimeSpan totalUndertime;
+        [ObservableProperty]
         private String displayTotalOvertime;
+        [ObservableProperty]
         private String displayTotalLate;
+        [ObservableProperty]
         private String displayTotalHoursWorked;
+        [ObservableProperty]
         private double overtimeBonus;
+        [ObservableProperty]
         private double lateDeductions;
+        [ObservableProperty]
         private double underTimes;
+        [ObservableProperty]
         private double temporarySalary;
+        [ObservableProperty]
         private double finalSalary;
+        [ObservableProperty]
         private double totalEarnings;
+        [ObservableProperty]
         private double totalDeductions;
+        [ObservableProperty]
         private double taxes;
+        [ObservableProperty]
         private double pagibig;
+        [ObservableProperty]
         private double philHealth;
+        [ObservableProperty]
         private double sss;
+        [ObservableProperty]
         private DateTime chosenMonth;
+        [ObservableProperty]
         private ObservableCollection<string> monthPicker;
-        public ObservableCollection<string> MonthPicker
-        {
-            get { return monthPicker; }
-            set { monthPicker = value; OnPropertyChanged(); OnPropertyChanged(nameof(monthPicker)); }
-        }
-        public string DisplayTotalOvertime
-        {
-            get { return displayTotalOvertime; }
-            set { displayTotalOvertime = value; OnPropertyChanged(); OnPropertyChanged(nameof(displayTotalOvertime)); }
-        }
-        public string DisplayTotalLate
-        {
-            get { return displayTotalLate; }
-            set { displayTotalLate = value; OnPropertyChanged(); OnPropertyChanged(nameof(displayTotalLate)); }
-        }
-        public string DisplayTotalHoursWorked
-        {
-            get { return displayTotalHoursWorked; }
-            set { displayTotalHoursWorked = value; OnPropertyChanged(); OnPropertyChanged(nameof(displayTotalHoursWorked)); }
-        }
-        public double OvertimeBonus
-        {
-            get { return overtimeBonus; }
-            set { overtimeBonus = value; OnPropertyChanged(); OnPropertyChanged(nameof(overtimeBonus)); }
-        }
-        public double LateDeductions
-        {
-            get { return lateDeductions; }
-            set { lateDeductions = value; OnPropertyChanged(); OnPropertyChanged(nameof(lateDeductions)); }
-        }
-        public double Undertimes
-        {
-            get { return underTimes; }
-            set { underTimes = value; OnPropertyChanged(); OnPropertyChanged(nameof(underTimes)); }
-        }
-        public double TemporarySalary
-        {
-            get { return temporarySalary; }
-            set { temporarySalary = value; OnPropertyChanged(); OnPropertyChanged(nameof(temporarySalary)); }
-        }
-        public double FinalSalary
-        {
-            get { return finalSalary; }
-            set { finalSalary = value; OnPropertyChanged(); OnPropertyChanged(nameof(finalSalary)); }
-        }
-        public TimeSpan TotalOvertime
-        {
-            get { return totalOvertime; }
-            set { totalOvertime = value; OnPropertyChanged(); OnPropertyChanged(nameof(totalOvertime)); }
-        }
-
-        public TimeSpan TotalLate
-        {
-            get { return totalLate; }
-            set { totalLate = value; OnPropertyChanged(); OnPropertyChanged(nameof(totalLate)); }
-        }
-        public TimeSpan TotalHoursWorked
-        {
-            get { return totalHoursWorked; }
-            set { totalHoursWorked = value; OnPropertyChanged(); OnPropertyChanged(nameof(totalHoursWorked)); }
-        }
-        public TimeSpan TotalUndertime
-        {
-            get { return totalUndertime; }
-            set { totalUndertime = value; OnPropertyChanged(); OnPropertyChanged(nameof(totalUndertime)); }
-        }
-        public double TotalEarnings
-        {
-            get { return totalEarnings; }
-            set { totalEarnings = value; OnPropertyChanged(); OnPropertyChanged(nameof(totalEarnings)); }
-        }
-        public double TotalDeductions
-        {
-            get { return totalDeductions; }
-            set { totalDeductions = value; OnPropertyChanged(); OnPropertyChanged(nameof(totalDeductions)); }
-        }
-        public double Taxes
-        {
-            get { return taxes; }
-            set { taxes = value; OnPropertyChanged(); OnPropertyChanged(nameof(taxes)); }
-        }
-        public double PagIbig
-        {
-            get { return pagibig; }
-            set { pagibig = value; OnPropertyChanged(); OnPropertyChanged(nameof(pagibig)); }
-        }
-        public double PhilHealth
-        {
-            get { return philHealth; }
-            set { philHealth = value; OnPropertyChanged(); OnPropertyChanged(nameof(philHealth)); }
-        }
-        public double SSS
-        {
-            get { return sss; }
-            set { sss = value; OnPropertyChanged(); OnPropertyChanged(nameof(sss)); }
-        }
         private void Total()
         {
             foreach (Employee_Worktimes worktimes in CurrentEmployee.Worktimes)
             {
-                if(worktimes.Month.Month == chosenMonth.Month && worktimes.Year.Year == chosenMonth.Year)
+                if(worktimes.Month.Month == ChosenMonth.Month && worktimes.Year.Year == ChosenMonth.Year)
                 {
                     TotalOvertime += worktimes.Overtimes.TimeOfDay;
                     TotalLate += worktimes.Lates.TimeOfDay;
@@ -169,17 +86,17 @@ namespace ProjectCF_Mobile_Version.ViewModel
         }
         private void Calculate()
         {
-            TotalHoursWorked -= totalOvertime;
-            TemporarySalary = CurrentEmployee.SalaryGrade * totalHoursWorked.TotalHours;
-            OvertimeBonus = (CurrentEmployee.SalaryGrade + 2.0) * totalOvertime.TotalHours;
-            LateDeductions = (CurrentEmployee.SalaryGrade + 5.0) * totalLate.TotalHours;
-            Undertimes = (CurrentEmployee.SalaryGrade + 5.0) * totalUndertime.TotalHours;
-            Taxes = temporarySalary * 0.0116;
-            PagIbig = temporarySalary * 0.03;
-            PhilHealth = temporarySalary * 0.04;
-            SSS = temporarySalary * 0.045;
-            TotalEarnings = ((temporarySalary + overtimeBonus) - underTimes) - lateDeductions;
-            TotalDeductions = taxes + pagibig + philHealth + sss;
+            TotalHoursWorked -= TotalOvertime;
+            TemporarySalary = CurrentEmployee.SalaryGrade * TotalHoursWorked.TotalHours;
+            OvertimeBonus = (CurrentEmployee.SalaryGrade + 2.0) * TotalOvertime.TotalHours;
+            LateDeductions = (CurrentEmployee.SalaryGrade + 5.0) * TotalLate.TotalHours;
+            UnderTimes = (CurrentEmployee.SalaryGrade + 5.0) * TotalUndertime.TotalHours;
+            Taxes = TemporarySalary * 0.0116;
+            Pagibig = TemporarySalary * 0.03;
+            PhilHealth = TemporarySalary * 0.04;
+            Sss = TemporarySalary * 0.045;
+            TotalEarnings = ((TemporarySalary + OvertimeBonus) - UnderTimes) - LateDeductions;
+            TotalDeductions = Taxes + Pagibig + PhilHealth + Sss;
             FinalSalary = TotalEarnings - TotalDeductions;
         }
         private void SetDisplayValues()
@@ -193,14 +110,14 @@ namespace ProjectCF_Mobile_Version.ViewModel
             TemporarySalary = 0;
             OvertimeBonus = 0;
             LateDeductions = 0;
-            Undertimes = 0;
+            UnderTimes = 0;
             TotalOvertime = TimeSpan.Zero;
             TotalLate = TimeSpan.Zero;
             TotalUndertime = TimeSpan.Zero;
             Taxes = 0;
-            PagIbig = 0;
+            Pagibig = 0;
             PhilHealth = 0;
-            SSS = 0;
+            Sss = 0;
             TotalHoursWorked = TimeSpan.Zero;
             TotalEarnings = 0;
             TotalDeductions = 0;
@@ -214,7 +131,7 @@ namespace ProjectCF_Mobile_Version.ViewModel
         }
         private void PickerMonth_SelectedIndexChanged()
         {
-            chosenMonth = new DateTime(DateTime.Now.Year, SelectedMonth + 1, DateTime.DaysInMonth(DateTime.Now.Year, selectedMonth + 1));
+            ChosenMonth = new DateTime(DateTime.Now.Year, SelectedMonth + 1, DateTime.DaysInMonth(DateTime.Now.Year, selectedMonth + 1));
             ResetValues();
             Total(); 
             Calculate(); 

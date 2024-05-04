@@ -4,9 +4,10 @@ namespace ProjectCF_Mobile_Version.View;
 
 public partial class ViewProfile : ContentPage
 {
-	public ViewProfile()
+	public ViewProfile(ViewProfile_VM vm)
 	{
-        BindingContext = new ViewProfile_VM();
+        Application.Current.UserAppTheme = AppTheme.Light;
         InitializeComponent();
-	}
+        BindingContext = vm;
+    }
 }
