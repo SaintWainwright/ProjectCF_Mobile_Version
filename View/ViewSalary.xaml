@@ -16,9 +16,13 @@
     </ContentPage.Resources>
 
     <ScrollView>
-        <VerticalStackLayout>
-            <Label Text="Salary" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" Margin="10"/>
-            <Border BackgroundColor="White" WidthRequest="320" HeightRequest="945">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label Text="Salary" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" Margin="10" Grid.Row="0"/>
+            <Border BackgroundColor="White" WidthRequest="320" HeightRequest="945" Grid.Row="1">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="190"/>
@@ -151,7 +155,7 @@
                     </Grid>
                 </Grid>
             </Border>
-        </VerticalStackLayout>
+        </Grid>
     </ScrollView>
     
 </ContentPage>
