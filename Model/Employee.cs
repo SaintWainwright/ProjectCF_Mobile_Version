@@ -20,7 +20,7 @@ namespace ProjectCF_Mobile_Version.Model
         [ObservableProperty]
         private Byte[] image;
         [ObservableProperty]
-        private DateTime hoursWorked;
+        private TimeSpan hoursWorked = TimeSpan.Zero;
         [ObservableProperty]
         private string activtiyStatus = "Inactive";
         [ObservableProperty]
