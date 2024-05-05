@@ -10,4 +10,9 @@ public partial class Messaging : ContentPage
         InitializeComponent();
         BindingContext = vm;
     }
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        (BindingContext as Messaging_VM).OnAppearing();
+    }
 }

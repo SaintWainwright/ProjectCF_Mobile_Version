@@ -23,5 +23,7 @@ namespace ProjectCF_Mobile_Version.ViewModel
         private void GoToWorktime() => Shell.Current.GoToAsync(nameof(Worktime), false);
         [RelayCommand]
         private void GoToMessaging() => Shell.Current.GoToAsync(nameof(Messaging), false);
+
+        public void OnAppearing() => CurrentEmployee = Employee_Services.InitializeCurrentEmployee();
     }
 }

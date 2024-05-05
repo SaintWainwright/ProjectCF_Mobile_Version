@@ -10,4 +10,9 @@ public partial class LandingPage : ContentPage
         InitializeComponent();
         BindingContext = vm;
     }
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        (BindingContext as LandingPage_VM).OnAppearing();
+    }
 }

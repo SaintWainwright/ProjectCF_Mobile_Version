@@ -12,5 +12,6 @@ namespace ProjectCF_Mobile_Version.ViewModel
         }
         [ObservableProperty]
         private Employee currentEmployee;
+        public void OnAppearing() => CurrentEmployee = Employee_Services.InitializeCurrentEmployee();
     }
 }
