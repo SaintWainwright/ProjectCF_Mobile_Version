@@ -46,7 +46,7 @@ namespace ProjectCF_Mobile_Version.ViewModel
         {
             SetDates();
             TimeSpan second = new(0, 0, 1, 0);
-            TimeSpan theduration;
+            TimeSpan theduration = new TimeSpan();
             if (TimeOutSimulated.Hour == timeCompare.Hour)
             {
                 bool answer = await Shell.Current.DisplayAlert("Employee Forgot to Time Out", "Is this an overtime?", "Yes", "No");
@@ -74,6 +74,7 @@ namespace ProjectCF_Mobile_Version.ViewModel
                 theduration = TimeOutSimulated.TimeOfDay - TimeInSimulated.TimeOfDay;
             }
             SimulationWorkTimes.HoursWorked = SimulationWorkTimes.HoursWorked.Add(theduration);
+            CurrentEmployee.HoursWorked = CurrentEmployee.HoursWorked.Add(theduration);
             if (optimalTimeIn.TimeOfDay < TimeInSimulated.TimeOfDay)
             {
                 theduration = TimeInSimulated.TimeOfDay - optimalTimeIn.TimeOfDay;

@@ -30,7 +30,7 @@
                         <Label Text="Contact Number" FontAttributes="Bold" FontSize="21" Margin="5"  Grid.Row="6"/>
                         <Entry Text="{Binding CurrentEmployee.ContactNumber}" FontAttributes="Bold" FontSize="18" Margin="5,0,0,30" IsReadOnly="True"  Grid.Row="7"/>
                         <Label Text="Total Hours Worked" FontAttributes="Bold" FontSize="21" Margin="5"  Grid.Row="8"/>
-                        <Entry Text="{Binding CurrentEmployee.HoursWorked, StringFormat='{0:hh:mm:ss}'}" FontAttributes="Bold" FontSize="18" Margin="5,0,0,30" IsReadOnly="True"  Grid.Row="9"/>
+                        <Entry Text="{Binding CurrentEmployee.HoursWorked.TotalHours, StringFormat='{0}'}" FontAttributes="Bold" FontSize="18" Margin="5,0,0,30" IsReadOnly="True"  Grid.Row="9"/>
                         <Label Text="Gender" FontAttributes="Bold" FontSize="21" Margin="5"  Grid.Row="10"/>
                         <Entry Text="{Binding CurrentEmployee.Gender}" FontAttributes="Bold" FontSize="18" Margin="5,0,0,30" IsReadOnly="True"  Grid.Row="11"/>
                         <Label Text="Date Joined" FontAttributes="Bold" FontSize="21" Margin="5"  Grid.Row="12"/>
