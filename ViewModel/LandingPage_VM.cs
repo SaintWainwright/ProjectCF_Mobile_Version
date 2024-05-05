@@ -14,6 +14,7 @@ namespace ProjectCF_Mobile_Version.ViewModel
         }
         [ObservableProperty]
         private Employee currentEmployee;
+
         [RelayCommand]
         private void GoToViewSalary() => Shell.Current.GoToAsync(nameof(ViewSalary), false);
         [RelayCommand]

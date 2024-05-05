@@ -2,11 +2,11 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProjectCF_Mobile_Version.View.ViewMessage"
-             Title="ViewMessage"
              xmlns:viewmodel="clr-namespace:ProjectCF_Mobile_Version.ViewModel"
              x:DataType="viewmodel:ViewMessage_VM"
              BackgroundColor="Black"
              xmlns:model="clr-namespace:ProjectCF_Mobile_Version.Model">
+
     <FlexLayout Direction="Column" AlignItems="Center">
         <HorizontalStackLayout FlexLayout.Order="0">
             <Label Text="VIEW MESSAGE" FontAttributes="Bold" FontSize="Large" TextColor="White" Margin="10" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="150"/>

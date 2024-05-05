@@ -12,16 +12,6 @@ namespace ProjectCF_Mobile_Version.ViewModel
         {
             Preferences.Default.Remove("employeeID");
         }
-        [RelayCommand]
-        private void GoToLandingPage()
-        {
-            Shell.Current.GoToAsync(nameof(LandingPage), false);
-        }
-        [RelayCommand]
-        private void GoToMainPage()
-        {
-            Shell.Current.GoToAsync(nameof(MainPage), false);
-        }
         [ObservableProperty]
         private string employeeIDEntry;
         [ObservableProperty]
@@ -41,11 +31,12 @@ namespace ProjectCF_Mobile_Version.ViewModel
         [RelayCommand]
         private void SignIn()
         {
+            Preferences.Default.Remove("employeeID");
             if (IDExisting())
             {
                 Shell.Current.DisplayAlert("Login Sucess", "Logging into your account...", "Okay");
                 Preferences.Default.Set("employeeID", EmployeeIDEntry);
-                Shell.Current.GoToAsync($"{nameof(LandingPage)}");
+                Shell.Current.GoToAsync(nameof(LandingPage), false);
             }
             else
             {

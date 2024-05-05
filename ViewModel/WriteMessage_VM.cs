@@ -3,7 +3,6 @@ using CommunityToolkit.Mvvm.Input;
 using ProjectCF_Mobile_Version.Model;
 using ProjectCF_Mobile_Version.Services;
 using System.Collections.ObjectModel;
-using System.Windows.Input;
 
 namespace ProjectCF_Mobile_Version.ViewModel
 {
@@ -15,9 +14,9 @@ namespace ProjectCF_Mobile_Version.ViewModel
         private Message newMessage;
         public WriteMessage_VM()
         {
+            NewMessage = new Message();
             CurrentEmployee = Employee_Services.InitializeCurrentEmployee();
             ContactList = Employee_Services.GetHumanResources();
-            newMessage = new Message();
         }
         [ObservableProperty]
         private Employee currentEmployee;

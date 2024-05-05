@@ -2,10 +2,10 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProjectCF_Mobile_Version.View.MainPage"
-             Title="MainPage"
              xmlns:viewmodel="clr-namespace:ProjectCF_Mobile_Version.ViewModel"
              x:DataType="viewmodel:MainPage_VM"
-             BackgroundImageSource="project_cf_mobile_mainpage.png">
+             BackgroundImageSource="project_cf_mobile_mainpage.png"
+             Shell.NavBarIsVisible="False">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>

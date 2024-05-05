@@ -2,7 +2,6 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProjectCF_Mobile_Version.View.LandingPage"
-             Title="LandingPage"
              xmlns:viewmodel="clr-namespace:ProjectCF_Mobile_Version.ViewModel"
              x:DataType="viewmodel:LandingPage_VM"
              xmlns:converter="clr-namespace:ProjectCF_Mobile_Version.Converter"

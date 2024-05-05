@@ -2,7 +2,6 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProjectCF_Mobile_Version.View.Messaging"
-             Title="Messaging"
              xmlns:viewmodel="clr-namespace:ProjectCF_Mobile_Version.ViewModel"
              x:DataType="viewmodel:Messaging_VM" 
              xmlns:model="clr-namespace:ProjectCF_Mobile_Version.Model"
@@ -14,29 +13,39 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <Grid RowDefinitions="*,auto,auto">
+    <Grid RowDefinitions="75,*">
         <Label Grid.Row="0" Margin="10" FontAttributes="Bold" FontSize="Large" Text="MESSAGES" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center"/>
-        <Border Grid.Row="1" StrokeShape="RoundRectangle 10" BackgroundColor="White" WidthRequest="350" HeightRequest="595" Margin="18,0,18,18">
-            <CollectionView ItemsSource="{Binding MessageList}" SelectionMode="Single" EmptyView="No Messages Available" SelectedItem="{Binding SelectedMessage}" VerticalOptions="FillAndExpand">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="model:Message">
-                        <StackLayout Padding="0">
-                            <Border Stroke="Black" BackgroundColor="Transparent" StrokeShape="RoundRectangle 5" Margin="5">
-                                <Grid ColumnDefinitions="*,auto,*" ColumnSpacing="5" RowDefinitions="auto,*,*" Margin="2" WidthRequest="350" HeightRequest="75">
-                                    <Border Grid.Column="0" Grid.RowSpan="3" HeightRequest="60" StrokeShape="RoundRectangle 80" WidthRequest="60" HorizontalOptions="Center" BackgroundColor="Transparent">
-                                        <Image Aspect="AspectFit" Source="{Binding Receiver.Image, Converter={StaticResource ByteToImageConverter}}" HeightRequest="60" WidthRequest="60" VerticalOptions="Center" HorizontalOptions="Center" />
-                                    </Border>
-                                    <Label Grid.Column="1" Grid.Row="0" Text="{Binding Receiver.FullName}" FontSize="Large" FontAttributes="Bold"/>
-                                    <Label Grid.Column="1" Grid.Row="1" Text="{Binding Subject}"/>
-                                    <Label Grid.Column="1" Grid.Row="2" Text="{Binding TimeSent}"/>
-                                    <Label Grid.Column="2" Grid.Row="2" Text="{Binding Tag}" HorizontalOptions="Center"/>
-                                </Grid>
-                            </Border>
-                        </StackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+        <Border Grid.Row="1" StrokeShape="RoundRectangle 10" Margin="18,0,18,60" HeightRequest="600">
+            <Grid Padding="0" BackgroundColor="White">
+                <CollectionView ItemsSource="{Binding MessageList}" SelectionMode="Single" SelectedItem="{Binding SelectedMessage}" VerticalOptions="FillAndExpand">
+                    <CollectionView.EmptyView>
+                        <ContentView>
+                            <Grid RowDefinitions="*,*" VerticalOptions="Center">
+                                <Label Grid.Row="0" Text="No Messages" HorizontalTextAlignment="Center" FontAttributes="Bold" TextColor="Black" FontSize="Large"/>
+                                <Image Grid.Row="1" Source="no_messages.png" Margin="15" HorizontalOptions="Center"/>
+                            </Grid>
+                        </ContentView>
+                    </CollectionView.EmptyView>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="model:Message">
+                            <StackLayout Padding="0">
+                                <Border Stroke="Black" BackgroundColor="Transparent" StrokeShape="RoundRectangle 5" Margin="5">
+                                    <Grid ColumnDefinitions="*,auto,*" ColumnSpacing="5" RowDefinitions="auto,*,*" Margin="2" WidthRequest="350" HeightRequest="75">
+                                        <Border Grid.Column="0" Grid.RowSpan="3" HeightRequest="60" StrokeShape="RoundRectangle 80" WidthRequest="60" HorizontalOptions="Center" BackgroundColor="Transparent">
+                                            <Image Aspect="AspectFit" Source="{Binding Receiver.Image, Converter={StaticResource ByteToImageConverter}}" HeightRequest="60" WidthRequest="60" VerticalOptions="Center" HorizontalOptions="Center" />
+                                        </Border>
+                                        <Label Grid.Column="1" Grid.Row="0" Text="{Binding Receiver.FullName}" FontSize="Large" FontAttributes="Bold"/>
+                                        <Label Grid.Column="1" Grid.Row="1" Text="{Binding Subject}"/>
+                                        <Label Grid.Column="1" Grid.Row="2" Text="{Binding TimeSent}"/>
+                                        <Label Grid.Column="2" Grid.Row="2" Text="{Binding Tag}" HorizontalOptions="Center"/>
+                                    </Grid>
+                                </Border>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Grid>
         </Border>
-        <ImageButton Grid.Row="2" Aspect="Center" Command="{Binding GoToWriteMessageCommand}" Source="write_message.png" Margin="300,5,5,5"/>
+        <ImageButton Grid.Row="1" Aspect="Center" Command="{Binding GoToWriteMessageCommand}" Source="write_message.png" Margin="300,600,0,0"/>
     </Grid>
 </ContentPage>
