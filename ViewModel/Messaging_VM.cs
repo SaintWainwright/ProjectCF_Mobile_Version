@@ -32,5 +32,11 @@ namespace ProjectCF_Mobile_Version.ViewModel
         }
         [RelayCommand]
         private void GoToWriteMessage() => Shell.Current.GoToAsync(nameof(WriteMessage), false);
+        public void OnAppearing()
+        {
+            SelectedMessage = null;
+            CurrentEmployee = Employee_Services.InitializeCurrentEmployee();
+            MessageList = Message_Services.EmployeeMessageList(CurrentEmployee);
+        }
     }
 }

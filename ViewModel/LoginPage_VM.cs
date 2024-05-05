@@ -2,7 +2,6 @@
 using CommunityToolkit.Mvvm.Input;
 using ProjectCF_Mobile_Version.Services;
 using ProjectCF_Mobile_Version.View;
-using System.Windows.Input;
 
 namespace ProjectCF_Mobile_Version.ViewModel
 {
@@ -42,6 +41,10 @@ namespace ProjectCF_Mobile_Version.ViewModel
             {
                 Shell.Current.DisplayAlert("Account Not Found", "Your Account was not found in the database", "Okay");
             }
+        }
+        public void OnAppearing()
+        {
+            Preferences.Default.Remove("employeeID");
         }
     }
 }

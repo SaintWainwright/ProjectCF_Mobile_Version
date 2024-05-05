@@ -137,5 +137,6 @@ namespace ProjectCF_Mobile_Version.ViewModel
             Calculate(); 
             SetDisplayValues();
         }
+        public void OnAppearing() => CurrentEmployee = Employee_Services.InitializeCurrentEmployee();
     }
 }

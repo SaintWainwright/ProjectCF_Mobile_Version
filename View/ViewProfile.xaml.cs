@@ -10,4 +10,9 @@ public partial class ViewProfile : ContentPage
         InitializeComponent();
         BindingContext = vm;
     }
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        (BindingContext as ViewProfile_VM).OnAppearing();
+    }
 }

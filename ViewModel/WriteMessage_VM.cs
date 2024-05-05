@@ -67,5 +67,11 @@ namespace ProjectCF_Mobile_Version.ViewModel
                 Shell.Current.DisplayAlert("Entries not filled", "Fill in all entries to send message", "Okay");
             }
         }
+        public void OnAppearing()
+        {
+            NewMessage = new Message();
+            CurrentEmployee = Employee_Services.InitializeCurrentEmployee();
+            ContactList = Employee_Services.GetHumanResources();
+        }
     }
 }

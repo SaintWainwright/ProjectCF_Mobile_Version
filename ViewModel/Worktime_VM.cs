@@ -116,5 +116,9 @@ namespace ProjectCF_Mobile_Version.ViewModel
             TimeOutSimulated = DateSimulation;
             TimeOutSimulated += TimeOutSimulation;
         }
+        public void OnAppearing()
+        {
+            CurrentEmployee = Employee_Services.InitializeCurrentEmployee();
+        }
     }
 }

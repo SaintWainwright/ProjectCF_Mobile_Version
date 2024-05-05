@@ -11,4 +11,9 @@ public partial class ViewSalary : ContentPage, INotifyPropertyChanged
         InitializeComponent();
         BindingContext = vm;
     }
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        (BindingContext as ViewSalary_VM).OnAppearing();
+    }
 }
