@@ -31,9 +31,6 @@ namespace ProjectCF_Mobile_Version.ViewModel
             Shell.Current.GoToAsync($"{nameof(ViewMessage)}", navigationParameter);
         }
         [RelayCommand]
-        private void GoToWriteMessage()
-        {
-            Shell.Current.GoToAsync(nameof(WriteMessage), false);
-        }
+        private void GoToWriteMessage() => Shell.Current.GoToAsync(nameof(WriteMessage), false);
     }
 }

@@ -2,10 +2,9 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProjectCF_Mobile_Version.View.LoginPage"
-             Title="LoginPage"
              xmlns:viewmodel="clr-namespace:ProjectCF_Mobile_Version.ViewModel"
              x:DataType="viewmodel:LoginPage_VM">
-    
+
     <Grid RowDefinitions="Auto,auto,auto,auto,auto,auto,auto,auto" VerticalOptions="Center" HorizontalOptions="Center" RowSpacing="10">
         <Image Source="projectcf_logo.png" Aspect="Center" Grid.Row="0" HeightRequest="225" Margin="0,0,0,20"/>
         <Label Text="Enter Account Information" Grid.Row="1" FontSize="Body" FontAttributes="Bold"/>
