@@ -7,10 +7,6 @@ namespace ProjectCF_Mobile_Version.ViewModel
 {
     public partial class LoginPage_VM : ObservableObject
     {
-        public LoginPage_VM()
-        {
-            Preferences.Default.Remove("employeeID");
-        }
         [ObservableProperty]
         private string employeeIDEntry;
         [ObservableProperty]

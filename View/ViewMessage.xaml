@@ -7,29 +7,22 @@
              BackgroundColor="Black"
              xmlns:model="clr-namespace:ProjectCF_Mobile_Version.Model">
 
-    <FlexLayout Direction="Column" AlignItems="Center">
-        <HorizontalStackLayout FlexLayout.Order="0">
-            <Label Text="VIEW MESSAGE" FontAttributes="Bold" FontSize="Large" TextColor="White" Margin="10" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="150"/>
-        </HorizontalStackLayout>
-        <Frame FlexLayout.Order="1" CornerRadius="10" WidthRequest="350" HeightRequest="75" Margin="18,1">
-            <HorizontalStackLayout BackgroundColor="White" VerticalOptions="Center">
-                <Label Text="{Binding SelectedMessage.Sender.FullName, StringFormat='FROM: {0}'}" FontAttributes="Bold" FontSize="20"/>
-            </HorizontalStackLayout>
-        </Frame>
-        <Frame FlexLayout.Order="2" CornerRadius="10" WidthRequest="350" HeightRequest="75" Margin="18,1">
-            <HorizontalStackLayout BackgroundColor="White" VerticalOptions="Center">
-                <Label Text="{Binding SelectedMessage.Receiver.FullName, StringFormat='TO: {0}'}" FontAttributes="Bold" FontSize="20" VerticalOptions="Center"/>
-            </HorizontalStackLayout>
-        </Frame>
-        <Frame FlexLayout.Order="3" CornerRadius="10" WidthRequest="350" HeightRequest="75" Margin="18,1">
-            <HorizontalStackLayout BackgroundColor="White">
-                <Entry Placeholder="Subject" Text="{Binding SelectedMessage.Subject}" FontAttributes="Bold" FontSize="20" HeightRequest="75" IsReadOnly="True"/>
-            </HorizontalStackLayout>
-        </Frame>
-        <Frame FlexLayout.Order="4" CornerRadius="10" WidthRequest="350" HeightRequest="450" Margin="18,1">
-            <HorizontalStackLayout BackgroundColor="White">
-                <Editor Placeholder="Compose email" Text="{Binding SelectedMessage.MessageText}" WidthRequest="310" FontSize="15" IsReadOnly="True"/>
-            </HorizontalStackLayout>
-        </Frame>
-    </FlexLayout>
+    <Grid RowDefinitions="75,75,75,75,auto,*" WidthRequest="350" Padding="0" RowSpacing="5">
+        <Label Grid.Row="0" Margin="10" FontAttributes="Bold" FontSize="Large" Text="VIEW MESSAGE" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center" />
+        <Border Grid.Row="1" StrokeShape="RoundRectangle 10" BackgroundColor="White">
+            <Label Text="{Binding SelectedMessage.Sender.FullName, StringFormat='FROM: {0}'}" FontAttributes="Bold" FontSize="20" VerticalOptions="Center" Margin="15,0"/>
+        </Border>
+        <Border Grid.Row="2" StrokeShape="RoundRectangle 10" BackgroundColor="White">
+            <Label Text="{Binding SelectedMessage.Receiver.FullName, StringFormat='TO: {0}'}" FontAttributes="Bold" FontSize="20" VerticalOptions="Center" Margin="15,0"/>
+        </Border>
+        <Border Grid.Row="3" StrokeShape="RoundRectangle 10" BackgroundColor="White">
+            <Entry Placeholder="Subject" Text="{Binding SelectedMessage.Subject}" FontAttributes="Bold" FontSize="20" HeightRequest="75" IsReadOnly="True" Margin="15,0"/>
+        </Border>
+        <Border Grid.Row="4" StrokeShape="RoundRectangle 10"  BackgroundColor="White" HorizontalOptions="EndAndExpand" WidthRequest="100" HeightRequest="25">
+            <Label Text="{Binding SelectedMessage.Tag}" TextColor="{Binding SelectedMessage.Tag}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+        </Border>
+        <Border Grid.Row="5" StrokeShape="RoundRectangle 10" BackgroundColor="White">
+            <Editor Placeholder="Compose email" Text="{Binding SelectedMessage.MessageText}" WidthRequest="310" FontSize="15" IsReadOnly="True" Margin="15,2"/>
+        </Border>
+    </Grid>
 </ContentPage>

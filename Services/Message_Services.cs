@@ -58,7 +58,7 @@ string filePath = Path.Combine(FileSystem.Current.AppDataDirectory, "Message.jso
             ObservableCollection<Message> MessageCollection = Message_Services.GetMessages();
             for (int loop = 0; loop < MessageCollection.Count; loop++)
             {
-                if (message.MessageText == MessageCollection[loop].MessageText && message.Sender == MessageCollection[loop].Sender && message.Receiver == MessageCollection[loop].Receiver)
+                if (message.MessageText == MessageCollection[loop].MessageText && message.TimeSent == MessageCollection[loop].TimeSent)
                 {
                     MessageCollection[loop] = message;
                     var MessageList = JsonSerializer.Serialize<ObservableCollection<Message>>(MessageCollection);

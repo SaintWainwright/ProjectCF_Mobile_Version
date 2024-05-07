@@ -37,7 +37,7 @@
                                         <Label Grid.Column="1" Grid.Row="0" Text="{Binding Receiver.FullName}" FontSize="Large" FontAttributes="Bold"/>
                                         <Label Grid.Column="1" Grid.Row="1" Text="{Binding Subject}"/>
                                         <Label Grid.Column="1" Grid.Row="2" Text="{Binding TimeSent}"/>
-                                        <Label Grid.Column="2" Grid.Row="2" Text="{Binding Tag}" HorizontalOptions="Center"/>
+                                        <Label Grid.Column="2" Grid.Row="2" Text="{Binding Tag}" TextColor="{Binding Tag}" HorizontalOptions="Center"/>
                                     </Grid>
                                 </Border>
                             </StackLayout>
