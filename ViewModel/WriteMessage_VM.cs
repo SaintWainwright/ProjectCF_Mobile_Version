@@ -12,12 +12,6 @@ namespace ProjectCF_Mobile_Version.ViewModel
         private ObservableCollection<Employee> contactList;
         [ObservableProperty]
         private Message newMessage;
-        public WriteMessage_VM()
-        {
-            NewMessage = new Message();
-            CurrentEmployee = Employee_Services.InitializeCurrentEmployee();
-            ContactList = Employee_Services.GetHumanResources();
-        }
         [ObservableProperty]
         private Employee currentEmployee;
         private void InitializeMessage()

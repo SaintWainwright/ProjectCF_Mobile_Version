@@ -9,11 +9,6 @@ namespace ProjectCF_Mobile_Version.ViewModel
 {
     public partial class Messaging_VM : ObservableObject
     {
-        public Messaging_VM()
-        {
-            CurrentEmployee = Employee_Services.InitializeCurrentEmployee();
-            MessageList = Message_Services.EmployeeMessageList(CurrentEmployee);
-        }
         [ObservableProperty]
         private Employee currentEmployee;
         [ObservableProperty]
@@ -24,19 +19,26 @@ namespace ProjectCF_Mobile_Version.ViewModel
         {
             var navigationParameter = new Dictionary<string, object>
             {
-                { "selectedmessage", SelectedMessage }
+                { "selectedmessage", value } 
             };
-            SelectedMessage.Tag = 1; //Changes tag to READ
-            Message_Services.UpdateMessageCollection(SelectedMessage);
+            if(value.Receiver.EmployeeID == CurrentEmployee.EmployeeID)
+            {
+                value.Tag = 1; //Changes tag to READ
+                Message_Services.UpdateMessageCollection(value);
+            }
             Shell.Current.GoToAsync($"{nameof(ViewMessage)}", navigationParameter);
         }
+        
         [RelayCommand]
         private void GoToWriteMessage() => Shell.Current.GoToAsync(nameof(WriteMessage), false);
         public void OnAppearing()
         {
-            SelectedMessage = null;
             CurrentEmployee = Employee_Services.InitializeCurrentEmployee();
             MessageList = Message_Services.EmployeeMessageList(CurrentEmployee);
+        }
+        public void OnDisappearing()
+        {
+            SelectedMessage = null;
         }
     }
 }

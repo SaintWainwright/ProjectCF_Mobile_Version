@@ -15,4 +15,9 @@ public partial class Messaging : ContentPage
         base.OnAppearing();
         (BindingContext as Messaging_VM).OnAppearing();
     }
+    protected override void OnDisappearing()
+    {
+        base.OnDisappearing();
+        (BindingContext as Messaging_VM).OnDisappearing();
+    }
 }
