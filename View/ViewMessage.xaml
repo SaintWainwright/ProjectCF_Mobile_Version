@@ -5,7 +5,17 @@
              xmlns:viewmodel="clr-namespace:ProjectCF_Mobile_Version.ViewModel"
              x:DataType="viewmodel:ViewMessage_VM"
              BackgroundColor="Black"
+             xmlns:converter="clr-namespace:ProjectCF_Mobile_Version.Converter"
              xmlns:model="clr-namespace:ProjectCF_Mobile_Version.Model">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:MessageTagTextColorConverter x:Key="TagColor" />
+        </ResourceDictionary>
+        <ResourceDictionary>
+            <converter:MessageTagTextConverter x:Key="TagText" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <Grid RowDefinitions="75,75,75,75,auto,*" WidthRequest="350" Padding="0" RowSpacing="5">
         <Label Grid.Row="0" Margin="10" FontAttributes="Bold" FontSize="Large" Text="VIEW MESSAGE" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center" />
@@ -19,7 +29,7 @@
             <Entry Placeholder="Subject" Text="{Binding SelectedMessage.Subject}" FontAttributes="Bold" FontSize="20" HeightRequest="75" IsReadOnly="True" Margin="15,0"/>
         </Border>
         <Border Grid.Row="4" StrokeShape="RoundRectangle 10"  BackgroundColor="White" HorizontalOptions="EndAndExpand" WidthRequest="100" HeightRequest="25">
-            <Label Text="{Binding SelectedMessage.Tag}" TextColor="{Binding SelectedMessage.Tag}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+            <Label Text="{Binding SelectedMessage.Tag, Converter={StaticResource TagText}}" TextColor="{Binding SelectedMessage.Tag, Converter={StaticResource TagColor}}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
         </Border>
         <Border Grid.Row="5" StrokeShape="RoundRectangle 10" BackgroundColor="White">
             <Editor Placeholder="Compose email" Text="{Binding SelectedMessage.MessageText}" WidthRequest="310" FontSize="15" IsReadOnly="True" Margin="15,2"/>
