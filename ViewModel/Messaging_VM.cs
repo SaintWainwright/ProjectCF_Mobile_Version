@@ -21,20 +21,17 @@ namespace ProjectCF_Mobile_Version.ViewModel
         private Message selectedMessage;
         partial void OnSelectedMessageChanged(Message value)
         {
-            var navigationParameter = new Dictionary<string, object>
-            {
-                { "selectedmessage", value } 
-            };
             if(value.Receiver.EmployeeID == CurrentEmployee.EmployeeID)
             {
                 value.Tag = 1; //Changes tag to READ
                 Message_Services.UpdateMessageCollection(value);
             }
-            Shell.Current.GoToAsync($"{nameof(ViewMessage)}", navigationParameter);
+            Shell.Current.Navigation.PushAsync(new ViewMessage(value));
         }
-        
+
         [RelayCommand]
-        private async Task GoToWriteMessage() => await Shell.Current.Navigation.PushAsync(new WriteMessage());
+        private async static Task GoToWriteMessage() => await Shell.Current.Navigation.PushAsync(new WriteMessage());
+
         public void OnAppearing()
         {
             MessageList = Message_Services.EmployeeMessageList(CurrentEmployee);

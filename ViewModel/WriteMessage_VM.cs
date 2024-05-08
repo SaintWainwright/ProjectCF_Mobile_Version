@@ -47,9 +47,7 @@ namespace ProjectCF_Mobile_Version.ViewModel
         private bool ValidateEntries()
         {
             if (string.IsNullOrEmpty(NewMessage.Subject) || string.IsNullOrEmpty(NewMessage.MessageText) || NewMessage.Receiver == null)
-            {
                 return false;
-            }
             return true;
         }
         [RelayCommand]

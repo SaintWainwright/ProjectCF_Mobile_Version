@@ -16,13 +16,13 @@ namespace ProjectCF_Mobile_Version.ViewModel
         private Employee currentEmployee;
 
         [RelayCommand]
-        private void GoToViewSalary() => Shell.Current.GoToAsync(nameof(ViewSalary), false);
+        private async Task GoToViewSalary() => await Shell.Current.GoToAsync(nameof(ViewSalary), false);
         [RelayCommand]
-        private void GoToViewProfile() => Shell.Current.GoToAsync(nameof(ViewProfile), false);
+        private async Task GoToViewProfile() => await Shell.Current.GoToAsync(nameof(ViewProfile), false);
         [RelayCommand]
-        private void GoToWorktime() => Shell.Current.GoToAsync(nameof(Worktime), false);
+        private async Task GoToWorktime() => await Shell.Current.GoToAsync(nameof(Worktime), false);
         [RelayCommand]
-        private void GoToMessaging() => Shell.Current.GoToAsync(nameof(Messaging), false);
+        private async Task GoToMessaging() => await Shell.Current.GoToAsync(nameof(Messaging), false);
 
         /*public void OnAppearing() => CurrentEmployee = Employee_Services.InitializeCurrentEmployee();*/
     }
