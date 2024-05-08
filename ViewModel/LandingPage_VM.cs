@@ -8,6 +8,10 @@ namespace ProjectCF_Mobile_Version.ViewModel
 {
     public partial class LandingPage_VM : ObservableObject
     {
+        public LandingPage_VM()
+        {
+            CurrentEmployee = Employee_Services.InitializeCurrentEmployee();
+        }
         [ObservableProperty]
         private Employee currentEmployee;
 
@@ -20,6 +24,6 @@ namespace ProjectCF_Mobile_Version.ViewModel
         [RelayCommand]
         private void GoToMessaging() => Shell.Current.GoToAsync(nameof(Messaging), false);
 
-        public void OnAppearing() => CurrentEmployee = Employee_Services.InitializeCurrentEmployee();
+        /*public void OnAppearing() => CurrentEmployee = Employee_Services.InitializeCurrentEmployee();*/
     }
 }

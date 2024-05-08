@@ -10,9 +10,9 @@ public partial class LoginPage : ContentPage
         InitializeComponent();
         BindingContext = vm;
     }
-    protected override void OnAppearing()
+    /*protected override void OnAppearing()
     {
         base.OnAppearing();
         (BindingContext as LoginPage_VM).OnAppearing();
-    }
+    }*/
 }

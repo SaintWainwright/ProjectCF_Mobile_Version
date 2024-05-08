@@ -9,6 +9,10 @@ namespace ProjectCF_Mobile_Version.ViewModel
 {
     public partial class Messaging_VM : ObservableObject
     {
+        public Messaging_VM() 
+        {
+            CurrentEmployee = Employee_Services.InitializeCurrentEmployee();
+        }
         [ObservableProperty]
         private Employee currentEmployee;
         [ObservableProperty]
@@ -30,10 +34,9 @@ namespace ProjectCF_Mobile_Version.ViewModel
         }
         
         [RelayCommand]
-        private void GoToWriteMessage() => Shell.Current.GoToAsync(nameof(WriteMessage), false);
+        private async Task GoToWriteMessage() => await Shell.Current.Navigation.PushAsync(new WriteMessage());
         public void OnAppearing()
         {
-            CurrentEmployee = Employee_Services.InitializeCurrentEmployee();
             MessageList = Message_Services.EmployeeMessageList(CurrentEmployee);
         }
         public void OnDisappearing()

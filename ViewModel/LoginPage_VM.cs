@@ -7,6 +7,10 @@ namespace ProjectCF_Mobile_Version.ViewModel
 {
     public partial class LoginPage_VM : ObservableObject
     {
+        public LoginPage_VM()
+        {
+            Preferences.Default.Remove("employeeID");
+        }
         [ObservableProperty]
         private string employeeIDEntry;
         [ObservableProperty]
@@ -31,16 +35,16 @@ namespace ProjectCF_Mobile_Version.ViewModel
             {
                 Shell.Current.DisplayAlert("Login Sucess", "Logging into your account...", "Okay");
                 Preferences.Default.Set("employeeID", EmployeeIDEntry);
-                Shell.Current.GoToAsync(nameof(LandingPage), false);
+                Shell.Current.GoToAsync($"//{nameof(LandingPage)}", false);
             }
             else
             {
                 Shell.Current.DisplayAlert("Account Not Found", "Your Account was not found in the database", "Okay");
             }
         }
-        public void OnAppearing()
+        /*public void OnAppearing()
         {
             Preferences.Default.Remove("employeeID");
-        }
+        }*/
     }
 }

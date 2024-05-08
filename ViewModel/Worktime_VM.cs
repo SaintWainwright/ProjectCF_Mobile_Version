@@ -13,6 +13,7 @@ namespace ProjectCF_Mobile_Version.ViewModel
         private DateTime dateException;
         public Worktime_VM()
         {
+            CurrentEmployee = Employee_Services.InitializeCurrentEmployee();
             DateToday = DateOnly.FromDateTime(DateTime.Today);
             TimeNow = TimeOnly.FromDateTime(DateTime.Now);
             DateSimulation = DateToday.ToDateTime(TimeOnly.MinValue);
@@ -116,9 +117,9 @@ namespace ProjectCF_Mobile_Version.ViewModel
             TimeOutSimulated = DateSimulation;
             TimeOutSimulated += TimeOutSimulation;
         }
-        public void OnAppearing()
+        /*public void OnAppearing()
         {
             CurrentEmployee = Employee_Services.InitializeCurrentEmployee();
-        }
+        }*/
     }
 }
