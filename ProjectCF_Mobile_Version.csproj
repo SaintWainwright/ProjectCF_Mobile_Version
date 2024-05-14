@@ -31,7 +31,7 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\icon.png" />
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" />
 
 		<!-- Splash Screen -->
 		<MauiSplashScreen Include="Resources\Splash\splash.png" Color="#ffffff" BaseSize="64,64" />
@@ -48,7 +48,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Remove="Resources\AppIcon\icon.png" />
 	  <None Remove="Resources\Images\back_arrow.svg" />
 	  <None Remove="Resources\Images\landingpage_logout.png" />
 	  <None Remove="Resources\Images\logoutbutton.png" />
