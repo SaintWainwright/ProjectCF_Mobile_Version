@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using ProjectCF_Mobile_Version.Model;
 using ProjectCF_Mobile_Version.Services;
 using System.Windows.Input;
@@ -13,6 +14,7 @@ namespace ProjectCF_Mobile_Version.ViewModel
         private DateTime dateException;
         public Worktime_VM()
         {
+            CurrentEmployee = Employee_Services.InitializeCurrentEmployee();
             DateToday = DateOnly.FromDateTime(DateTime.Today);
             TimeNow = TimeOnly.FromDateTime(DateTime.Now);
             DateSimulation = DateToday.ToDateTime(TimeOnly.MinValue);
@@ -20,7 +22,7 @@ namespace ProjectCF_Mobile_Version.ViewModel
             TimeOutSimulated = DateTime.Now;
             timeCompare = TimeOnly.MinValue;
             optimalTimeIn = DateTime.Today.AddHours(7);
-            optimalTimeOut = DateTime.Today.AddHours(21);
+            optimalTimeOut = DateTime.Today.AddHours(16);
         }
         [ObservableProperty]
         private Employee currentEmployee;
@@ -41,7 +43,8 @@ namespace ProjectCF_Mobile_Version.ViewModel
         [ObservableProperty]
         private Employee_Worktimes simulationWorkTimes = new();
 
-        private async void Simulate()
+        [RelayCommand]
+        private async Task Simulate()
         {
             SetDates();
             TimeSpan second = new(0, 0, 1, 0);
@@ -108,7 +111,7 @@ namespace ProjectCF_Mobile_Version.ViewModel
             Employee_Services.UpdateEmployeeCollection(CurrentEmployee);
             SimulationWorkTimes = new Employee_Worktimes();
         }
-        public ICommand SimulateCommand => new Command(Simulate);
+
         private void SetDates()
         {
             TimeInSimulated = DateSimulation;
@@ -116,9 +119,9 @@ namespace ProjectCF_Mobile_Version.ViewModel
             TimeOutSimulated = DateSimulation;
             TimeOutSimulated += TimeOutSimulation;
         }
-        public void OnAppearing()
+        /*public void OnAppearing()
         {
             CurrentEmployee = Employee_Services.InitializeCurrentEmployee();
-        }
+        }*/
     }
 }

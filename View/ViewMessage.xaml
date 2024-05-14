@@ -29,7 +29,11 @@
             <Entry Placeholder="Subject" Text="{Binding SelectedMessage.Subject}" FontAttributes="Bold" FontSize="20" HeightRequest="75" IsReadOnly="True" Margin="15,0"/>
         </Border>
         <Border Grid.Row="4" StrokeShape="RoundRectangle 10"  BackgroundColor="White" HorizontalOptions="EndAndExpand" WidthRequest="100" HeightRequest="25">
-            <Label Text="{Binding SelectedMessage.Tag, Converter={StaticResource TagText}}" TextColor="{Binding SelectedMessage.Tag, Converter={StaticResource TagColor}}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+            <Label Text="{Binding SelectedMessage.Tag, Converter={StaticResource TagText}}" TextColor="{Binding SelectedMessage.Tag, Converter={StaticResource TagColor}}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding UpdateTagCommand}"/>
+                </Label.GestureRecognizers>
+            </Label>
         </Border>
         <Border Grid.Row="5" StrokeShape="RoundRectangle 10" BackgroundColor="White">
             <Editor Placeholder="Compose email" Text="{Binding SelectedMessage.MessageText}" WidthRequest="310" FontSize="15" IsReadOnly="True" Margin="15,2"/>

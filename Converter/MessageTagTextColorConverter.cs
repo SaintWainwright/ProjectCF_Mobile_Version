@@ -10,11 +10,11 @@ namespace ProjectCF_Mobile_Version.Converter
             int tag = (int)value;
             if(tag == 0)
             {
-                return color;
+                return color = Colors.Gray;
             }
             else if (tag == 1)
             {
-                return color = Colors.Gray;
+                return color = Colors.Black;
             }
             else if(tag == 2)
             {

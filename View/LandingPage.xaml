@@ -13,12 +13,13 @@
     </ContentPage.Resources>
 
     <Grid RowDefinitions="300,*">
-        <Grid RowDefinitions="Auto, Auto, Auto" Grid.Row="0" RowSpacing="10" VerticalOptions="Center" HorizontalOptions="Center">
-            <Border HeightRequest="140" WidthRequest="140" VerticalOptions="Center" Grid.Row="0" Stroke="Transparent" StrokeShape="Ellipse 40, 40">
+        <Grid RowDefinitions="Auto,Auto, Auto, Auto" Grid.Row="0" RowSpacing="10" VerticalOptions="Center" HorizontalOptions="Center">
+            <ImageButton Grid.Row="0" Source="logoutbutton.png" Aspect="AspectFit" WidthRequest="45" Margin="300,0,0,-20" Command="{Binding LogoutCommand}"/>
+            <Border HeightRequest="140" WidthRequest="140" VerticalOptions="Center" Grid.Row="1" Stroke="Transparent" StrokeShape="Ellipse 40, 40">
                 <Image Aspect="AspectFill" Source="{Binding CurrentEmployee.Image, Converter={StaticResource ByteToImageConverter}}" HeightRequest="140" WidthRequest="140" VerticalOptions="Center" HorizontalOptions="Center"/>
             </Border>
-            <Label Text="{Binding CurrentEmployee.FullName}" TextColor="White" HorizontalOptions="Center" Grid.Row="1" FontSize="Large" FontAttributes="Bold"/>
-            <Label Text="{Binding CurrentEmployee.JobPosition}" TextColor="White" HorizontalOptions="Center" Grid.Row="2"/>
+            <Label Text="{Binding CurrentEmployee.FullName}" TextColor="White" HorizontalOptions="Center" Grid.Row="2" FontSize="Large" FontAttributes="Bold"/>
+            <Label Text="{Binding CurrentEmployee.JobPosition}" TextColor="White" HorizontalOptions="Center" Grid.Row="3"/>
         </Grid>
         <Border BackgroundColor="White" Grid.Row="1">
             <Grid RowDefinitions="*,*" ColumnDefinitions="*,*">

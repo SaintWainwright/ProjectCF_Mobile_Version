@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using ProjectCF_Mobile_Version.Services;
 using ProjectCF_Mobile_Version.View;
 using ProjectCF_Mobile_Version.ViewModel;
 
@@ -16,24 +17,24 @@ namespace ProjectCF_Mobile_Version
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
-            builder.Services.AddSingleton<LandingPage>();
-            builder.Services.AddSingleton<LandingPage_VM>();
-            builder.Services.AddSingleton<LoginPage>();
-            builder.Services.AddSingleton<LoginPage_VM>();
-            builder.Services.AddSingleton<MainPage>();
-            builder.Services.AddSingleton<MainPage_VM>();
-            builder.Services.AddSingleton<Messaging>();
-            builder.Services.AddSingleton<Messaging_VM>();
-            builder.Services.AddSingleton<ViewMessage>();
-            builder.Services.AddSingleton<ViewMessage_VM>();
-            builder.Services.AddSingleton<ViewProfile>();
-            builder.Services.AddSingleton<ViewProfile_VM>();
-            builder.Services.AddSingleton<ViewSalary>();
-            builder.Services.AddSingleton<ViewSalary_VM>();
-            builder.Services.AddSingleton<Worktime>();
-            builder.Services.AddSingleton<Worktime_VM>();
-            builder.Services.AddSingleton<WriteMessage>();
-            builder.Services.AddSingleton<WriteMessage_VM>();
+            builder.Services.AddTransient<LandingPage>();
+            builder.Services.AddTransient<LandingPage_VM>();
+            builder.Services.AddTransient<LoginPage>();
+            builder.Services.AddTransient<LoginPage_VM>();
+            builder.Services.AddTransient<MainPage>();
+            builder.Services.AddTransient<MainPage_VM>();
+            builder.Services.AddTransient<Messaging>();
+            builder.Services.AddTransient<Messaging_VM>();
+            builder.Services.AddTransient<ViewMessage>();
+            builder.Services.AddTransient<ViewMessage_VM>();
+            builder.Services.AddTransient<ViewProfile>();
+            builder.Services.AddTransient<ViewProfile_VM>();
+            builder.Services.AddTransient<ViewSalary>();
+            builder.Services.AddTransient<ViewSalary_VM>();
+            builder.Services.AddTransient<Worktime>();
+            builder.Services.AddTransient<Worktime_VM>();
+            builder.Services.AddTransient<WriteMessage>();
+            builder.Services.AddTransient<WriteMessage_VM>();
 #if DEBUG
             builder.Logging.AddDebug();
 #endif

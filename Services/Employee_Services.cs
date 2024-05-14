@@ -37,7 +37,7 @@ namespace ProjectCF_Mobile_Version.Services
             ObservableCollection<Employee> EmployeeCollection = Employee_Services.GetEmployees();
             for (int loop = 0; loop < EmployeeCollection.Count; loop++)
             {
-                if (employee.EmployeeID == EmployeeCollection[loop].EmployeeID)
+                if (employee.EmployeeID.Equals(EmployeeCollection[loop].EmployeeID))
                 {
                     EmployeeCollection[loop] = employee;
                     var EmployeeList = JsonSerializer.Serialize<ObservableCollection<Employee>>(EmployeeCollection);
@@ -50,7 +50,7 @@ namespace ProjectCF_Mobile_Version.Services
             ObservableCollection<Employee> EmployeeCollection = Employee_Services.GetEmployees();
             for (int loop = 0; loop < EmployeeCollection.Count; loop++)
             {
-                if (employee.EmployeeID == EmployeeCollection[loop].EmployeeID)
+                if (employee.EmployeeID.Equals(EmployeeCollection[loop].EmployeeID))
                 {
                     EmployeeCollection[loop] = employee;
                     var EmployeeList = JsonSerializer.Serialize<ObservableCollection<Employee>>(EmployeeCollection);
@@ -65,7 +65,7 @@ namespace ProjectCF_Mobile_Version.Services
             ObservableCollection<Employee> EmployeeCollection = [];
             foreach (var employee in Employee_Services.GetEmployees())
             {
-                if (employee.JobPosition == "Human Resource")
+                if (employee.JobPosition.Equals("Human Resource"))
                 {
                     EmployeeCollection.Add(employee);
                 }

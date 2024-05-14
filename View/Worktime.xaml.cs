@@ -10,9 +10,9 @@ public partial class Worktime : ContentPage
         InitializeComponent();
         BindingContext = vm;
     }
-    protected override void OnAppearing()
+    /*protected override void OnAppearing()
     {
         base.OnAppearing();
         (BindingContext as Worktime).OnAppearing();
-    }
+    }*/
 }

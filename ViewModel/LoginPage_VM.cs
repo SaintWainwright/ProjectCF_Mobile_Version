@@ -16,7 +16,7 @@ namespace ProjectCF_Mobile_Version.ViewModel
             bool existing = false;
             foreach (var employee in Employee_Services.GetEmployees())
             {
-                if (EmployeeIDEntry == employee.EmployeeID && EmployeePassword == employee.Password)
+                if (EmployeeIDEntry.Equals(employee.EmployeeID) && EmployeePassword.Equals(employee.Password))
                 {
                     return true;
                 }
@@ -31,16 +31,16 @@ namespace ProjectCF_Mobile_Version.ViewModel
             {
                 Shell.Current.DisplayAlert("Login Sucess", "Logging into your account...", "Okay");
                 Preferences.Default.Set("employeeID", EmployeeIDEntry);
-                Shell.Current.GoToAsync(nameof(LandingPage), false);
+                Shell.Current.GoToAsync($"//{nameof(LandingPage)}", false);
             }
             else
             {
                 Shell.Current.DisplayAlert("Account Not Found", "Your Account was not found in the database", "Okay");
             }
         }
-        public void OnAppearing()
+        /*public void OnAppearing()
         {
             Preferences.Default.Remove("employeeID");
-        }
+        }*/
     }
 }

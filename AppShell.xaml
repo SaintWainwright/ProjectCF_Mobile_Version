@@ -7,9 +7,6 @@
     Shell.FlyoutBehavior="Disabled"
     Shell.NavBarIsVisible="False">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        />
-
+    <ShellContent Route="MainPage" ContentTemplate="{DataTemplate local:MainPage}"/>
+    <ShellContent Route="LandingPage" ContentTemplate="{DataTemplate local:LandingPage}"/>
 </Shell>

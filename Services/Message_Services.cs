@@ -58,7 +58,7 @@ string filePath = Path.Combine(FileSystem.Current.AppDataDirectory, "Message.jso
             ObservableCollection<Message> MessageCollection = Message_Services.GetMessages();
             for (int loop = 0; loop < MessageCollection.Count; loop++)
             {
-                if (message.MessageText == MessageCollection[loop].MessageText && message.TimeSent == MessageCollection[loop].TimeSent)
+                if (message.MessageText.Equals(MessageCollection[loop].MessageText) && message.TimeSent == MessageCollection[loop].TimeSent)
                 {
                     MessageCollection[loop] = message;
                     var MessageList = JsonSerializer.Serialize<ObservableCollection<Message>>(MessageCollection);
@@ -71,7 +71,7 @@ string filePath = Path.Combine(FileSystem.Current.AppDataDirectory, "Message.jso
             ObservableCollection<Message> MessageCollection = Message_Services.GetMessages();
             for (int loop = 0; loop < MessageCollection.Count; loop++)
             {
-                if (message.MessageText == MessageCollection[loop].MessageText && message.Sender == MessageCollection[loop].Sender && message.Receiver == MessageCollection[loop].Receiver)
+                if (message.MessageText.Equals(MessageCollection[loop].MessageText)  && message.Sender.Equals(MessageCollection[loop].Sender)  && message.Receiver.Equals(MessageCollection[loop].Receiver))
                 {
                     MessageCollection[loop] = message;
                     var MessageList = JsonSerializer.Serialize<ObservableCollection<Message>>(MessageCollection);
@@ -87,7 +87,7 @@ string filePath = Path.Combine(FileSystem.Current.AppDataDirectory, "Message.jso
             ObservableCollection<Message> MessageList = [];
             foreach (var message in Message_Services.GetMessages().Reverse())
             {
-                if (message.Sender.EmployeeID ==  employee.EmployeeID || message.Receiver.EmployeeID == employee.EmployeeID)
+                if (message.Sender.EmployeeID.Equals(employee.EmployeeID) || message.Receiver.EmployeeID.Equals(employee.EmployeeID))
                 {
                     MessageList.Add(message);
                 }

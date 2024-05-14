@@ -9,6 +9,7 @@ namespace ProjectCF_Mobile_Version.ViewModel
     {
         public ViewSalary_VM()
         {
+            CurrentEmployee = Employee_Services.InitializeCurrentEmployee();
             totalOvertime = TimeSpan.Zero;
             totalLate = TimeSpan.Zero;
             totalHoursWorked = TimeSpan.Zero;
@@ -136,6 +137,6 @@ namespace ProjectCF_Mobile_Version.ViewModel
             Calculate(); 
             SetDisplayValues();
         }
-        public void OnAppearing() => CurrentEmployee = Employee_Services.InitializeCurrentEmployee();
+        /*public void OnAppearing() => CurrentEmployee = Employee_Services.InitializeCurrentEmployee();*/
     }
 }

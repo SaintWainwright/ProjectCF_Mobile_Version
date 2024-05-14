@@ -5,7 +5,7 @@
              xmlns:viewmodel="clr-namespace:ProjectCF_Mobile_Version.ViewModel"
              x:DataType="viewmodel:LoginPage_VM">
 
-    <Grid RowDefinitions="Auto,auto,auto,auto,auto,auto,auto,auto" VerticalOptions="Center" HorizontalOptions="Center" RowSpacing="10">
+    <Grid RowDefinitions="Auto,auto,auto,auto,auto,auto,auto" VerticalOptions="Center" HorizontalOptions="Center" RowSpacing="10">
         <Image Source="projectcf_logo.png" Aspect="Center" Grid.Row="0" HeightRequest="225" Margin="0,0,0,20"/>
         <Label Text="Enter Account Information" Grid.Row="1" FontSize="Body" FontAttributes="Bold"/>
         <Label Text="Account ID:" Grid.Row="2" FontAttributes="Bold"/>
@@ -19,11 +19,6 @@
             </Border.StrokeShape>
             <Entry Text="{Binding EmployeePassword}" Placeholder="Input Password" TextColor="Black" PlaceholderColor="black" IsPassword="True"/>
         </Border>
-        <Label Text="Forget Password?" Grid.Row="6" FontAttributes="Italic" FontSize="Small">
-            <Label.GestureRecognizers>
-                <TapGestureRecognizer />
-            </Label.GestureRecognizers>
-        </Label>
         <Button Text="Sign-In" Grid.Row="7" BorderColor="Black" BorderWidth="1" FontAttributes="Bold" BackgroundColor="#D9D9D9" TextColor="Black"  WidthRequest="90" Command="{Binding SignInCommand}"/>
     </Grid>
 </ContentPage>

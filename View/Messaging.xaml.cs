@@ -10,7 +10,7 @@ public partial class Messaging : ContentPage
         InitializeComponent();
         BindingContext = vm;
     }
-    protected override void OnAppearing()
+    /*protected override void OnAppearing()
     {
         base.OnAppearing();
         (BindingContext as Messaging_VM).OnAppearing();
@@ -19,5 +19,5 @@ public partial class Messaging : ContentPage
     {
         base.OnDisappearing();
         (BindingContext as Messaging_VM).OnDisappearing();
-    }
+    }*/
 }
