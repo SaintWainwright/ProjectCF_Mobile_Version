@@ -12,6 +12,7 @@ namespace ProjectCF_Mobile_Version.ViewModel
         public Messaging_VM() 
         {
             CurrentEmployee = Employee_Services.InitializeCurrentEmployee();
+            MessageList = Message_Services.EmployeeMessageList(CurrentEmployee);
         }
         [ObservableProperty]
         private Employee currentEmployee;
@@ -21,7 +22,7 @@ namespace ProjectCF_Mobile_Version.ViewModel
         private Message selectedMessage;
         partial void OnSelectedMessageChanged(Message value)
         {
-            if(value.Receiver.EmployeeID == CurrentEmployee.EmployeeID)
+            if(value.Receiver.EmployeeID == CurrentEmployee.EmployeeID && value.Tag == 0)
             {
                 value.Tag = 1; //Changes tag to READ
                 Message_Services.UpdateMessageCollection(value);
@@ -32,13 +33,13 @@ namespace ProjectCF_Mobile_Version.ViewModel
         [RelayCommand]
         private async static Task GoToWriteMessage() => await Shell.Current.Navigation.PushAsync(new WriteMessage());
 
-        public void OnAppearing()
+        /*public void OnAppearing()
         {
             MessageList = Message_Services.EmployeeMessageList(CurrentEmployee);
         }
         public void OnDisappearing()
         {
             SelectedMessage = null;
-        }
+        }*/
     }
 }

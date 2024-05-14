@@ -5,7 +5,7 @@ namespace ProjectCF_Mobile_Version.Converter
     public class WorktimeTimeOutColorConverter : IValueConverter
     {
         public Color color { get; set; } = Colors.Green;
-        private DateTime optimalTimeOut = DateTime.Today.AddHours(21);
+        private DateTime optimalTimeOut = DateTime.Today.AddHours(16);
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             DateTime test = (DateTime)value;

@@ -23,7 +23,16 @@ namespace ProjectCF_Mobile_Version.ViewModel
         private async Task GoToWorktime() => await Shell.Current.GoToAsync(nameof(Worktime), false);
         [RelayCommand]
         private async Task GoToMessaging() => await Shell.Current.GoToAsync(nameof(Messaging), false);
+        [RelayCommand]
+        private async Task Logout()
+        {
+            if(await Shell.Current.DisplayAlert("Logout", "Are you sure you want to logout?", "Yes", "No"))
+            {
+                Preferences.Clear();
+                await Shell.Current.GoToAsync($"//{nameof(MainPage)}", false);
+            }
+        }
 
-        /*public void OnAppearing() => CurrentEmployee = Employee_Services.InitializeCurrentEmployee();*/
+        public void OnAppearing() => CurrentEmployee = Employee_Services.InitializeCurrentEmployee();
     }
 }

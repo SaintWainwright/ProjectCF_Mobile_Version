@@ -35,6 +35,16 @@
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="model:Message">
                             <StackLayout Padding="0">
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup Name="CommonStates">
+                                        <VisualState Name="Normal"></VisualState>
+                                        <VisualState Name="Selected">
+                                            <VisualState.Setters>
+                                                <Setter Property="BackgroundColor" Value="Transparent"></Setter>
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
                                 <Border Stroke="Black" BackgroundColor="Transparent" StrokeShape="RoundRectangle 5" Margin="5">
                                     <Grid ColumnDefinitions="*,auto,*" ColumnSpacing="5" RowDefinitions="auto,*,*" Margin="2" WidthRequest="350" HeightRequest="75">
                                         <Border Grid.Column="0" Grid.RowSpan="3" HeightRequest="60" StrokeShape="RoundRectangle 80" WidthRequest="60" HorizontalOptions="Center" BackgroundColor="Transparent">

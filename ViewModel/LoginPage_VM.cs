@@ -7,10 +7,6 @@ namespace ProjectCF_Mobile_Version.ViewModel
 {
     public partial class LoginPage_VM : ObservableObject
     {
-        public LoginPage_VM()
-        {
-            Preferences.Default.Remove("employeeID");
-        }
         [ObservableProperty]
         private string employeeIDEntry;
         [ObservableProperty]
@@ -20,7 +16,7 @@ namespace ProjectCF_Mobile_Version.ViewModel
             bool existing = false;
             foreach (var employee in Employee_Services.GetEmployees())
             {
-                if (EmployeeIDEntry == employee.EmployeeID && EmployeePassword == employee.Password)
+                if (EmployeeIDEntry.Equals(employee.EmployeeID) && EmployeePassword.Equals(employee.Password))
                 {
                     return true;
                 }
