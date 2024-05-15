@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjectCF_Mobile_Version.View.Worktime"
+             xmlns:viewmodel="clr-namespace:ProjectCF_Mobile_Version.ViewModel"
+             x:DataType="viewmodel:Worktime_VM"
+             xmlns:model="clr-namespace:ProjectCF_Mobile_Version.Model"
+             xmlns:converter="clr-namespace:ProjectCF_Mobile_Version.Converter"
+             BackgroundColor="Black">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:WorktimeTimeInColorConverter x:Key="TimeInColor" />
+        </ResourceDictionary>
+        <ResourceDictionary>
+            <converter:WorktimeTimeOutColorConverter x:Key="TimeOutColor" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <Grid RowDefinitions="75, *, auto, auto" HorizontalOptions="Center">
+        <Label Grid.Row="0" Margin="10" FontAttributes="Bold" FontSize="Large" Text="WORKTIME" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center"/>
+        <Border BackgroundColor="White" WidthRequest="350" HeightRequest="600" Grid.Row="1">
+            <Grid RowDefinitions="50,*" ColumnDefinitions="*,*,*">
+                <Border Grid.Column="0" Grid.Row="0">
+                    <Label Text="Date" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Center"/>
+                </Border>
+                <Border Grid.Column="1" Grid.Row="0">
+                    <Label Text="Time In" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Center"/>
+                </Border>
+                <Border Grid.Column="2" Grid.Row="0">
+                    <Label Text="Time Out" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Center"/>
+                </Border>
+                <CollectionView Grid.Row="1" Grid.ColumnSpan="5" ItemsSource="{Binding CurrentEmployee.Worktimes}">
+                    <CollectionView.EmptyView>
+                        <ContentView>
+                            <Label Text="Employee has no Worktimes yet..." HorizontalTextAlignment="Center" Margin="0,175" FontSize="Header"/>
+                        </ContentView>
+                    </CollectionView.EmptyView>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="model:Employee_Worktimes">
+                            <Grid ColumnDefinitions="*,*,*">
+                                <Label Grid.Column="0" Text="{Binding TimeIn, StringFormat='{0:MM/dd/yy}'}" HorizontalTextAlignment="Center"/>
+                                <Label Grid.Column="1" Text="{Binding TimeIn, StringFormat='{0:hh:mm:ss tt}'}" HorizontalTextAlignment="Center" TextColor="{Binding TimeIn, Converter={StaticResource TimeInColor}}"/>
+                                <Label Grid.Column="2" Text="{Binding TimeOut, StringFormat='{0:hh:mm:ss tt}'}" HorizontalTextAlignment="Center" TextColor="{Binding TimeOut, Converter={StaticResource TimeOutColor}}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Grid>
+            </Border>
+        <Grid Grid.Row="2">
+            <DatePicker Date="{Binding DateSimulation}" BackgroundColor="LightGrey" WidthRequest="100" HeightRequest="43" Margin="10"/>
+            <TimePicker  HorizontalOptions="Start" Margin="10"   WidthRequest="100" BackgroundColor="LightGrey" Time="{Binding TimeInSimulation}"/>
+            <TimePicker HorizontalOptions="End" Margin="10" WidthRequest="100" BackgroundColor="LightGrey" Time="{Binding TimeOutSimulation}"/>
+        </Grid>
+        <Grid Grid.Row="3" WidthRequest="100">
+            <Button Text="Simulate" Command="{Binding SimulateCommand}" BackgroundColor="LightGrey" TextColor="Black" BorderColor="Black"/>
+        </Grid>
+    </Grid>
+</ContentPage>

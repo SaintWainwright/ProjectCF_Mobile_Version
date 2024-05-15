@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjectCF_Mobile_Version.View.ViewSalary"
+             xmlns:viewmodel="clr-namespace:ProjectCF_Mobile_Version.ViewModel"
+             x:DataType="viewmodel:ViewSalary_VM"
+             xmlns:model="clr-namespace:ProjectCF_Mobile_Version.Model"
+             xmlns:converter="clr-namespace:ProjectCF_Mobile_Version.Converter"
+             BackgroundColor="Black">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:ByteToImageConverter x:Key="ByteToImageConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <Grid>
+        <ScrollView>
+            <Grid RowDefinitions="75,*">
+                <Label Grid.Row="0" Margin="10" FontAttributes="Bold" FontSize="Large" Text="SALARY" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center"/>
+                <Border BackgroundColor="White" WidthRequest="375" Grid.Row="1">
+                    <Grid RowDefinitions="190,*">
+                        <!--Grid display for Employee Details on upper portion of salary page-->
+                        <Grid Grid.Row="0" RowDefinitions="50,40,40,40" ColumnDefinitions="*,*">
+                            <Frame HeightRequest="140"
+                           WidthRequest="140"
+                           CornerRadius="70"
+                           VerticalOptions="Center"
+                           IsClippedToBounds="True"
+                           Padding="0"
+                           BorderColor="Black"
+                           Margin="10" Grid.Row="2">
+
+                                <Image
+                            Aspect="AspectFill"
+                            Source="{Binding CurrentEmployee.Image, Converter={StaticResource ByteToImageConverter}}"
+                            HeightRequest="140"
+                            WidthRequest="140"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Center"/>
+                            </Frame>
+                            <Border Grid.Row="1" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="LightGray" Stroke="Black" WidthRequest="153" HeightRequest="25" Margin="0,0,10,0">
+                                <Label Text="{Binding CurrentEmployee.FullName}" FontSize="14" Margin="5,0,0,0"/>
+                            </Border>
+                            <Border Grid.Row="2" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="LightGray" Stroke="Black" WidthRequest="153" HeightRequest="25" Margin="0,0,10,0">
+                                <Label Text="{Binding CurrentEmployee.JobPosition}" FontSize="14" Margin="5,0,0,0"/>
+                            </Border>
+                            <Border Grid.Row="3" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="LightGray" Stroke="Black" WidthRequest="160" HeightRequest="25" Margin="0,0,10,0">
+                                <Label Text="{Binding CurrentEmployee.SalaryGrade, StringFormat='Salary Grade: {0}'}" FontSize="14" Margin="5,0,0,0"/>
+                            </Border>
+                        </Grid>
+
+                        <!--Grid display for Employee's Salary details on lower portion of salary page-->
+                        <Grid Grid.Row="1" RowDefinitions="60,50,240,90,240,60">
+                            <Border Grid.Row="0" Margin="20,10,10,10" Stroke="Black" WidthRequest="100" HorizontalOptions="Start" BackgroundColor="LightGray">
+                                <Picker Title="Month" ItemsSource="{Binding MonthPicker}" SelectedIndex="{Binding SelectedMonth}"/>
+                            </Border>
+                            <!--Grid for Earnings-->
+                            <Border Grid.Row="1" Grid.Column="0" Stroke="Black" WidthRequest="150" HorizontalOptions="Start" Margin="20,10,0,0" BackgroundColor="LightGray">
+                                <Label Text="EARNINGS" FontAttributes="Bold" FontSize="25" Margin="5" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                            </Border>
+                            <Border Grid.Row="2" BackgroundColor="LightGray" Stroke="Black" Margin="20,0,20,0">
+                                <Grid RowDefinitions="50,50,50,50,50" ColumnDefinitions="*,*">
+                                    <Label Text="Salary Grade" Grid.Row="0" Grid.Column="0" Margin="10"/>
+                                    <Label Text="{Binding TemporarySalary, StringFormat='{0:0.00}'}" Grid.Row="0" Grid.Column="1" Margin="10" HorizontalTextAlignment="End"/>
+                                    <Label Text="Lates" Grid.Row="1" Grid.Column="0" Margin="10"/>
+                                    <Label Text="{Binding LateDeductions, StringFormat='- {0:0.00}'}" Grid.Row="1" Grid.Column="1" Margin="10" HorizontalTextAlignment="End"/>
+                                    <Label Text="Undertimes" Grid.Row="2" Grid.Column="0" Margin="10"/>
+                                    <Label Text="{Binding UnderTimes, StringFormat='- {0:0.00}'}" Grid.Row="2" Grid.Column="1" Margin="10" HorizontalTextAlignment="End"/>
+                                    <Label Text="Overtime Bonus" Grid.Row="3" Grid.Column="0" Margin="10"/>
+                                    <Label Text="{Binding OvertimeBonus, StringFormat='{0:0.00}'}" Grid.Row="3" Grid.Column="1" Margin="10" HorizontalTextAlignment="End"/>
+                                    <Label Text="Total Earnings:" Grid.Row="4" Grid.Column="0" Margin="10"/>
+                                    <Label Text="{Binding TotalEarnings, StringFormat='{0:0.00}'}" Grid.Row="4" Grid.Column="1" Margin="10" HorizontalTextAlignment="End"/>
+                                </Grid>
+                            </Border>
+                            <!--Grid for Deductions-->
+                            <Border Grid.Row="3" Grid.Column="0" Stroke="Black" WidthRequest="180" HorizontalOptions="Start" Margin="20,50,0,0" BackgroundColor="LightGray">
+                                <Label Text="DEDUCTIONS" FontAttributes="Bold" FontSize="25" Margin="5" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                            </Border>
+                            <Border Grid.Row="4" BackgroundColor="LightGray" Stroke="Black" Margin="20,0,20,0">
+                                <Grid RowDefinitions="50,50,50,50,50" ColumnDefinitions="*,*">
+                                    <Label Text="Taxes" Grid.Row="0" Grid.Column="0" Margin="10"/>
+                                    <Label Text="{Binding Taxes, StringFormat='{0:0.00}'}" Grid.Row="0" Grid.Column="1" Margin="10" HorizontalTextAlignment="End"/>
+                                    <Label Text="Pag-Ibig" Grid.Row="1" Grid.Column="0" Margin="10"/>
+                                    <Label Text="{Binding Pagibig, StringFormat='{0:0.00}'}" Grid.Row="1" Grid.Column="1" Margin="10" HorizontalTextAlignment="End"/>
+                                    <Label Text="PhilHealth" Grid.Row="2" Grid.Column="0" Margin="10"/>
+                                    <Label Text="{Binding PhilHealth, StringFormat='{0:0.00}'}" Grid.Row="2" Grid.Column="1" Margin="10" HorizontalTextAlignment="End"/>
+                                    <Label Text="SSS" Grid.Row="3" Grid.Column="0" Margin="10"/>
+                                    <Label Text="{Binding Sss, StringFormat='{0:0.00}'}" Grid.Row="3" Grid.Column="1" Margin="10" HorizontalTextAlignment="End"/>
+                                    <Label Text="Total Deductions:" Grid.Row="4" Grid.Column="0" Margin="10"/>
+                                    <Label Text="{Binding TotalDeductions, StringFormat='{0:0.00}'}" Grid.Row="4" Grid.Column="1" Margin="10" HorizontalTextAlignment="End"/>
+                                </Grid>
+                            </Border>
+                            <Border BackgroundColor="LightGray" Grid.Row="5" Margin="10" WidthRequest="250" Stroke="Black">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="Netpay:" Grid.Column="0" FontAttributes="Bold" FontSize="16" Margin="5" VerticalTextAlignment="Center" HorizontalTextAlignment="Start"/>
+                                    <Label Text="{Binding FinalSalary, StringFormat='{0:0.00}'}" Grid.Column="1" FontAttributes="Bold" FontSize="16" Margin="5" VerticalTextAlignment="Center" HorizontalTextAlignment="End"/>
+                                </Grid>
+                            </Border>
+                        </Grid>
+                    </Grid>
+                </Border>
+            </Grid>
+        </ScrollView>
+    </Grid>
+</ContentPage>

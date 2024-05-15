@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjectCF_Mobile_Version.View.WriteMessage"
+             xmlns:viewmodel="clr-namespace:ProjectCF_Mobile_Version.ViewModel"
+             x:DataType="viewmodel:WriteMessage_VM"
+             BackgroundColor="Black"
+             xmlns:model="clr-namespace:ProjectCF_Mobile_Version.Model">
+
+    <FlexLayout Direction="Column" AlignItems="Center">
+        <HorizontalStackLayout FlexLayout.Order="0">
+            <Label Text="COMPOSE MESSAGE" FontAttributes="Bold" FontSize="Large" TextColor="White" Margin="70,10,10,10" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="150"/>
+            <ImageButton Command="{Binding SendMessageCommand}" Margin="50,10,-25,10" Source="send_message.png"/>
+        </HorizontalStackLayout>
+        <Frame FlexLayout.Order="1" CornerRadius="10" WidthRequest="350" HeightRequest="75" Margin="18,1">
+            <HorizontalStackLayout BackgroundColor="White" VerticalOptions="Center">
+                <Label Text="{Binding CurrentEmployee.FullName, StringFormat='FROM: {0}'}" FontAttributes="Bold" FontSize="20"/>
+            </HorizontalStackLayout>
+        </Frame>
+        <Frame FlexLayout.Order="2" CornerRadius="10" WidthRequest="350" HeightRequest="75" Margin="18,1">
+            <HorizontalStackLayout BackgroundColor="White" VerticalOptions="Center">
+                <Label Text="TO: " FontAttributes="Bold" FontSize="20" VerticalOptions="Center"/>
+                <Picker Title="Human Resources" SelectedItem="{Binding NewMessage.Receiver}" ItemsSource="{Binding ContactList}" ItemDisplayBinding="{Binding FullName}" HeightRequest="75" FontSize="20" FontAttributes="Bold" WidthRequest="300" Margin="0,2,0,0"/>
+            </HorizontalStackLayout>
+        </Frame>
+        <Frame FlexLayout.Order="3" CornerRadius="10" WidthRequest="350" HeightRequest="75" Margin="18,1">
+            <HorizontalStackLayout BackgroundColor="White">
+                <Entry Placeholder="Subject" Text="{Binding NewMessage.Subject}" FontAttributes="Bold" FontSize="20" HeightRequest="75"/>
+            </HorizontalStackLayout>
+        </Frame>
+        <Frame FlexLayout.Order="4" CornerRadius="10" WidthRequest="350" HeightRequest="450" Margin="18,1">
+            <HorizontalStackLayout BackgroundColor="White">
+                <Editor Placeholder="Compose email" Text="{Binding NewMessage.MessageText}" WidthRequest="310" FontSize="15"/>
+            </HorizontalStackLayout>
+        </Frame>
+    </FlexLayout>
+</ContentPage>

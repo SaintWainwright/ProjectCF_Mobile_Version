@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjectCF_Mobile_Version.View.ViewProfile"
+             xmlns:viewmodel="clr-namespace:ProjectCF_Mobile_Version.ViewModel"
+             x:DataType="viewmodel:ViewProfile_VM"
+             xmlns:converter="clr-namespace:ProjectCF_Mobile_Version.Converter"
+             BackgroundColor="Black">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:ByteToImageConverter x:Key="ByteToImageConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid>
+        <ScrollView>
+            <Grid RowDefinitions="75, *" HorizontalOptions="Center">
+                <Label Grid.Row="0" Margin="10" FontAttributes="Bold" FontSize="Large" Text="PROFILE" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center"/>
+                <Grid Grid.Row="1" RowDefinitions="*,*">
+                    <Border Stroke="Transparent" WidthRequest="400" HeightRequest="400" Grid.Row="0" StrokeShape="RoundRectangle 20">
+                        <Image Source="{Binding CurrentEmployee.Image, Converter={StaticResource ByteToImageConverter}}" Margin="10" Aspect="AspectFill"/>
+                    </Border>
+                    <Grid BackgroundColor="White" WidthRequest="350" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" Margin="10" Grid.Row="1" 
+                              RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto">
+                        <Label Text="Full Name" FontAttributes="Bold"  FontSize="21" Margin="5" Grid.Row="0"/>
+                        <Entry Text="{Binding CurrentEmployee.FullName}" FontAttributes="Bold"  FontSize="18" Margin="5,0,0,30" IsReadOnly="True"  Grid.Row="1"/>
+                        <Label Text="Email" FontAttributes="Bold" FontSize="21" Margin="5"  Grid.Row="2"/>
+                        <Entry Text="{Binding CurrentEmployee.Email}" FontAttributes="Bold" FontSize="18" Margin="5,0,0,30" IsReadOnly="True"  Grid.Row="3"/>
+                        <Label Text="Job Position" FontAttributes="Bold" FontSize="21" Margin="5"  Grid.Row="4"/>
+                        <Entry Text="{Binding CurrentEmployee.JobPosition}" FontAttributes="Bold" FontSize="18" Margin="5,0,0,30" IsReadOnly="True"  Grid.Row="5"/>
+                        <Label Text="Contact Number" FontAttributes="Bold" FontSize="21" Margin="5"  Grid.Row="6"/>
+                        <Entry Text="{Binding CurrentEmployee.ContactNumber}" FontAttributes="Bold" FontSize="18" Margin="5,0,0,30" IsReadOnly="True"  Grid.Row="7"/>
+                        <Label Text="Total Hours Worked" FontAttributes="Bold" FontSize="21" Margin="5"  Grid.Row="8"/>
+                        <Entry Text="{Binding CurrentEmployee.HoursWorked.TotalHours, StringFormat='{0}'}" FontAttributes="Bold" FontSize="18" Margin="5,0,0,30" IsReadOnly="True"  Grid.Row="9"/>
+                        <Label Text="Gender" FontAttributes="Bold" FontSize="21" Margin="5"  Grid.Row="10"/>
+                        <Entry Text="{Binding CurrentEmployee.Gender}" FontAttributes="Bold" FontSize="18" Margin="5,0,0,30" IsReadOnly="True"  Grid.Row="11"/>
+                        <Label Text="Date Joined" FontAttributes="Bold" FontSize="21" Margin="5"  Grid.Row="12"/>
+                        <Entry Text="{Binding CurrentEmployee.DateJoined, StringFormat='{0:MM/dd/yyyy}'}" FontAttributes="Bold" FontSize="18" Margin="5,0,0,30" IsReadOnly="True"  Grid.Row="13"/>
+                        <Label Text="Birthdate" FontAttributes="Bold" FontSize="21" Margin="5"  Grid.Row="14"/>
+                        <Entry Text="{Binding CurrentEmployee.BirthDate, StringFormat='{0:MM/dd/yyyy}'}" FontAttributes="Bold" FontSize="18" Margin="5,0,0,30" IsReadOnly="True"  Grid.Row="15"/>
+                        <Label Text="Country" FontAttributes="Bold" FontSize="21" Margin="5"  Grid.Row="16"/>
+                        <Entry Text="{Binding CurrentEmployee.Country}" FontAttributes="Bold" FontSize="18" Margin="5,0,0,30" IsReadOnly="True"  Grid.Row="17"/>
+                        <Label Text="Home Address" FontAttributes="Bold" FontSize="21" Margin="5"  Grid.Row="18"/>
+                        <Entry Text="{Binding CurrentEmployee.HomeAddress}" FontAttributes="Bold" FontSize="18" Margin="5,0,0,30" IsReadOnly="True"  Grid.Row="19"/>
+                        <Label Text="Provincial Address" FontAttributes="Bold" FontSize="21" Margin="5"  Grid.Row="20"/>
+                        <Entry Text="{Binding CurrentEmployee.ProvincialAddress}" FontAttributes="Bold" FontSize="18" Margin="5,0,0,30" IsReadOnly="True"  Grid.Row="21"/>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </ScrollView>
+    </Grid>
+    
+</ContentPage>

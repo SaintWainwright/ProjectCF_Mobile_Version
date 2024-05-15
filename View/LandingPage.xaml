@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjectCF_Mobile_Version.View.LandingPage"
+             xmlns:viewmodel="clr-namespace:ProjectCF_Mobile_Version.ViewModel"
+             x:DataType="viewmodel:LandingPage_VM"
+             xmlns:converter="clr-namespace:ProjectCF_Mobile_Version.Converter"
+             BackgroundColor="Black">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:ByteToImageConverter x:Key="ByteToImageConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions="300,*">
+        <Grid RowDefinitions="Auto,Auto, Auto, Auto" Grid.Row="0" RowSpacing="10" VerticalOptions="Center" HorizontalOptions="Center">
+            <ImageButton Grid.Row="0" Source="logoutbutton.png" Aspect="AspectFit" WidthRequest="45" Margin="300,0,0,-20" Command="{Binding LogoutCommand}"/>
+            <Border HeightRequest="140" WidthRequest="140" VerticalOptions="Center" Grid.Row="1" Stroke="Transparent" StrokeShape="Ellipse 40, 40">
+                <Image Aspect="AspectFill" Source="{Binding CurrentEmployee.Image, Converter={StaticResource ByteToImageConverter}}" HeightRequest="140" WidthRequest="140" VerticalOptions="Center" HorizontalOptions="Center"/>
+            </Border>
+            <Label Text="{Binding CurrentEmployee.FullName}" TextColor="White" HorizontalOptions="Center" Grid.Row="2" FontSize="Large" FontAttributes="Bold"/>
+            <Label Text="{Binding CurrentEmployee.JobPosition}" TextColor="White" HorizontalOptions="Center" Grid.Row="3"/>
+        </Grid>
+        <Border BackgroundColor="White" Grid.Row="1">
+            <Grid RowDefinitions="*,*" ColumnDefinitions="*,*">
+                <ImageButton Grid.Row="0" Grid.Column="0" Margin="1" Source="project_cf_mobile_viewprofile_picture.png" Command="{Binding GoToViewProfileCommand}" Aspect="Fill" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="180" HeightRequest="200"/>
+                <ImageButton Grid.Row="0" Grid.Column="1" Margin="1" Source="project_cf_mobile_viewworktime_picture.png" Command="{Binding GoToWorktimeCommand}" Aspect="Fill" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="180" HeightRequest="200"/>
+                <ImageButton Grid.Row="1" Grid.Column="0" Margin="1" Source="project_cf_mobile_viewsalary_picture.png" Command="{Binding GoToViewSalaryCommand}" Aspect="Fill" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="180" HeightRequest="200"/>
+                <ImageButton Grid.Row="1" Grid.Column="1" Margin="1" Source="project_cf_mobile_sendmessage_picture.png" Command="{Binding GoToMessagingCommand}" Aspect="Fill" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="180" HeightRequest="200"/>
+            </Grid>
+        </Border>
+    </Grid>
+</ContentPage>
